@@ -4,8 +4,8 @@ public class CaiYangDLGC {
     private String zsbh; //送检仪器证书编号
     private String shizhi; //示值
     private String shijizhi; //实际值
-    private String dlgc; //电流过冲
-    private String gcmk; //过冲脉宽
+    //private String dlgc; //电流过冲
+    //private String gcmk; //过冲脉宽
     private String dw; //单位
     private int id; //序号
 
@@ -14,8 +14,8 @@ public class CaiYangDLGC {
         this.zsbh = "";
         this.shizhi = "";
         this.shijizhi = "";
-        this.dlgc = "";
-        this.gcmk = "";
+        //this.dlgc = "";
+        //this.gcmk = "";
         this.dw = "";
         this.id = 0;
     }
@@ -44,21 +44,21 @@ public class CaiYangDLGC {
         this.shijizhi = shijizhi;
     }
 
-    public String getDlgc() {
-        return dlgc;
-    }
-
-    public void setDlgc(String dlgc) {
-        this.dlgc = dlgc;
-    }
-
-    public String getGcmk() {
-        return gcmk;
-    }
-
-    public void setGcmk(String gcmk) {
-        this.gcmk = gcmk;
-    }
+//    public String getDlgc() {
+//        return dlgc;
+//    }
+//
+//    public void setDlgc(String dlgc) {
+//        this.dlgc = dlgc;
+//    }
+//
+//    public String getGcmk() {
+//        return gcmk;
+//    }
+//
+//    public void setGcmk(String gcmk) {
+//        this.gcmk = gcmk;
+//    }
 
     public String getDw() {
         return dw;
@@ -80,7 +80,7 @@ public class CaiYangDLGC {
     public String toString() {
         return "CaiYangWDXWC [zsbh=" + zsbh + ", shizhi=" + shizhi
                 + ", shijizhi=" + shijizhi
-                + ", dlgc=" + dlgc + ", gcmk=" + gcmk
+              //  + ", dlgc=" + dlgc + ", gcmk=" + gcmk
                 + ", dw=" + dw + ", id=" + id
                 + "]";
     }

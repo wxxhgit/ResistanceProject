@@ -248,21 +248,21 @@ public class ReadSerialPort implements SerialPortEventListener {// Runnable,
     // 电阻1的数组有关变量
     private float[] arr1 = new float[5];// 电阻1的数组
     private volatile int m1 = 0;// 负责数组arr的移位工作
-    private float average1 = 0.1f;// 电阻1的平均数 TODO
+    private float average1 = 0f;// 电阻1的平均数 TODO
     private float max1 = 0;// 电阻1的max
     private float min1 = 0;// 电阻1的min
 
     // 电阻2的数组有关变量
     private float[] arr2 = new float[5];// 电阻2的数组
     private volatile int m2 = 0;// 负责数组arr的移位工作
-    private float average2 = 1300f;// 电阻2的平均数
+    private float average2 = 0f;// 电阻2的平均数
     private float max2 = 0;// 电阻2的max
     private float min2 = 0;// 电阻2的min
 
     // 电压&电流的数组有关变量
     private float[] arr3 = new float[5];// 电压&电流的数组
     private volatile int m3 = 0;// 负责数组arr3的移位工作
-    private float average3 = 200f;// 电压&电流的平均数
+    private float average3 = 0f;// 电压&电流的平均数
 
     // 菜单值,单位值,有效位
     int menuValue = 0, unitValue = 0, valueNumber = 2;

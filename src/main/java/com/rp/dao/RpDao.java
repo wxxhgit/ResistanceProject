@@ -242,7 +242,7 @@ public class RpDao extends BaseDao {
 	 * 方法序号： 8_1_2 提交回路电阻表中的表4的值
 	 */
 	public boolean addLCData(CaiYangHL caiYangHL) throws Exception {
-		String sql = "INSERT INTO Lcvalue (zsbh,standardvalue,displayvalue,lc,dw,id) VALUES (?,?,?,?,?,?)";
+		String sql = "INSERT INTO Lcvalue (zsbh,standardvalue,displayvalue,lc,lc_value,dw,id) VALUES (?,?,?,?,?,?,?)";
 		int result = this.saveEntity(sql, caiYangHL);
 		if (result > 0)
 			return true;
@@ -379,7 +379,8 @@ public class RpDao extends BaseDao {
 	 * 方法序号： 8_7 提交 电流过冲  EE
 	 */
 	public boolean addDLGC(CaiYangDLGC caiYangDLGC)throws Exception {
-		String sql = "INSERT INTO Dlgc(zsbh,shizhi,shijizhi,dlgc,gcmk,dw,id) VALUES (?,?,?,?,?,?,?)";
+		//String sql = "INSERT INTO Dlgc(zsbh,shizhi,shijizhi,dlgc,gcmk,dw,id) VALUES (?,?,?,?,?,?,?)";
+		String sql = "INSERT INTO Dlgc(zsbh,shizhi,shijizhi,dw,id) VALUES (?,?,?,?,?)";
 		int result = this.saveEntity(sql,caiYangDLGC);
 		if(result>0){
 			return true;
@@ -450,8 +451,8 @@ public class RpDao extends BaseDao {
 		int result = this.saveOrUpdateOrDelete(sql,ins.getWg(),
 				ins.getJydz(), ins.getJyqd(),ins.getJdjl() ,ins.getFbl(),
 				ins.getXxwc(), ins.getXldl(), ins.getWdxwc(),
-				ins.getDlgc(), ins.getGcmk(), ins.getZsbh(),
-                ins.getEddlwcsj(),ins.getEddl(),ins.getXdkzbqdd()
+				ins.getDlgc(), ins.getGcmk(), ins.getEddlwcsj(),
+                ins.getEddl(),ins.getXdkzbqdd(),ins.getZsbh()
 		);
 		if (result > 0)
 			return true;
@@ -459,6 +460,47 @@ public class RpDao extends BaseDao {
 			return false;
 	}
 
+    /**
+     * 方法序号：9_1_2_1 添加回路电阻表剩余部分数据到数据库 10个参数 zsbh;//送检仪器证书编号 fbl;//分辨力 xxwc;//线性误差
+     * wg;//外观 jydz;//绝缘电阻 jyqd;//绝缘强度 xldl;//泄露电流 wdxwc;//稳定性误差 dlgc;//电流过冲 gcmk;//过冲脉宽
+     * jdjl;//检定结论
+     */
+    public boolean addInspectionDecLeftHl1(InspectionDecLeft ins) throws Exception {
+        String sql = "UPDATE InspectionDevice SET wg = ? ,jydz = ? , jyqd = ? , fbl = ? ,xxwc= ? ,xldl = ? ,wdxwc = ? , dlgc = ? , gcmk = ? , eddlwcsj= ? , eddl= ? ,xdkzbqdd= ? WHERE zsbh = ?";
+        int result = this.saveOrUpdateOrDelete(sql,ins.getWg(),
+                ins.getJydz(), ins.getJyqd(),ins.getFbl(),
+                ins.getXxwc(), ins.getXldl(), ins.getWdxwc(),
+                ins.getDlgc(), ins.getGcmk(), ins.getEddlwcsj(),
+                ins.getEddl(),ins.getXdkzbqdd(),ins.getZsbh()
+        );
+        if (result > 0)
+            return true;
+        else
+            return false;
+    }
+
+
+
+    /**
+     * 方法序号：9_1_3 添加模块选中标志位到数据库 3个参数 jyflag;//绝缘电阻 jdflag;//接地电阻
+     * hlflag；//回路电阻
+     */
+//    public boolean addDZBZW(String jy,String jd,String hl) throws Exception {
+//        String sql = "INSERT INTO flag(jyflag,jdflag,hlflag) VALUES (?,?,?)";
+//        int result = this.saveOrUpdateOrDelete(sql,jy, jd,hl);
+//        if (result > 0)
+//            return true;
+//        else
+//            return false;
+//    }
+
+    /**
+     * 方法序号：9_1_4 查询模块选中标志位
+     */
+//    public String findDZBZW() throws Exception {
+//        String sql="SELECT * FROM flag";
+//        return this.getForJson(sql);
+//    }
 
 	/**
 	 * 方法序号：9_2 根据某一证书编号查询其下所有全检量程区数据每次10条
@@ -499,4 +541,13 @@ public class RpDao extends BaseDao {
 		String sql = "SELECT * FROM Lcvalue WHERE zsbh = ? and lc=? Order by id ASC";
 		return this.getForJson(sql, id, lcvalue);
 	}
+
+	/**
+	 * 方法序号：9_7 根据某一证书编号查询其下所有回路电阻的稳定性误差
+	 */
+	public String findWdxwcByZsh(String zsh) throws Exception {
+		String sql = "SELECT DISTINCT wdxwc FROM Wdxwc WHERE zsbh = ? ";
+		return this.getForJson(sql, zsh);
+	}
+
 }

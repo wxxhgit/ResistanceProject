@@ -423,6 +423,46 @@ public class RpService {
 		return true;
 	}
 
+    /**
+     * 方法序号：9_1_2_1 添加回路电阻表剩余部分数据到数据库
+     */
+    public boolean addInspectionDecLeftHl1(InspectionDecLeft ins) {
+        try {
+            this.rpDao.addInspectionDecLeftHl1(ins);
+        } catch (Exception e) {
+            System.out.println("9_1_2添加回路电阻表剩余部分数据到数据库时出错！");
+            e.printStackTrace();
+        }
+        return true;
+    }
+
+	/**
+	 * 方法序号：9_1_3 添加电阻表剩余部分数据到数据库 2个参数 zsbh;//送检仪器证书编号 flag;//模块选中标志位
+	 */
+//	public boolean addDZBZW(String jy,String jd,String hl) {
+//		try {
+//			this.rpDao.addDZBZW(jy,jd,hl);
+//		} catch (Exception e) {
+//			System.out.println("9_1_3添加电阻表剩余部分数据到数据库时出错！");
+//			e.printStackTrace();
+//		}
+//		return true;
+//	}
+
+	/**
+	 * 方法序号：9_1_4 查询模块选中标志位
+	 */
+//	public String findDZBZW() {
+//		try {
+//			return this.rpDao.findDZBZW();
+//		} catch (Exception e) {
+//			System.out.println("9_1_4查询模块选中标志位时出错！");
+//			e.printStackTrace();
+//		}
+//		return null;
+//	}
+
+
 	/**
 	 * 方法序号：9_2 根据某一证书编号查询其下所有全检量程区数据10条
 	 */
@@ -487,4 +527,17 @@ public class RpService {
 		}
 		return null;
 	}
+
+	/**
+	 * 方法序号：9_7 根据某一证书编号查询其下所有回路电阻的稳定性误差
+	 */
+    public String findWdxwcByZsh(String zsh) {
+        try {
+            return this.rpDao.findWdxwcByZsh(zsh);
+        } catch (Exception e) {
+            System.out.println("9_7 根据某一证书编号查询其下所有回路电阻的稳定性误差时出错！");
+            e.printStackTrace();
+        }
+        return null;
+    }
 }

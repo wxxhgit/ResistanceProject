@@ -6,23 +6,23 @@ $(function () {
     function tabs(tabTit, on, tabCon) {
         $(tabCon).each(function () {
             $(this).children().hide();
-            $(this).children().eq(6).show();//0代表第一个 TODO
+            $(this).children().eq(2).show();//0代表第一个 TODO
         });
         $(tabTit).children().click(function () {
 
             var index = $(tabTit).children().index(this);
-            $(this).addClass(on).siblings().removeClass(on);
-            if ($("#leixing5_1").text() == "接地电阻表" && (index == 0||index == 4)) {
-                alert("菜单选择有误，当前为接地电阻表，应选择CC接地电阻菜单!");
-            } else if ($("#leixing5_1").text() == "绝缘电阻表" && (index == 2||index == 4)) {
-                alert("菜单选择有误，当前为绝缘电阻表，应选择AA绝缘电阻菜单!");
-            } else if ($("#leixing5_1").text() == "回路电阻表" && (index == 0||index == 2)) {
-                alert("菜单选择有误，当前为回路电阻表，应选择EE回路电阻菜单!");
-            }
-            else {
+            //$(this).addClass(on).siblings().removeClass(on);
+            // if ($("#leixing5_1").text() == "接地电阻表" && (index == 0||index == 4)) {
+            //     alert("菜单选择有误，当前为接地电阻表，应选择CC接地电阻菜单!");
+            // } else if ($("#leixing5_1").text() == "绝缘电阻表" && (index == 2||index == 4)) {
+            //     alert("菜单选择有误，当前为绝缘电阻表，应选择AA绝缘电阻菜单!");
+            // } else if ($("#leixing5_1").text() == "回路电阻表" && (index == 0||index == 2)) {
+            //     alert("菜单选择有误，当前为回路电阻表，应选择EE回路电阻菜单!");
+            //}
+            //else {
                 $(this).addClass(on).siblings().removeClass(on);
                 $(tabCon).children().eq(index).show().siblings().hide();
-            }
+            //}
         });
     }
 
@@ -78,6 +78,55 @@ $(function () {
             return arg;
         }
     }
+
+    //表格中实际显示值
+    function displayValue(arg){
+        arg = parseFloat(arg);
+        if (arg >= 0.000000001 && arg < 0.00000001) {
+            return (Math.round(arg * 10000000000) / 10000000000).toString();
+        } else if (arg >= 0.00000001 && arg < 0.0000001) {
+            return (Math.round(arg * 1000000000) / 1000000000).toString();
+        } else if (arg >= 0.0000001 && arg < 0.000001) {
+            return (Math.round(arg * 100000000) / 100000000).toString();
+        } else if (arg >= 0.000001 && arg < 0.00001) {
+            return (Math.round(arg * 10000000) / 10000000).toString();
+        } else if (arg >= 0.00001 && arg < 0.0001) {
+            return (Math.round(arg * 1000000) / 1000000).toString();
+        } else if (arg >= 0.0001 && arg < 0.001) {
+            return (Math.round(arg * 100000) / 100000).toString();
+        } else if (arg >= 0.001 && arg < 0.01) {
+            return (Math.round(arg * 10000) / 10000).toString();
+        } else if (arg >= 0.01 && arg < 0.1) {
+            return (Math.round(arg * 1000) / 1000).toString();
+        } else if (arg >= 0.1 && arg < 1) {
+            return (Math.round(arg * 100) / 100).toString();
+        } else if (arg >= 1 && arg < 10) {
+            return (Math.round(arg * 10) / 10).toString();//取整
+        } else if (arg >= 10 && arg < 100) {
+            return (Math.round(arg)).toString();
+        } else if (arg >= 100 && arg < 1000) {
+            return (Math.round(arg / 10) * 10).toString();
+        } else if (arg >= 1000 && arg < 10000) {
+            return (Math.round(arg / 100) * 100).toString();
+        } else if (arg >= 10000 && arg < 100000) {
+            return (Math.round(arg / 1000) * 1000).toString();
+        } else if (arg >= 100000 && arg < 1000000) {
+            return (Math.round(arg / 10000) * 10000).toString();
+        } else if (arg >= 1000000 && arg < 10000000) {
+            return (Math.round(arg / 100000) * 100000).toString();
+        } else if (arg >= 10000000 && arg < 100000000) {
+            return (Math.round(arg / 1000000) * 1000000).toString();
+        } else if (arg >= 100000000 && arg < 1000000000) {
+            return (Math.round(arg / 10000000) * 10000000).toString();
+        } else if (arg >= 1000000000 && arg < 10000000000) {
+            return (Math.round(arg / 100000000) * 100000000).toString();
+        } else if (arg >= 10000000000 && arg < 100000000000) {
+            return (Math.round(arg / 1000000000) * 1000000000).toString();
+        } else {
+            return arg;
+        }
+    }
+
 
     var time = 200;//延迟提交到时间ms
     var valuewei = 4;//有效位
@@ -300,7 +349,7 @@ $(function () {
             dataType: "json",
             cache: false,
             success: function (data) {
-                $("#part5_4_1_9_1").val((parseFloat(data.average1) + parseFloat(data.average2)) * danweijinzhi);
+                $("#part5_4_1_9_1").val(((parseFloat(data.average1) + parseFloat(data.average2)) * danweijinzhi).toString());
                 $("#part5_4_1_9_2").val(readValue($("#part5_4_1_9_1").val()));
                 $("#submit5_4_1_9_1").val("获取数据");
             },
@@ -3251,7 +3300,7 @@ $(function () {
             cache: false,
             success: function (data) {
 
-                $("#part5_4_3_2_1").val(data.average3);
+                $("#part5_4_3_2_1").val((data.average3));
                 $("#submit5_4_3_2_1").val("获取数据");
             },
             error: function (jqXHR) {
@@ -3313,7 +3362,7 @@ $(function () {
             cache: false,
             success: function (data) {
 
-                $("#part5_4_10_1_1").val(data.average3);
+                $("#part5_4_10_1_1").val((data.average3));
                 $("#submit5_4_10_1_1").val("获取数据");
             },
             error: function (jqXHR) {

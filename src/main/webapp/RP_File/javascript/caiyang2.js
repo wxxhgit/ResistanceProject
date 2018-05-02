@@ -51,9 +51,59 @@ $(function(){
         }
     }
 
+    //表格中实际显示值
+    function displayValue(arg){
+        arg = parseFloat(arg);
+        if (arg >= 0.000000001 && arg < 0.00000001) {
+            return (Math.round(arg * 10000000000) / 10000000000).toString();
+        } else if (arg >= 0.00000001 && arg < 0.0000001) {
+            return (Math.round(arg * 1000000000) / 1000000000).toString();
+        } else if (arg >= 0.0000001 && arg < 0.000001) {
+            return (Math.round(arg * 100000000) / 100000000).toString();
+        } else if (arg >= 0.000001 && arg < 0.00001) {
+            return (Math.round(arg * 10000000) / 10000000).toString();
+        } else if (arg >= 0.00001 && arg < 0.0001) {
+            return (Math.round(arg * 1000000) / 1000000).toString();
+        } else if (arg >= 0.0001 && arg < 0.001) {
+            return (Math.round(arg * 100000) / 100000).toString();
+        } else if (arg >= 0.001 && arg < 0.01) {
+            return (Math.round(arg * 10000) / 10000).toString();
+        } else if (arg >= 0.01 && arg < 0.1) {
+            return (Math.round(arg * 1000) / 1000).toString();
+        } else if (arg >= 0.1 && arg < 1) {
+            return (Math.round(arg * 100) / 100).toString();
+        } else if (arg >= 1 && arg < 10) {
+            return (Math.round(arg * 10) / 10).toString();//取整
+        } else if (arg >= 10 && arg < 100) {
+            return (Math.round(arg)).toString();
+        } else if (arg >= 100 && arg < 1000) {
+            return (Math.round(arg / 10) * 10).toString();
+        } else if (arg >= 1000 && arg < 10000) {
+            return (Math.round(arg / 100) * 100).toString();
+        } else if (arg >= 10000 && arg < 100000) {
+            return (Math.round(arg / 1000) * 1000).toString();
+        } else if (arg >= 100000 && arg < 1000000) {
+            return (Math.round(arg / 10000) * 10000).toString();
+        } else if (arg >= 1000000 && arg < 10000000) {
+            return (Math.round(arg / 100000) * 100000).toString();
+        } else if (arg >= 10000000 && arg < 100000000) {
+            return (Math.round(arg / 1000000) * 1000000).toString();
+        } else if (arg >= 100000000 && arg < 1000000000) {
+            return (Math.round(arg / 10000000) * 10000000).toString();
+        } else if (arg >= 1000000000 && arg < 10000000000) {
+            return (Math.round(arg / 100000000) * 100000000).toString();
+        } else if (arg >= 10000000000 && arg < 100000000000) {
+            return (Math.round(arg / 1000000000) * 1000000000).toString();
+        } else {
+            return arg;
+        }
+    }
+
     var time = 200;//延迟提交到时间ms
     var valuewei = 4;//有效位
     var danweijinzhi = 1;//μM默认为1，μ欧,用于后台传过来的值与之相乘
+    var guoduzhi="0";
+    var null_value="/";
 
     /**
      * EE回路电阻菜单  Part1 量程1 开始
@@ -77,16 +127,16 @@ $(function(){
                 if(parseFloat(data.average1)==0.01 || parseFloat(data.average1)==0.1){
                     danweijinzhi=1;
                 }else if(parseFloat(data.average1)==1 || parseFloat(data.average1)==10
-                    ||parseFloat(data.average1)==20 || parseFloat(data.average1)==100
+                ||parseFloat(data.average1)==20 || parseFloat(data.average1)==100
                     ||parseFloat(data.average1)==1000){
-                    danweijinzhi=1000;
+                    //danweijinzhi=1000;
                     //document.getElementById("radio5_20").checked=true;
                     $("#radio5_20").attr("checked","checked");
                     $("#radio5_19").removeAttr("checked");
                 }
                 $("#lc1_value").val((parseFloat(data.average1)).toString());
                 $("#part5_4_11_1_1").val((parseFloat(data.average2) * danweijinzhi).toString());
-                $("#part5_4_11_1_2").val(readValue($("#part5_4_11_1_1").val()));
+                $("#part5_4_11_1_2").val(displayValue($("#part5_4_11_1_1").val()));
                 $("#submit5_4_11_1_1").val("获取数据");
             },
             error: function (jqXHR) {
@@ -110,7 +160,7 @@ $(function(){
             cache: false,
             success: function (data) {
                 $("#part5_4_11_2_1").val((parseFloat(data.average2) * danweijinzhi).toString());
-                $("#part5_4_11_2_2").val(readValue($("#part5_4_11_2_1").val()));
+                $("#part5_4_11_2_2").val(displayValue($("#part5_4_11_2_1").val()));
                 $("#submit5_4_11_2_1").val("获取数据");
             },
             error: function (jqXHR) {
@@ -133,8 +183,8 @@ $(function(){
             dataType: "json",
             cache: false,
             success: function (data) {
-                $("#part5_4_11_3_1").val(( parseFloat(data.average2) * danweijinzhi).toString());
-                $("#part5_4_11_3_2").val(readValue($("#part5_4_11_3_1").val()));
+                $("#part5_4_11_3_1").val((parseFloat(data.average2) * danweijinzhi).toString());
+                $("#part5_4_11_3_2").val(displayValue($("#part5_4_11_3_1").val()));
                 $("#submit5_4_11_3_1").val("获取数据");
             },
             error: function (jqXHR) {
@@ -157,8 +207,8 @@ $(function(){
             dataType: "json",
             cache: false,
             success: function (data) {
-                $("#part5_4_11_4_1").val(( parseFloat(data.average2) * danweijinzhi).toString());
-                $("#part5_4_11_4_2").val(readValue($("#part5_4_11_4_1").val()));
+                $("#part5_4_11_4_1").val((parseFloat(data.average2) * danweijinzhi).toString());
+                $("#part5_4_11_4_2").val(displayValue($("#part5_4_11_4_1").val()));
                 $("#submit5_4_11_4_1").val("获取数据");
             },
             error: function (jqXHR) {
@@ -181,8 +231,8 @@ $(function(){
             dataType: "json",
             cache: false,
             success: function (data) {
-                $("#part5_4_11_5_1").val(( parseFloat(data.average2) * danweijinzhi).toString());
-                $("#part5_4_11_5_2").val(readValue($("#part5_4_11_5_1").val()));
+                $("#part5_4_11_5_1").val((parseFloat(data.average2) * danweijinzhi).toString());
+                $("#part5_4_11_5_2").val(displayValue($("#part5_4_11_5_1").val()));
                 $("#submit5_4_11_5_1").val("获取数据");
             },
             error: function (jqXHR) {
@@ -205,8 +255,8 @@ $(function(){
             dataType: "json",
             cache: false,
             success: function (data) {
-                $("#part5_4_11_6_1").val(( parseFloat(data.average2) * danweijinzhi).toString());
-                $("#part5_4_11_6_2").val(readValue($("#part5_4_11_6_1").val()));
+                $("#part5_4_11_6_1").val((parseFloat(data.average2) * danweijinzhi).toString());
+                $("#part5_4_11_6_2").val(displayValue($("#part5_4_11_6_1").val()));
                 $("#submit5_4_11_6_1").val("获取数据");
             },
             error: function (jqXHR) {
@@ -229,8 +279,8 @@ $(function(){
             dataType: "json",
             cache: false,
             success: function (data) {
-                $("#part5_4_11_7_1").val(( parseFloat(data.average2) * danweijinzhi).toString());
-                $("#part5_4_11_7_2").val(readValue($("#part5_4_11_7_1").val()));
+                $("#part5_4_11_7_1").val((parseFloat(data.average2) * danweijinzhi).toString());
+                $("#part5_4_11_7_2").val(displayValue($("#part5_4_11_7_1").val()));
                 $("#submit5_4_11_7_1").val("获取数据");
             },
             error: function (jqXHR) {
@@ -253,8 +303,8 @@ $(function(){
             dataType: "json",
             cache: false,
             success: function (data) {
-                $("#part5_4_11_8_1").val(( parseFloat(data.average2) * danweijinzhi).toString());
-                $("#part5_4_11_8_2").val(readValue($("#part5_4_11_8_1").val()));
+                $("#part5_4_11_8_1").val((parseFloat(data.average2) * danweijinzhi).toString());
+                $("#part5_4_11_8_2").val(displayValue($("#part5_4_11_8_1").val()));
                 $("#submit5_4_11_8_1").val("获取数据");
             },
             error: function (jqXHR) {
@@ -277,8 +327,8 @@ $(function(){
             dataType: "json",
             cache: false,
             success: function (data) {
-                $("#part5_4_11_9_1").val(( parseFloat(data.average2) * danweijinzhi).toString());
-                $("#part5_4_11_9_2").val(readValue($("#part5_4_11_9_1").val()));
+                $("#part5_4_11_9_1").val((parseFloat(data.average2) * danweijinzhi).toString());
+                $("#part5_4_11_9_2").val(displayValue($("#part5_4_11_9_1").val()));
                 $("#submit5_4_11_9_1").val("获取数据");
             },
             error: function (jqXHR) {
@@ -301,8 +351,8 @@ $(function(){
             dataType: "json",
             cache: false,
             success: function (data) {
-                $("#part5_4_11_10_1").val(( parseFloat(data.average2) * danweijinzhi).toString());
-                $("#part5_4_11_10_2").val(readValue($("#part5_4_11_10_1").val()));
+                $("#part5_4_11_10_1").val((parseFloat(data.average2) * danweijinzhi).toString());
+                $("#part5_4_11_10_2").val(displayValue($("#part5_4_11_10_1").val()));
                 $("#submit5_4_11_10_1").val("获取数据");
             },
             error: function (jqXHR) {
@@ -355,64 +405,64 @@ $(function(){
     //进制转换公共程序
     function jinzhizhuanhuan6_4(jinzhi) {
         if ($("#part5_4_11_1_1").val() != "") {
-            $("#part5_4_11_1_1").val((parseFloat($("#part5_4_11_1_1").val()) * jinzhi).toString());
+            $("#part5_4_11_1_1").val((parseFloat($("#part5_4_11_1_1").val()) * jinzhi).toFixed(2).toString());
         }
         if ($("#part5_4_11_1_2").val() != "") {
-            $("#part5_4_11_1_2").val((parseFloat($("#part5_4_11_1_2").val()) * jinzhi).toString());
+            $("#part5_4_11_1_2").val((parseFloat($("#part5_4_11_1_2").val()) * jinzhi).toFixed(2).toString());
         }
         if ($("#part5_4_11_2_1").val() != "") {
-            $("#part5_4_11_2_1").val((parseFloat($("#part5_4_11_2_1").val()) * jinzhi).toString());
+            $("#part5_4_11_2_1").val((parseFloat($("#part5_4_11_2_1").val()) * jinzhi).toFixed(2).toString());
         }
         if ($("#part5_4_11_2_2").val() != "") {
-            $("#part5_4_11_2_2").val((parseFloat($("#part5_4_11_2_2").val()) * jinzhi).toString());
+            $("#part5_4_11_2_2").val((parseFloat($("#part5_4_11_2_2").val()) * jinzhi).toFixed(2).toString());
         }
         if ($("#part5_4_11_3_1").val() != "") {
-            $("#part5_4_11_3_1").val((parseFloat($("#part5_4_11_3_1").val()) * jinzhi).toString());
+            $("#part5_4_11_3_1").val((parseFloat($("#part5_4_11_3_1").val()) * jinzhi).toFixed(2).toString());
         }
         if ($("#part5_4_11_3_2").val() != "") {
-            $("#part5_4_11_3_2").val((parseFloat($("#part5_4_11_3_2").val()) * jinzhi).toString());
+            $("#part5_4_11_3_2").val((parseFloat($("#part5_4_11_3_2").val()) * jinzhi).toFixed(2).toString());
         }
         if ($("#part5_4_11_4_1").val() != "") {
-            $("#part5_4_11_4_1").val((parseFloat($("#part5_4_11_4_1").val()) * jinzhi).toString());
+            $("#part5_4_11_4_1").val((parseFloat($("#part5_4_11_4_1").val()) * jinzhi).toFixed(2).toString());
         }
         if ($("#part5_4_11_4_2").val() != "") {
-            $("#part5_4_11_4_2").val((parseFloat($("#part5_4_11_4_2").val()) * jinzhi).toString());
+            $("#part5_4_11_4_2").val((parseFloat($("#part5_4_11_4_2").val()) * jinzhi).toFixed(2).toString());
         }
         if ($("#part5_4_11_5_1").val() != "") {
-            $("#part5_4_11_5_1").val((parseFloat($("#part5_4_11_5_1").val()) * jinzhi).toString());
+            $("#part5_4_11_5_1").val((parseFloat($("#part5_4_11_5_1").val()) * jinzhi).toFixed(2).toString());
         }
         if ($("#part5_4_11_5_2").val() != "") {
-            $("#part5_4_11_5_2").val((parseFloat($("#part5_4_11_5_2").val()) * jinzhi).toString());
+            $("#part5_4_11_5_2").val((parseFloat($("#part5_4_11_5_2").val()) * jinzhi).toFixed(2).toString());
         }
         if ($("#part5_4_11_6_1").val() != "") {
-            $("#part5_4_11_6_1").val((parseFloat($("#part5_4_11_6_1").val()) * jinzhi).toString());
+            $("#part5_4_11_6_1").val((parseFloat($("#part5_4_11_6_1").val()) * jinzhi).toFixed(2).toString());
         }
         if ($("#part5_4_11_6_2").val() != "") {
-            $("#part5_4_11_6_2").val((parseFloat($("#part5_4_11_6_2").val()) * jinzhi).toString());
+            $("#part5_4_11_6_2").val((parseFloat($("#part5_4_11_6_2").val()) * jinzhi).toFixed(2).toString());
         }
         if ($("#part5_4_11_7_1").val() != "") {
-            $("#part5_4_11_7_1").val((parseFloat($("#part5_4_11_7_1").val()) * jinzhi).toString());
+            $("#part5_4_11_7_1").val((parseFloat($("#part5_4_11_7_1").val()) * jinzhi).toFixed(2).toString());
         }
         if ($("#part5_4_11_7_2").val() != "") {
-            $("#part5_4_11_7_2").val((parseFloat($("#part5_4_11_7_2").val()) * jinzhi).toString());
+            $("#part5_4_11_7_2").val((parseFloat($("#part5_4_11_7_2").val()) * jinzhi).toFixed(2).toString());
         }
         if ($("#part5_4_11_8_1").val() != "") {
-            $("#part5_4_11_8_1").val((parseFloat($("#part5_4_11_8_1").val()) * jinzhi).toString());
+            $("#part5_4_11_8_1").val((parseFloat($("#part5_4_11_8_1").val()) * jinzhi).toFixed(2).toString());
         }
         if ($("#part5_4_11_8_2").val() != "") {
-            $("#part5_4_11_8_2").val((parseFloat($("#part5_4_11_8_2").val()) * jinzhi).toString());
+            $("#part5_4_11_8_2").val((parseFloat($("#part5_4_11_8_2").val()) * jinzhi).toFixed(2).toString());
         }
         if ($("#part5_4_11_9_1").val() != "") {
-            $("#part5_4_11_9_1").val((parseFloat($("#part5_4_11_9_1").val()) * jinzhi).toString());
+            $("#part5_4_11_9_1").val((parseFloat($("#part5_4_11_9_1").val()) * jinzhi).toFixed(2).toString());
         }
         if ($("#part5_4_11_9_2").val() != "") {
-            $("#part5_4_11_9_2").val((parseFloat($("#part5_4_11_9_2").val()) * jinzhi).toString());
+            $("#part5_4_11_9_2").val((parseFloat($("#part5_4_11_9_2").val()) * jinzhi).toFixed(2).toString());
         }
         if ($("#part5_4_11_10_1").val() != "") {
-            $("#part5_4_11_10_1").val((parseFloat($("#part5_4_11_10_1").val()) * jinzhi).toString());
+            $("#part5_4_11_10_1").val((parseFloat($("#part5_4_11_10_1").val()) * jinzhi).toFixed(2).toString());
         }
         if ($("#part5_4_11_10_2").val() != "") {
-            $("#part5_4_11_10_2").val((parseFloat($("#part5_4_11_10_2").val()) * jinzhi).toString());
+            $("#part5_4_11_10_2").val((parseFloat($("#part5_4_11_10_2").val()) * jinzhi).toFixed(2).toString());
         }
     }
 
@@ -420,7 +470,9 @@ $(function(){
     //提交量程1
     $("#submit5_18").click(function () {
         if ($("#leixing5_1").text() == "" || $("#zsbh5_1").text() == "") {
-            alert("请先选择一条待检测的送检仪器！")
+            alert("请先选择一条待检测的送检仪器！");
+        } else if($("#part5_4_11_1_1").val() == ""){
+            alert("请先获取数据！");
         } else {
             $.ajax({
                 type: "POST",
@@ -449,8 +501,9 @@ $(function(){
                     "dsz9": $("#part5_4_11_9_2").val(),
                     "bzz10": $("#part5_4_11_10_1").val(),
                     "dsz10": $("#part5_4_11_10_2").val(),
-                    ///
-                    "lc": lc1
+                    "lc": lc1,
+                    ////
+                    "lc_value":$("#lc1_value").val()+$("input[name='check5_7']:checked").val(),
                 },
                 dataType: "json",
                 cache: false,
@@ -505,13 +558,13 @@ $(function(){
                 }else if(parseFloat(data.average1)==1 || parseFloat(data.average1)==10
                     ||parseFloat(data.average1)==20 || parseFloat(data.average1)==100
                     ||parseFloat(data.average1)==1000){
-                    danweijinzhi=1000;
+                    //danweijinzhi=1000;
                     $("#radio5_23").attr("checked","checked");
                     $("#radio5_22").removeAttr("checked");
                 }
                 $("#lc2_value").val((parseFloat(data.average1)).toString());
-                $("#part5_4_12_1_1").val(( parseFloat(data.average2) * danweijinzhi).toString());
-                $("#part5_4_12_1_2").val(readValue($("#part5_4_12_1_1").val()));
+                $("#part5_4_12_1_1").val((parseFloat(data.average2) * danweijinzhi).toString());
+                $("#part5_4_12_1_2").val(displayValue($("#part5_4_12_1_1").val()));
                 $("#submit5_4_12_1_1").val("获取数据");
             },
             error: function (jqXHR) {
@@ -534,8 +587,8 @@ $(function(){
             dataType: "json",
             cache: false,
             success: function (data) {
-                $("#part5_4_12_2_1").val(( parseFloat(data.average2) * danweijinzhi).toString());
-                $("#part5_4_12_2_2").val(readValue($("#part5_4_12_2_1").val()));
+                $("#part5_4_12_2_1").val((parseFloat(data.average2) * danweijinzhi).toString());
+                $("#part5_4_12_2_2").val(displayValue($("#part5_4_12_2_1").val()));
                 $("#submit5_4_12_2_1").val("获取数据");
             },
             error: function (jqXHR) {
@@ -558,8 +611,8 @@ $(function(){
             dataType: "json",
             cache: false,
             success: function (data) {
-                $("#part5_4_12_3_1").val(( parseFloat(data.average2) * danweijinzhi).toString());
-                $("#part5_4_12_3_2").val(readValue($("#part5_4_12_3_1").val()));
+                $("#part5_4_12_3_1").val((parseFloat(data.average2) * danweijinzhi).toString());
+                $("#part5_4_12_3_2").val(displayValue($("#part5_4_12_3_1").val()));
                 $("#submit5_4_12_3_1").val("获取数据");
             },
             error: function (jqXHR) {
@@ -583,7 +636,7 @@ $(function(){
             cache: false,
             success: function (data) {
                 $("#part5_4_12_4_1").val(( parseFloat(data.average2) * danweijinzhi).toString());
-                $("#part5_4_12_4_2").val(readValue($("#part5_4_12_4_1").val()));
+                $("#part5_4_12_4_2").val(displayValue($("#part5_4_12_4_1").val()));
                 $("#submit5_4_12_4_1").val("获取数据");
             },
             error: function (jqXHR) {
@@ -607,7 +660,7 @@ $(function(){
             cache: false,
             success: function (data) {
                 $("#part5_4_12_5_1").val(( parseFloat(data.average2) * danweijinzhi).toString());
-                $("#part5_4_12_5_2").val(readValue($("#part5_4_12_5_1").val()));
+                $("#part5_4_12_5_2").val(displayValue($("#part5_4_12_5_1").val()));
                 $("#submit5_4_12_5_1").val("获取数据");
             },
             error: function (jqXHR) {
@@ -631,7 +684,7 @@ $(function(){
             cache: false,
             success: function (data) {
                 $("#part5_4_12_6_1").val(( parseFloat(data.average2) * danweijinzhi).toString());
-                $("#part5_4_12_6_2").val(readValue($("#part5_4_12_6_1").val()));
+                $("#part5_4_12_6_2").val(displayValue($("#part5_4_12_6_1").val()));
                 $("#submit5_4_12_6_1").val("获取数据");
             },
             error: function (jqXHR) {
@@ -655,7 +708,7 @@ $(function(){
             cache: false,
             success: function (data) {
                 $("#part5_4_12_7_1").val(( parseFloat(data.average2) * danweijinzhi).toString());
-                $("#part5_4_12_7_2").val(readValue($("#part5_4_12_7_1").val()));
+                $("#part5_4_12_7_2").val(displayValue($("#part5_4_12_7_1").val()));
                 $("#submit5_4_12_7_1").val("获取数据");
             },
             error: function (jqXHR) {
@@ -679,7 +732,7 @@ $(function(){
             cache: false,
             success: function (data) {
                 $("#part5_4_12_8_1").val(( parseFloat(data.average2) * danweijinzhi).toString());
-                $("#part5_4_12_8_2").val(readValue($("#part5_4_12_8_1").val()));
+                $("#part5_4_12_8_2").val(displayValue($("#part5_4_12_8_1").val()));
                 $("#submit5_4_12_8_1").val("获取数据");
             },
             error: function (jqXHR) {
@@ -703,7 +756,7 @@ $(function(){
             cache: false,
             success: function (data) {
                 $("#part5_4_12_9_1").val(( parseFloat(data.average2) * danweijinzhi).toString());
-                $("#part5_4_12_9_2").val(readValue($("#part5_4_12_9_1").val()));
+                $("#part5_4_12_9_2").val(displayValue($("#part5_4_12_9_1").val()));
                 $("#submit5_4_12_9_1").val("获取数据");
             },
             error: function (jqXHR) {
@@ -727,7 +780,7 @@ $(function(){
             cache: false,
             success: function (data) {
                 $("#part5_4_12_10_1").val((parseFloat(data.average2) * danweijinzhi).toString());
-                $("#part5_4_12_10_2").val(readValue($("#part5_4_12_10_1").val()));
+                $("#part5_4_12_10_2").val(displayValue($("#part5_4_12_10_1").val()));
                 $("#submit5_4_12_10_1").val("获取数据");
             },
             error: function (jqXHR) {
@@ -780,64 +833,64 @@ $(function(){
     //进制转换公共程序
     function jinzhizhuanhuan6_5(jinzhi) {
         if ($("#part5_4_12_1_1").val() != "") {
-            $("#part5_4_12_1_1").val((parseFloat($("#part5_4_12_1_1").val()) * jinzhi).toString());
+            $("#part5_4_12_1_1").val((parseFloat($("#part5_4_12_1_1").val()) * jinzhi).toFixed(2).toString());
         }
         if ($("#part5_4_12_1_2").val() != "") {
-            $("#part5_4_12_1_2").val((parseFloat($("#part5_4_12_1_2").val()) * jinzhi).toString());
+            $("#part5_4_12_1_2").val((parseFloat($("#part5_4_12_1_2").val()) * jinzhi).toFixed(2).toString());
         }
         if ($("#part5_4_12_2_1").val() != "") {
-            $("#part5_4_12_2_1").val((parseFloat($("#part5_4_12_2_1").val()) * jinzhi).toString());
+            $("#part5_4_12_2_1").val((parseFloat($("#part5_4_12_2_1").val()) * jinzhi).toFixed(2).toString());
         }
         if ($("#part5_4_12_2_2").val() != "") {
-            $("#part5_4_12_2_2").val((parseFloat($("#part5_4_12_2_2").val()) * jinzhi).toString());
+            $("#part5_4_12_2_2").val((parseFloat($("#part5_4_12_2_2").val()) * jinzhi).toFixed(2).toString());
         }
         if ($("#part5_4_12_3_1").val() != "") {
-            $("#part5_4_12_3_1").val((parseFloat($("#part5_4_12_3_1").val()) * jinzhi).toString());
+            $("#part5_4_12_3_1").val((parseFloat($("#part5_4_12_3_1").val()) * jinzhi).toFixed(2).toString());
         }
         if ($("#part5_4_12_3_2").val() != "") {
-            $("#part5_4_12_3_2").val((parseFloat($("#part5_4_12_3_2").val()) * jinzhi).toString());
+            $("#part5_4_12_3_2").val((parseFloat($("#part5_4_12_3_2").val()) * jinzhi).toFixed(2).toString());
         }
         if ($("#part5_4_12_4_1").val() != "") {
-            $("#part5_4_12_4_1").val((parseFloat($("#part5_4_12_4_1").val()) * jinzhi).toString());
+            $("#part5_4_12_4_1").val((parseFloat($("#part5_4_12_4_1").val()) * jinzhi).toFixed(2).toString());
         }
         if ($("#part5_4_12_4_2").val() != "") {
-            $("#part5_4_12_4_2").val((parseFloat($("#part5_4_12_4_2").val()) * jinzhi).toString());
+            $("#part5_4_12_4_2").val((parseFloat($("#part5_4_12_4_2").val()) * jinzhi).toFixed(2).toString());
         }
         if ($("#part5_4_12_5_1").val() != "") {
-            $("#part5_4_12_5_1").val((parseFloat($("#part5_4_12_5_1").val()) * jinzhi).toString());
+            $("#part5_4_12_5_1").val((parseFloat($("#part5_4_12_5_1").val()) * jinzhi).toFixed(2).toString());
         }
         if ($("#part5_4_12_5_2").val() != "") {
-            $("#part5_4_12_5_2").val((parseFloat($("#part5_4_12_5_2").val()) * jinzhi).toString());
+            $("#part5_4_12_5_2").val((parseFloat($("#part5_4_12_5_2").val()) * jinzhi).toFixed(2).toString());
         }
         if ($("#part5_4_12_6_1").val() != "") {
-            $("#part5_4_11_6_1").val((parseFloat($("#part5_4_12_6_1").val()) * jinzhi).toString());
+            $("#part5_4_11_6_1").val((parseFloat($("#part5_4_12_6_1").val()) * jinzhi).toFixed(2).toString());
         }
         if ($("#part5_4_12_6_2").val() != "") {
-            $("#part5_4_12_6_2").val((parseFloat($("#part5_4_12_6_2").val()) * jinzhi).toString());
+            $("#part5_4_12_6_2").val((parseFloat($("#part5_4_12_6_2").val()) * jinzhi).toFixed(2).toString());
         }
         if ($("#part5_4_12_7_1").val() != "") {
-            $("#part5_4_12_7_1").val((parseFloat($("#part5_4_12_7_1").val()) * jinzhi).toString());
+            $("#part5_4_12_7_1").val((parseFloat($("#part5_4_12_7_1").val()) * jinzhi).toFixed(2).toString());
         }
         if ($("#part5_4_12_7_2").val() != "") {
-            $("#part5_4_12_7_2").val((parseFloat($("#part5_4_12_7_2").val()) * jinzhi).toString());
+            $("#part5_4_12_7_2").val((parseFloat($("#part5_4_12_7_2").val()) * jinzhi).toFixed(2).toString());
         }
         if ($("#part5_4_12_8_1").val() != "") {
-            $("#part5_4_12_8_1").val((parseFloat($("#part5_4_12_8_1").val()) * jinzhi).toString());
+            $("#part5_4_12_8_1").val((parseFloat($("#part5_4_12_8_1").val()) * jinzhi).toFixed(2).toString());
         }
         if ($("#part5_4_12_8_2").val() != "") {
-            $("#part5_4_12_8_2").val((parseFloat($("#part5_4_12_8_2").val()) * jinzhi).toString());
+            $("#part5_4_12_8_2").val((parseFloat($("#part5_4_12_8_2").val()) * jinzhi).toFixed(2).toString());
         }
         if ($("#part5_4_12_9_1").val() != "") {
-            $("#part5_4_12_9_1").val((parseFloat($("#part5_4_12_9_1").val()) * jinzhi).toString());
+            $("#part5_4_12_9_1").val((parseFloat($("#part5_4_12_9_1").val()) * jinzhi).toFixed(2).toString());
         }
         if ($("#part5_4_12_9_2").val() != "") {
-            $("#part5_4_12_9_2").val((parseFloat($("#part5_4_12_9_2").val()) * jinzhi).toString());
+            $("#part5_4_12_9_2").val((parseFloat($("#part5_4_12_9_2").val()) * jinzhi).toFixed(2).toString());
         }
         if ($("#part5_4_12_10_1").val() != "") {
-            $("#part5_4_12_10_1").val((parseFloat($("#part5_4_12_10_1").val()) * jinzhi).toString());
+            $("#part5_4_12_10_1").val((parseFloat($("#part5_4_12_10_1").val()) * jinzhi).toFixed(2).toString());
         }
         if ($("#part5_4_12_10_2").val() != "") {
-            $("#part5_4_12_10_2").val((parseFloat($("#part5_4_12_10_2").val()) * jinzhi).toString());
+            $("#part5_4_12_10_2").val((parseFloat($("#part5_4_12_10_2").val()) * jinzhi).toFixed(2).toString());
         }
     }
 
@@ -846,6 +899,8 @@ $(function(){
     $("#submit5_20").click(function () {
         if ($("#leixing5_1").text() == "" || $("#zsbh5_1").text() == "") {
             alert("请先选择一条待检测的送检仪器！")
+        } else if($("#part5_4_12_1_1").val()==""){
+            alert("请先获取数据！")
         } else {
             $.ajax({
                 type: "POST",
@@ -874,7 +929,8 @@ $(function(){
                     "dsz9": $("#part5_4_12_9_2").val(),
                     "bzz10": $("#part5_4_12_10_1").val(),
                     "dsz10": $("#part5_4_12_10_2").val(),
-                    "lc": lc2
+                    "lc": lc2,
+                    "lc_value":$("#lc2_value").val()+$("input[name='check5_8']:checked").val(),
                 },
                 dataType: "json",
                 cache: false,
@@ -929,13 +985,13 @@ $(function(){
                 }else if(parseFloat(data.average1)==1 || parseFloat(data.average1)==10
                     ||parseFloat(data.average1)==20 || parseFloat(data.average1)==100
                     ||parseFloat(data.average1)==1000){
-                    danweijinzhi=1000;
+                    //danweijinzhi=1000;
                     $("#radio5_26").attr("checked","checked");
                     $("#radio5_25").removeAttr("checked");
                 }
                 $("#lc3_value").val((parseFloat(data.average1)).toString());
                 $("#part5_4_13_1_1").val(( parseFloat(data.average2) * danweijinzhi).toString());
-                $("#part5_4_13_1_2").val(readValue($("#part5_4_13_1_1").val()));
+                $("#part5_4_13_1_2").val(displayValue($("#part5_4_13_1_1").val()));
                 $("#submit5_4_13_1_1").val("获取数据");
             },
             error: function (jqXHR) {
@@ -958,8 +1014,8 @@ $(function(){
             dataType: "json",
             cache: false,
             success: function (data) {
-                $("#part5_4_13_2_1").val(( + parseFloat(data.average2) * danweijinzhi).toString());
-                $("#part5_4_13_2_2").val(readValue($("#part5_4_13_2_1").val()));
+                $("#part5_4_13_2_1").val(( parseFloat(data.average2) * danweijinzhi).toString());
+                $("#part5_4_13_2_2").val(displayValue($("#part5_4_13_2_1").val()));
                 $("#submit5_4_13_2_1").val("获取数据");
             },
             error: function (jqXHR) {
@@ -982,8 +1038,8 @@ $(function(){
             dataType: "json",
             cache: false,
             success: function (data) {
-                $("#part5_4_13_3_1").val(( + parseFloat(data.average2) * danweijinzhi).toString());
-                $("#part5_4_13_3_2").val(readValue($("#part5_4_13_3_1").val()));
+                $("#part5_4_13_3_1").val(( parseFloat(data.average2) * danweijinzhi).toString());
+                $("#part5_4_13_3_2").val(displayValue($("#part5_4_13_3_1").val()));
                 $("#submit5_4_13_3_1").val("获取数据");
             },
             error: function (jqXHR) {
@@ -1007,7 +1063,7 @@ $(function(){
             cache: false,
             success: function (data) {
                 $("#part5_4_13_4_1").val(( parseFloat(data.average2) * danweijinzhi).toString());
-                $("#part5_4_13_4_2").val(readValue($("#part5_4_13_4_1").val()));
+                $("#part5_4_13_4_2").val(displayValue($("#part5_4_13_4_1").val()));
                 $("#submit5_4_13_4_1").val("获取数据");
             },
             error: function (jqXHR) {
@@ -1031,7 +1087,7 @@ $(function(){
             cache: false,
             success: function (data) {
                 $("#part5_4_13_5_1").val(( parseFloat(data.average2) * danweijinzhi).toString());
-                $("#part5_4_13_5_2").val(readValue($("#part5_4_13_5_1").val()));
+                $("#part5_4_13_5_2").val(displayValue($("#part5_4_13_5_1").val()));
                 $("#submit5_4_13_5_1").val("获取数据");
             },
             error: function (jqXHR) {
@@ -1055,7 +1111,7 @@ $(function(){
             cache: false,
             success: function (data) {
                 $("#part5_4_13_6_1").val(( parseFloat(data.average2) * danweijinzhi).toString());
-                $("#part5_4_13_6_2").val(readValue($("#part5_4_13_6_1").val()));
+                $("#part5_4_13_6_2").val(displayValue($("#part5_4_13_6_1").val()));
                 $("#submit5_4_13_6_1").val("获取数据");
             },
             error: function (jqXHR) {
@@ -1079,7 +1135,7 @@ $(function(){
             cache: false,
             success: function (data) {
                 $("#part5_4_13_7_1").val(( parseFloat(data.average2) * danweijinzhi).toString());
-                $("#part5_4_13_7_2").val(readValue($("#part5_4_13_7_1").val()));
+                $("#part5_4_13_7_2").val(displayValue($("#part5_4_13_7_1").val()));
                 $("#submit5_4_13_7_1").val("获取数据");
             },
             error: function (jqXHR) {
@@ -1103,7 +1159,7 @@ $(function(){
             cache: false,
             success: function (data) {
                 $("#part5_4_13_8_1").val(( parseFloat(data.average2) * danweijinzhi).toString());
-                $("#part5_4_13_8_2").val(readValue($("#part5_4_13_8_1").val()));
+                $("#part5_4_13_8_2").val(displayValue($("#part5_4_13_8_1").val()));
                 $("#submit5_4_13_8_1").val("获取数据");
             },
             error: function (jqXHR) {
@@ -1127,7 +1183,7 @@ $(function(){
             cache: false,
             success: function (data) {
                 $("#part5_4_13_9_1").val(( parseFloat(data.average2) * danweijinzhi).toString());
-                $("#part5_4_13_9_2").val(readValue($("#part5_4_13_9_1").val()));
+                $("#part5_4_13_9_2").val(displayValue($("#part5_4_13_9_1").val()));
                 $("#submit5_4_13_9_1").val("获取数据");
             },
             error: function (jqXHR) {
@@ -1151,7 +1207,7 @@ $(function(){
             cache: false,
             success: function (data) {
                 $("#part5_4_13_10_1").val(( parseFloat(data.average2) * danweijinzhi).toString());
-                $("#part5_4_13_10_2").val(readValue($("#part5_4_13_10_1").val()));
+                $("#part5_4_13_10_2").val(displayValue($("#part5_4_13_10_1").val()));
                 $("#submit5_4_13_10_1").val("获取数据");
             },
             error: function (jqXHR) {
@@ -1204,64 +1260,64 @@ $(function(){
     //进制转换公共程序
     function jinzhizhuanhuan6_6(jinzhi) {
         if ($("#part5_4_13_1_1").val() != "") {
-            $("#part5_4_13_1_1").val((parseFloat($("#part5_4_13_1_1").val()) * jinzhi).toString());
+            $("#part5_4_13_1_1").val((parseFloat($("#part5_4_13_1_1").val()) * jinzhi).toFixed(2).toString());
         }
         if ($("#part5_4_13_1_2").val() != "") {
-            $("#part5_4_13_1_2").val((parseFloat($("#part5_4_13_1_2").val()) * jinzhi).toString());
+            $("#part5_4_13_1_2").val((parseFloat($("#part5_4_13_1_2").val()) * jinzhi).toFixed(2).toString());
         }
         if ($("#part5_4_13_2_1").val() != "") {
-            $("#part5_4_13_2_1").val((parseFloat($("#part5_4_13_2_1").val()) * jinzhi).toString());
+            $("#part5_4_13_2_1").val((parseFloat($("#part5_4_13_2_1").val()) * jinzhi).toFixed(2).toString());
         }
         if ($("#part5_4_13_2_2").val() != "") {
-            $("#part5_4_13_2_2").val((parseFloat($("#part5_4_13_2_2").val()) * jinzhi).toString());
+            $("#part5_4_13_2_2").val((parseFloat($("#part5_4_13_2_2").val()) * jinzhi).toFixed(2).toString());
         }
         if ($("#part5_4_13_3_1").val() != "") {
-            $("#part5_4_13_3_1").val((parseFloat($("#part5_4_13_3_1").val()) * jinzhi).toString());
+            $("#part5_4_13_3_1").val((parseFloat($("#part5_4_13_3_1").val()) * jinzhi).toFixed(2).toString());
         }
         if ($("#part5_4_13_3_2").val() != "") {
-            $("#part5_4_13_3_2").val((parseFloat($("#part5_4_13_3_2").val()) * jinzhi).toString());
+            $("#part5_4_13_3_2").val((parseFloat($("#part5_4_13_3_2").val()) * jinzhi).toFixed(2).toString());
         }
         if ($("#part5_4_13_4_1").val() != "") {
-            $("#part5_4_13_4_1").val((parseFloat($("#part5_4_13_4_1").val()) * jinzhi).toString());
+            $("#part5_4_13_4_1").val((parseFloat($("#part5_4_13_4_1").val()) * jinzhi).toFixed(2).toString());
         }
         if ($("#part5_4_13_4_2").val() != "") {
-            $("#part5_4_13_4_2").val((parseFloat($("#part5_4_13_4_2").val()) * jinzhi).toString());
+            $("#part5_4_13_4_2").val((parseFloat($("#part5_4_13_4_2").val()) * jinzhi).toFixed(2).toString());
         }
         if ($("#part5_4_13_5_1").val() != "") {
-            $("#part5_4_13_5_1").val((parseFloat($("#part5_4_13_5_1").val()) * jinzhi).toString());
+            $("#part5_4_13_5_1").val((parseFloat($("#part5_4_13_5_1").val()) * jinzhi).toFixed(2).toString());
         }
         if ($("#part5_4_13_5_2").val() != "") {
-            $("#part5_4_13_5_2").val((parseFloat($("#part5_4_13_5_2").val()) * jinzhi).toString());
+            $("#part5_4_13_5_2").val((parseFloat($("#part5_4_13_5_2").val()) * jinzhi).toFixed(2).toString());
         }
         if ($("#part5_4_13_6_1").val() != "") {
-            $("#part5_4_13_6_1").val((parseFloat($("#part5_4_13_6_1").val()) * jinzhi).toString());
+            $("#part5_4_13_6_1").val((parseFloat($("#part5_4_13_6_1").val()) * jinzhi).toFixed(2).toString());
         }
         if ($("#part5_4_13_6_2").val() != "") {
-            $("#part5_4_13_6_2").val((parseFloat($("#part5_4_13_6_2").val()) * jinzhi).toString());
+            $("#part5_4_13_6_2").val((parseFloat($("#part5_4_13_6_2").val()) * jinzhi).toFixed(2).toString());
         }
         if ($("#part5_4_13_7_1").val() != "") {
-            $("#part5_4_13_7_1").val((parseFloat($("#part5_4_13_7_1").val()) * jinzhi).toString());
+            $("#part5_4_13_7_1").val((parseFloat($("#part5_4_13_7_1").val()) * jinzhi).toFixed(2).toString());
         }
         if ($("#part5_4_13_7_2").val() != "") {
-            $("#part5_4_13_7_2").val((parseFloat($("#part5_4_13_7_2").val()) * jinzhi).toString());
+            $("#part5_4_13_7_2").val((parseFloat($("#part5_4_13_7_2").val()) * jinzhi).toFixed(2).toString());
         }
         if ($("#part5_4_13_8_1").val() != "") {
-            $("#part5_4_13_8_1").val((parseFloat($("#part5_4_13_8_1").val()) * jinzhi).toString());
+            $("#part5_4_13_8_1").val((parseFloat($("#part5_4_13_8_1").val()) * jinzhi).toFixed(2).toString());
         }
         if ($("#part5_4_13_8_2").val() != "") {
-            $("#part5_4_13_8_2").val((parseFloat($("#part5_4_13_8_2").val()) * jinzhi).toString());
+            $("#part5_4_13_8_2").val((parseFloat($("#part5_4_13_8_2").val()) * jinzhi).toFixed(2).toString());
         }
         if ($("#part5_4_13_9_1").val() != "") {
-            $("#part5_4_13_9_1").val((parseFloat($("#part5_4_13_9_1").val()) * jinzhi).toString());
+            $("#part5_4_13_9_1").val((parseFloat($("#part5_4_13_9_1").val()) * jinzhi).toFixed(2).toString());
         }
         if ($("#part5_4_13_9_2").val() != "") {
-            $("#part5_4_13_9_2").val((parseFloat($("#part5_4_13_9_2").val()) * jinzhi).toString());
+            $("#part5_4_13_9_2").val((parseFloat($("#part5_4_13_9_2").val()) * jinzhi).toFixed(2).toString());
         }
         if ($("#part5_4_13_10_1").val() != "") {
-            $("#part5_4_13_10_1").val((parseFloat($("#part5_4_13_10_1").val()) * jinzhi).toString());
+            $("#part5_4_13_10_1").val((parseFloat($("#part5_4_13_10_1").val()) * jinzhi).toFixed(2).toString());
         }
         if ($("#part5_4_13_10_2").val() != "") {
-            $("#part5_4_13_10_2").val((parseFloat($("#part5_4_13_10_2").val()) * jinzhi).toString());
+            $("#part5_4_13_10_2").val((parseFloat($("#part5_4_13_10_2").val()) * jinzhi).toFixed(2).toString());
         }
     }
 
@@ -1270,6 +1326,51 @@ $(function(){
     $("#submit5_22").click(function () {
         if ($("#leixing5_1").text() == "" || $("#zsbh5_1").text() == "") {
             alert("请先选择一条待检测的送检仪器！")
+        } else if($("#part5_4_13_1_1").val()==""){
+            $.ajax({
+                type: "POST",
+                url: "Action_addLCData.action",
+                contentType: "application/x-www-form-urlencoded;charset=utf-8",
+                data: {
+                    "zsbh": $("#zsbh5_1").text(),//送检仪器证书编号
+                    "dw": $("input[name='check5_9']:checked").val(),//单位1/2/3--->μΩ/mΩ/Ω
+                    "bzz1": guoduzhi,//标准值
+                    "dsz1": guoduzhi,//显示值
+                    "bzz2": guoduzhi,
+                    "dsz2": guoduzhi,
+                    "bzz3": guoduzhi,
+                    "dsz3": guoduzhi,
+                    "bzz4": guoduzhi,
+                    "dsz4": guoduzhi,
+                    "bzz5": guoduzhi,
+                    "dsz5": guoduzhi,
+                    "bzz6": guoduzhi,
+                    "dsz6": guoduzhi,
+                    "bzz7": guoduzhi,
+                    "dsz7": guoduzhi,
+                    "bzz8": guoduzhi,
+                    "dsz8": guoduzhi,
+                    "bzz9": guoduzhi,
+                    "dsz9": guoduzhi,
+                    "bzz10": guoduzhi,
+                    "dsz10": guoduzhi,
+                    "lc": lc3,
+                    "lc_value":null_value,
+                },
+                dataType: "json",
+                cache: false,
+                success: function (data) {
+                    if (data.jsonObject == "1") {
+                        $("#part5_4_12_3").html("数据提交成功！")
+                    }
+                    else {
+                        alert("提交失败！")
+                    }
+                },
+                error: function (jqXHR) {
+                    alert("发生错误代码：" + jqXHR.status + "，数据未加载成功！");
+                }
+            });
         } else {
             $.ajax({
                 type: "POST",
@@ -1298,7 +1399,8 @@ $(function(){
                     "dsz9": $("#part5_4_13_9_2").val(),
                     "bzz10": $("#part5_4_13_10_1").val(),
                     "dsz10": $("#part5_4_13_10_2").val(),
-                    "lc": lc3
+                    "lc": lc3,
+                    "lc_value":$("#lc3_value").val()+$("input[name='check5_9']:checked").val(),
                 },
                 dataType: "json",
                 cache: false,
@@ -1353,13 +1455,13 @@ $(function(){
                 }else if(parseFloat(data.average1)==1 || parseFloat(data.average1)==10
                     ||parseFloat(data.average1)==20 || parseFloat(data.average1)==100
                     ||parseFloat(data.average1)==1000){
-                    danweijinzhi=1000;
+                    //danweijinzhi=1000;
                     $("#radio5_29").attr("checked","checked");
                     $("#radio5_28").removeAttr("checked");
                 }
                 $("#lc4_value").val((parseFloat(data.average1)).toString());
                 $("#part5_4_14_1_1").val(( parseFloat(data.average2) * danweijinzhi).toString());
-                $("#part5_4_14_1_2").val(readValue($("#part5_4_14_1_1").val()));
+                $("#part5_4_14_1_2").val(displayValue($("#part5_4_14_1_1").val()));
                 $("#submit5_4_14_1_1").val("获取数据");
             },
             error: function (jqXHR) {
@@ -1383,7 +1485,7 @@ $(function(){
             cache: false,
             success: function (data) {
                 $("#part5_4_14_2_1").val(( parseFloat(data.average2) * danweijinzhi).toString());
-                $("#part5_4_14_2_2").val(readValue($("#part5_4_14_2_1").val()));
+                $("#part5_4_14_2_2").val(displayValue($("#part5_4_14_2_1").val()));
                 $("#submit5_4_14_2_1").val("获取数据");
             },
             error: function (jqXHR) {
@@ -1407,7 +1509,7 @@ $(function(){
             cache: false,
             success: function (data) {
                 $("#part5_4_14_3_1").val(( parseFloat(data.average2) * danweijinzhi).toString());
-                $("#part5_4_14_3_2").val(readValue($("#part5_4_14_3_1").val()));
+                $("#part5_4_14_3_2").val(displayValue($("#part5_4_14_3_1").val()));
                 $("#submit5_4_14_3_1").val("获取数据");
             },
             error: function (jqXHR) {
@@ -1431,7 +1533,7 @@ $(function(){
             cache: false,
             success: function (data) {
                 $("#part5_4_14_4_1").val(( parseFloat(data.average2) * danweijinzhi).toString());
-                $("#part5_4_14_4_2").val(readValue($("#part5_4_14_4_1").val()));
+                $("#part5_4_14_4_2").val(displayValue($("#part5_4_14_4_1").val()));
                 $("#submit5_4_14_4_1").val("获取数据");
             },
             error: function (jqXHR) {
@@ -1455,7 +1557,7 @@ $(function(){
             cache: false,
             success: function (data) {
                 $("#part5_4_14_5_1").val(( parseFloat(data.average2) * danweijinzhi).toString());
-                $("#part5_4_14_5_2").val(readValue($("#part5_4_14_5_1").val()));
+                $("#part5_4_14_5_2").val(displayValue($("#part5_4_14_5_1").val()));
                 $("#submit5_4_14_5_1").val("获取数据");
             },
             error: function (jqXHR) {
@@ -1479,7 +1581,7 @@ $(function(){
             cache: false,
             success: function (data) {
                 $("#part5_4_14_6_1").val(( parseFloat(data.average2) * danweijinzhi).toString());
-                $("#part5_4_14_6_2").val(readValue($("#part5_4_14_6_1").val()));
+                $("#part5_4_14_6_2").val(displayValue($("#part5_4_14_6_1").val()));
                 $("#submit5_4_14_6_1").val("获取数据");
             },
             error: function (jqXHR) {
@@ -1503,7 +1605,7 @@ $(function(){
             cache: false,
             success: function (data) {
                 $("#part5_4_14_7_1").val(( parseFloat(data.average2) * danweijinzhi).toString());
-                $("#part5_4_14_7_2").val(readValue($("#part5_4_14_7_1").val()));
+                $("#part5_4_14_7_2").val(displayValue($("#part5_4_14_7_1").val()));
                 $("#submit5_4_14_7_1").val("获取数据");
             },
             error: function (jqXHR) {
@@ -1527,7 +1629,7 @@ $(function(){
             cache: false,
             success: function (data) {
                 $("#part5_4_14_8_1").val(( parseFloat(data.average2) * danweijinzhi).toString());
-                $("#part5_4_14_8_2").val(readValue($("#part5_4_14_8_1").val()));
+                $("#part5_4_14_8_2").val(displayValue($("#part5_4_14_8_1").val()));
                 $("#submit5_4_14_8_1").val("获取数据");
             },
             error: function (jqXHR) {
@@ -1551,7 +1653,7 @@ $(function(){
             cache: false,
             success: function (data) {
                 $("#part5_4_14_9_1").val((parseFloat(data.average2) * danweijinzhi).toString());
-                $("#part5_4_14_9_2").val(readValue($("#part5_4_14_9_1").val()));
+                $("#part5_4_14_9_2").val(displayValue($("#part5_4_14_9_1").val()));
                 $("#submit5_4_14_9_1").val("获取数据");
             },
             error: function (jqXHR) {
@@ -1575,7 +1677,7 @@ $(function(){
             cache: false,
             success: function (data) {
                 $("#part5_4_14_10_1").val(( parseFloat(data.average2) * danweijinzhi).toString());
-                $("#part5_4_14_10_2").val(readValue($("#part5_4_14_10_1").val()));
+                $("#part5_4_14_10_2").val(displayValue($("#part5_4_14_10_1").val()));
                 $("#submit5_4_14_10_1").val("获取数据");
             },
             error: function (jqXHR) {
@@ -1628,64 +1730,64 @@ $(function(){
     //进制转换公共程序
     function jinzhizhuanhuan6_7(jinzhi) {
         if ($("#part5_4_14_1_1").val() != "") {
-            $("#part5_4_14_1_1").val((parseFloat($("#part5_4_14_1_1").val()) * jinzhi).toString());
+            $("#part5_4_14_1_1").val((parseFloat($("#part5_4_14_1_1").val()) * jinzhi).toFixed(2).toString());
         }
         if ($("#part5_4_14_1_2").val() != "") {
-            $("#part5_4_14_1_2").val((parseFloat($("#part5_4_14_1_2").val()) * jinzhi).toString());
+            $("#part5_4_14_1_2").val((parseFloat($("#part5_4_14_1_2").val()) * jinzhi).toFixed(2).toString());
         }
         if ($("#part5_4_14_2_1").val() != "") {
-            $("#part5_4_14_2_1").val((parseFloat($("#part5_4_14_2_1").val()) * jinzhi).toString());
+            $("#part5_4_14_2_1").val((parseFloat($("#part5_4_14_2_1").val()) * jinzhi).toFixed(2).toString());
         }
         if ($("#part5_4_14_2_2").val() != "") {
-            $("#part5_4_14_2_2").val((parseFloat($("#part5_4_14_2_2").val()) * jinzhi).toString());
+            $("#part5_4_14_2_2").val((parseFloat($("#part5_4_14_2_2").val()) * jinzhi).toFixed(2).toString());
         }
         if ($("#part5_4_14_3_1").val() != "") {
-            $("#part5_4_14_3_1").val((parseFloat($("#part5_4_14_3_1").val()) * jinzhi).toString());
+            $("#part5_4_14_3_1").val((parseFloat($("#part5_4_14_3_1").val()) * jinzhi).toFixed(2).toString());
         }
         if ($("#part5_4_14_3_2").val() != "") {
-            $("#part5_4_14_3_2").val((parseFloat($("#part5_4_14_3_2").val()) * jinzhi).toString());
+            $("#part5_4_14_3_2").val((parseFloat($("#part5_4_14_3_2").val()) * jinzhi).toFixed(2).toString());
         }
         if ($("#part5_4_14_4_1").val() != "") {
-            $("#part5_4_14_4_1").val((parseFloat($("#part5_4_14_4_1").val()) * jinzhi).toString());
+            $("#part5_4_14_4_1").val((parseFloat($("#part5_4_14_4_1").val()) * jinzhi).toFixed(2).toString());
         }
         if ($("#part5_4_14_4_2").val() != "") {
-            $("#part5_4_14_4_2").val((parseFloat($("#part5_4_14_4_2").val()) * jinzhi).toString());
+            $("#part5_4_14_4_2").val((parseFloat($("#part5_4_14_4_2").val()) * jinzhi).toFixed(2).toString());
         }
         if ($("#part5_4_14_5_1").val() != "") {
-            $("#part5_4_14_5_1").val((parseFloat($("#part5_4_14_5_1").val()) * jinzhi).toString());
+            $("#part5_4_14_5_1").val((parseFloat($("#part5_4_14_5_1").val()) * jinzhi).toFixed(2).toString());
         }
         if ($("#part5_4_14_5_2").val() != "") {
-            $("#part5_4_14_5_2").val((parseFloat($("#part5_4_14_5_2").val()) * jinzhi).toString());
+            $("#part5_4_14_5_2").val((parseFloat($("#part5_4_14_5_2").val()) * jinzhi).toFixed(2).toString());
         }
         if ($("#part5_4_14_6_1").val() != "") {
-            $("#part5_4_14_6_1").val((parseFloat($("#part5_4_14_6_1").val()) * jinzhi).toString());
+            $("#part5_4_14_6_1").val((parseFloat($("#part5_4_14_6_1").val()) * jinzhi).toFixed(2).toString());
         }
         if ($("#part5_4_14_6_2").val() != "") {
-            $("#part5_4_14_6_2").val((parseFloat($("#part5_4_14_6_2").val()) * jinzhi).toString());
+            $("#part5_4_14_6_2").val((parseFloat($("#part5_4_14_6_2").val()) * jinzhi).toFixed(2).toString());
         }
         if ($("#part5_4_14_7_1").val() != "") {
-            $("#part5_4_14_7_1").val((parseFloat($("#part5_4_14_7_1").val()) * jinzhi).toString());
+            $("#part5_4_14_7_1").val((parseFloat($("#part5_4_14_7_1").val()) * jinzhi).toFixed(2).toString());
         }
         if ($("#part5_4_14_7_2").val() != "") {
-            $("#part5_4_14_7_2").val((parseFloat($("#part5_4_14_7_2").val()) * jinzhi).toString());
+            $("#part5_4_14_7_2").val((parseFloat($("#part5_4_14_7_2").val()) * jinzhi).toFixed(2).toString());
         }
         if ($("#part5_4_14_8_1").val() != "") {
-            $("#part5_4_14_8_1").val((parseFloat($("#part5_4_14_8_1").val()) * jinzhi).toString());
+            $("#part5_4_14_8_1").val((parseFloat($("#part5_4_14_8_1").val()) * jinzhi).toFixed(2).toString());
         }
         if ($("#part5_4_14_8_2").val() != "") {
-            $("#part5_4_14_8_2").val((parseFloat($("#part5_4_14_8_2").val()) * jinzhi).toString());
+            $("#part5_4_14_8_2").val((parseFloat($("#part5_4_14_8_2").val()) * jinzhi).toFixed(2).toString());
         }
         if ($("#part5_4_14_9_1").val() != "") {
-            $("#part5_4_14_9_1").val((parseFloat($("#part5_4_14_9_1").val()) * jinzhi).toString());
+            $("#part5_4_14_9_1").val((parseFloat($("#part5_4_14_9_1").val()) * jinzhi).toFixed(2).toString());
         }
         if ($("#part5_4_14_9_2").val() != "") {
-            $("#part5_4_14_9_2").val((parseFloat($("#part5_4_14_9_2").val()) * jinzhi).toString());
+            $("#part5_4_14_9_2").val((parseFloat($("#part5_4_14_9_2").val()) * jinzhi).toFixed(2).toString());
         }
         if ($("#part5_4_14_10_1").val() != "") {
-            $("#part5_4_14_10_1").val((parseFloat($("#part5_4_14_10_1").val()) * jinzhi).toString());
+            $("#part5_4_14_10_1").val((parseFloat($("#part5_4_14_10_1").val()) * jinzhi).toFixed(2).toString());
         }
         if ($("#part5_4_14_10_2").val() != "") {
-            $("#part5_4_14_10_2").val((parseFloat($("#part5_4_14_10_2").val()) * jinzhi).toString());
+            $("#part5_4_14_10_2").val((parseFloat($("#part5_4_14_10_2").val()) * jinzhi).toFixed(2).toString());
         }
     }
 
@@ -1694,6 +1796,51 @@ $(function(){
     $("#submit5_24").click(function () {
         if ($("#leixing5_1").text() == "" || $("#zsbh5_1").text() == "") {
             alert("请先选择一条待检测的送检仪器！")
+        } else if($("#part5_4_14_1_1").val()==""){
+            $.ajax({
+                type: "POST",
+                url: "Action_addLCData.action",
+                contentType: "application/x-www-form-urlencoded;charset=utf-8",
+                data: {
+                    "zsbh": $("#zsbh5_1").text(),//送检仪器证书编号
+                    "dw": $("input[name='check5_10']:checked").val(),//单位1/2/3--->μΩ/mΩ/Ω
+                    "bzz1": guoduzhi,//标准值
+                    "dsz1": guoduzhi,//显示值
+                    "bzz2": guoduzhi,
+                    "dsz2": guoduzhi,
+                    "bzz3": guoduzhi,
+                    "dsz3": guoduzhi,
+                    "bzz4": guoduzhi,
+                    "dsz4": guoduzhi,
+                    "bzz5": guoduzhi,
+                    "dsz5": guoduzhi,
+                    "bzz6": guoduzhi,
+                    "dsz6": guoduzhi,
+                    "bzz7": guoduzhi,
+                    "dsz7": guoduzhi,
+                    "bzz8": guoduzhi,
+                    "dsz8": guoduzhi,
+                    "bzz9": guoduzhi,
+                    "dsz9": guoduzhi,
+                    "bzz10": guoduzhi,
+                    "dsz10": guoduzhi,
+                    "lc": lc4,
+                    "lc_value":null_value,
+                },
+                dataType: "json",
+                cache: false,
+                success: function (data) {
+                    if (data.jsonObject == "1") {
+                        $("#part5_4_12_4").html("数据提交成功！")
+                    }
+                    else {
+                        alert("提交失败！")
+                    }
+                },
+                error: function (jqXHR) {
+                    alert("发生错误代码：" + jqXHR.status + "，数据未加载成功！");
+                }
+            });
         } else {
             $.ajax({
                 type: "POST",
@@ -1722,7 +1869,8 @@ $(function(){
                     "dsz9": $("#part5_4_14_9_2").val(),
                     "bzz10": $("#part5_4_14_10_1").val(),
                     "dsz10": $("#part5_4_14_10_2").val(),
-                    "lc": lc4
+                    "lc": lc4,
+                    "lc_value":$("#lc4_value").val()+$("input[name='check5_10']:checked").val(),
                 },
                 dataType: "json",
                 cache: false,
@@ -1777,13 +1925,13 @@ $(function(){
                 }else if(parseFloat(data.average1)==1 || parseFloat(data.average1)==10
                     ||parseFloat(data.average1)==20 || parseFloat(data.average1)==100
                     ||parseFloat(data.average1)==1000){
-                    danweijinzhi=1000;
+                    //danweijinzhi=1000;
                     $("#radio5_32").attr("checked","checked");
                     $("#radio5_31").removeAttr("checked");
                 }
                 $("#lc5_value").val((parseFloat(data.average1)).toString());
                 $("#part5_4_15_1_1").val(( parseFloat(data.average2) * danweijinzhi).toString());
-                $("#part5_4_15_1_2").val(readValue($("#part5_4_15_1_1").val()));
+                $("#part5_4_15_1_2").val(displayValue($("#part5_4_15_1_1").val()));
                 $("#submit5_4_15_1_1").val("获取数据");
             },
             error: function (jqXHR) {
@@ -1807,7 +1955,7 @@ $(function(){
             cache: false,
             success: function (data) {
                 $("#part5_4_15_2_1").val((parseFloat(data.average2) * danweijinzhi).toString());
-                $("#part5_4_15_2_2").val(readValue($("#part5_4_15_2_1").val()));
+                $("#part5_4_15_2_2").val(displayValue($("#part5_4_15_2_1").val()));
                 $("#submit5_4_15_2_1").val("获取数据");
             },
             error: function (jqXHR) {
@@ -1831,7 +1979,7 @@ $(function(){
             cache: false,
             success: function (data) {
                 $("#part5_4_15_3_1").val(( parseFloat(data.average2) * danweijinzhi).toString());
-                $("#part5_4_15_3_2").val(readValue($("#part5_4_15_3_1").val()));
+                $("#part5_4_15_3_2").val(displayValue($("#part5_4_15_3_1").val()));
                 $("#submit5_4_15_3_1").val("获取数据");
             },
             error: function (jqXHR) {
@@ -1855,7 +2003,7 @@ $(function(){
             cache: false,
             success: function (data) {
                 $("#part5_4_15_4_1").val(( parseFloat(data.average2) * danweijinzhi).toString());
-                $("#part5_4_15_4_2").val(readValue($("#part5_4_15_4_1").val()));
+                $("#part5_4_15_4_2").val(displayValue($("#part5_4_15_4_1").val()));
                 $("#submit5_4_15_4_1").val("获取数据");
             },
             error: function (jqXHR) {
@@ -1879,7 +2027,7 @@ $(function(){
             cache: false,
             success: function (data) {
                 $("#part5_4_15_5_1").val(( parseFloat(data.average2) * danweijinzhi).toString());
-                $("#part5_4_15_5_2").val(readValue($("#part5_4_15_5_1").val()));
+                $("#part5_4_15_5_2").val(displayValue($("#part5_4_15_5_1").val()));
                 $("#submit5_4_15_5_1").val("获取数据");
             },
             error: function (jqXHR) {
@@ -1903,7 +2051,7 @@ $(function(){
             cache: false,
             success: function (data) {
                 $("#part5_4_15_6_1").val(( parseFloat(data.average2) * danweijinzhi).toString());
-                $("#part5_4_15_6_2").val(readValue($("#part5_4_15_6_1").val()));
+                $("#part5_4_15_6_2").val(displayValue($("#part5_4_15_6_1").val()));
                 $("#submit5_4_15_6_1").val("获取数据");
             },
             error: function (jqXHR) {
@@ -1927,7 +2075,7 @@ $(function(){
             cache: false,
             success: function (data) {
                 $("#part5_4_15_7_1").val((parseFloat(data.average2) * danweijinzhi).toString());
-                $("#part5_4_15_7_2").val(readValue($("#part5_4_15_7_1").val()));
+                $("#part5_4_15_7_2").val(displayValue($("#part5_4_15_7_1").val()));
                 $("#submit5_4_15_7_1").val("获取数据");
             },
             error: function (jqXHR) {
@@ -1951,7 +2099,7 @@ $(function(){
             cache: false,
             success: function (data) {
                 $("#part5_4_15_8_1").val(( parseFloat(data.average2) * danweijinzhi).toString());
-                $("#part5_4_15_8_2").val(readValue($("#part5_4_15_8_1").val()));
+                $("#part5_4_15_8_2").val(displayValue($("#part5_4_15_8_1").val()));
                 $("#submit5_4_15_8_1").val("获取数据");
             },
             error: function (jqXHR) {
@@ -1975,7 +2123,7 @@ $(function(){
             cache: false,
             success: function (data) {
                 $("#part5_4_15_9_1").val(( parseFloat(data.average2) * danweijinzhi).toString());
-                $("#part5_4_15_9_2").val(readValue($("#part5_4_15_9_1").val()));
+                $("#part5_4_15_9_2").val(displayValue($("#part5_4_15_9_1").val()));
                 $("#submit5_4_15_9_1").val("获取数据");
             },
             error: function (jqXHR) {
@@ -1999,7 +2147,7 @@ $(function(){
             cache: false,
             success: function (data) {
                 $("#part5_4_15_10_1").val(( parseFloat(data.average2) * danweijinzhi).toString());
-                $("#part5_4_15_10_2").val(readValue($("#part5_4_15_10_1").val()));
+                $("#part5_4_15_10_2").val(displayValue($("#part5_4_15_10_1").val()));
                 $("#submit5_4_15_10_1").val("获取数据");
             },
             error: function (jqXHR) {
@@ -2052,80 +2200,128 @@ $(function(){
     //进制转换公共程序
     function jinzhizhuanhuan6_8(jinzhi) {
         if ($("#part5_4_15_1_1").val() != "") {
-            $("#part5_4_15_1_1").val((parseFloat($("#part5_4_15_1_1").val()) * jinzhi).toString());
+            $("#part5_4_15_1_1").val((parseFloat($("#part5_4_15_1_1").val()) * jinzhi).toFixed(2).toString());
         }
         if ($("#part5_4_15_1_2").val() != "") {
-            $("#part5_4_15_1_2").val((parseFloat($("#part5_4_15_1_2").val()) * jinzhi).toString());
+            $("#part5_4_15_1_2").val((parseFloat($("#part5_4_15_1_2").val()) * jinzhi).toFixed(2).toString());
         }
         if ($("#part5_4_15_2_1").val() != "") {
-            $("#part5_4_15_2_1").val((parseFloat($("#part5_4_15_2_1").val()) * jinzhi).toString());
+            $("#part5_4_15_2_1").val((parseFloat($("#part5_4_15_2_1").val()) * jinzhi).toFixed(2).toString());
         }
         if ($("#part5_4_15_2_2").val() != "") {
-            $("#part5_4_15_2_2").val((parseFloat($("#part5_4_15_2_2").val()) * jinzhi).toString());
+            $("#part5_4_15_2_2").val((parseFloat($("#part5_4_15_2_2").val()) * jinzhi).toFixed(2).toString());
         }
         if ($("#part5_4_15_3_1").val() != "") {
-            $("#part5_4_15_3_1").val((parseFloat($("#part5_4_15_3_1").val()) * jinzhi).toString());
+            $("#part5_4_15_3_1").val((parseFloat($("#part5_4_15_3_1").val()) * jinzhi).toFixed(2).toString());
         }
         if ($("#part5_4_15_3_2").val() != "") {
-            $("#part5_4_15_3_2").val((parseFloat($("#part5_4_15_3_2").val()) * jinzhi).toString());
+            $("#part5_4_15_3_2").val((parseFloat($("#part5_4_15_3_2").val()) * jinzhi).toFixed(2).toString());
         }
         if ($("#part5_4_15_4_1").val() != "") {
-            $("#part5_4_15_4_1").val((parseFloat($("#part5_4_15_4_1").val()) * jinzhi).toString());
+            $("#part5_4_15_4_1").val((parseFloat($("#part5_4_15_4_1").val()) * jinzhi).toFixed(2).toString());
         }
         if ($("#part5_4_15_4_2").val() != "") {
-            $("#part5_4_15_4_2").val((parseFloat($("#part5_4_15_4_2").val()) * jinzhi).toString());
+            $("#part5_4_15_4_2").val((parseFloat($("#part5_4_15_4_2").val()) * jinzhi).toFixed(2).toString());
         }
         if ($("#part5_4_15_5_1").val() != "") {
-            $("#part5_4_15_5_1").val((parseFloat($("#part5_4_15_5_1").val()) * jinzhi).toString());
+            $("#part5_4_15_5_1").val((parseFloat($("#part5_4_15_5_1").val()) * jinzhi).toFixed(2).toString());
         }
         if ($("#part5_4_15_5_2").val() != "") {
-            $("#part5_4_15_5_2").val((parseFloat($("#part5_4_15_5_2").val()) * jinzhi).toString());
+            $("#part5_4_15_5_2").val((parseFloat($("#part5_4_15_5_2").val()) * jinzhi).toFixed(2).toString());
         }
         if ($("#part5_4_15_6_1").val() != "") {
-            $("#part5_4_15_6_1").val((parseFloat($("#part5_4_15_6_1").val()) * jinzhi).toString());
+            $("#part5_4_15_6_1").val((parseFloat($("#part5_4_15_6_1").val()) * jinzhi).toFixed(2).toString());
         }
         if ($("#part5_4_15_6_2").val() != "") {
-            $("#part5_4_15_6_2").val((parseFloat($("#part5_4_15_6_2").val()) * jinzhi).toString());
+            $("#part5_4_15_6_2").val((parseFloat($("#part5_4_15_6_2").val()) * jinzhi).toFixed(2).toString());
         }
         if ($("#part5_4_15_7_1").val() != "") {
-            $("#part5_4_15_7_1").val((parseFloat($("#part5_4_15_7_1").val()) * jinzhi).toString());
+            $("#part5_4_15_7_1").val((parseFloat($("#part5_4_15_7_1").val()) * jinzhi).toFixed(2).toString());
         }
         if ($("#part5_4_15_7_2").val() != "") {
-            $("#part5_4_15_7_2").val((parseFloat($("#part5_4_15_7_2").val()) * jinzhi).toString());
+            $("#part5_4_15_7_2").val((parseFloat($("#part5_4_15_7_2").val()) * jinzhi).toFixed(2).toString());
         }
         if ($("#part5_4_15_8_1").val() != "") {
-            $("#part5_4_15_8_1").val((parseFloat($("#part5_4_15_8_1").val()) * jinzhi).toString());
+            $("#part5_4_15_8_1").val((parseFloat($("#part5_4_15_8_1").val()) * jinzhi).toFixed(2).toString());
         }
         if ($("#part5_4_15_8_2").val() != "") {
-            $("#part5_4_15_8_2").val((parseFloat($("#part5_4_15_8_2").val()) * jinzhi).toString());
+            $("#part5_4_15_8_2").val((parseFloat($("#part5_4_15_8_2").val()) * jinzhi).toFixed(2).toString());
         }
         if ($("#part5_4_15_9_1").val() != "") {
-            $("#part5_4_15_9_1").val((parseFloat($("#part5_4_15_9_1").val()) * jinzhi).toString());
+            $("#part5_4_15_9_1").val((parseFloat($("#part5_4_15_9_1").val()) * jinzhi).toFixed(2).toString());
         }
         if ($("#part5_4_15_9_2").val() != "") {
-            $("#part5_4_15_9_2").val((parseFloat($("#part5_4_15_9_2").val()) * jinzhi).toString());
+            $("#part5_4_15_9_2").val((parseFloat($("#part5_4_15_9_2").val()) * jinzhi).toFixed(2).toString());
         }
         if ($("#part5_4_15_10_1").val() != "") {
-            $("#part5_4_15_10_1").val((parseFloat($("#part5_4_15_10_1").val()) * jinzhi).toString());
+            $("#part5_4_15_10_1").val((parseFloat($("#part5_4_15_10_1").val()) * jinzhi).toFixed(2).toString());
         }
         if ($("#part5_4_15_10_2").val() != "") {
-            $("#part5_4_15_10_2").val((parseFloat($("#part5_4_15_10_2").val()) * jinzhi).toString());
+            $("#part5_4_15_10_2").val((parseFloat($("#part5_4_15_10_2").val()) * jinzhi).toFixed(2).toString());
         }
     }
 
     var lc5="lc5";
+
     //提交量程5
     $("#submit5_26").click(function () {
         if ($("#leixing5_1").text() == "" || $("#zsbh5_1").text() == "") {
             alert("请先选择一条待检测的送检仪器！")
-        } else {
+        }
+        else if($("#part5_4_15_1_1").val()==""){
             $.ajax({
                 type: "POST",
                 url: "Action_addLCData.action",
                 contentType: "application/x-www-form-urlencoded;charset=utf-8",
                 data: {
                     "zsbh": $("#zsbh5_1").text(),//送检仪器证书编号
-                    "dw": $("input[name='check5_11']:checked").val(),//单位1/2/3--->mΩ/Ω/kΩ
+                    "dw": $("input[name='check5_11']:checked").val(),//单位1/2/3--->μΩ/mΩ/Ω
+                    "bzz1": guoduzhi,//标准值
+                    "dsz1": guoduzhi,//显示值
+                    "bzz2": guoduzhi,
+                    "dsz2": guoduzhi,
+                    "bzz3": guoduzhi,
+                    "dsz3": guoduzhi,
+                    "bzz4": guoduzhi,
+                    "dsz4": guoduzhi,
+                    "bzz5": guoduzhi,
+                    "dsz5": guoduzhi,
+                    "bzz6": guoduzhi,
+                    "dsz6": guoduzhi,
+                    "bzz7": guoduzhi,
+                    "dsz7": guoduzhi,
+                    "bzz8": guoduzhi,
+                    "dsz8": guoduzhi,
+                    "bzz9": guoduzhi,
+                    "dsz9": guoduzhi,
+                    "bzz10": guoduzhi,
+                    "dsz10": guoduzhi,
+                    "lc": lc5,
+                    "lc_value":null_value,
+                },
+                dataType: "json",
+                cache: false,
+                success: function (data) {
+                    if (data.jsonObject == "1") {
+                        $("#part5_4_12_5").html("数据提交成功！")
+                    }
+                    else {
+                        alert("提交失败！")
+                    }
+                },
+                error: function (jqXHR) {
+                    alert("发生错误代码：" + jqXHR.status + "，数据未加载成功！");
+                }
+            });
+        }
+        else {
+            $.ajax({
+                type: "POST",
+                url: "Action_addLCData.action",
+                contentType: "application/x-www-form-urlencoded;charset=utf-8",
+                data: {
+                    "zsbh": $("#zsbh5_1").text(),//送检仪器证书编号
+                    "dw": $("input[name='check5_11']:checked").val(),//单位1/2/3--->μΩ/mΩ/Ω
                     "bzz1": $("#part5_4_15_1_1").val(),//标准值
                     "dsz1": $("#part5_4_15_1_2").val(),//显示值
                     "bzz2": $("#part5_4_15_2_1").val(),
@@ -2146,7 +2342,8 @@ $(function(){
                     "dsz9": $("#part5_4_15_9_2").val(),
                     "bzz10": $("#part5_4_15_10_1").val(),
                     "dsz10": $("#part5_4_15_10_2").val(),
-                    "lc": lc5
+                    "lc": lc5,
+                    "lc_value":$("#lc5_value").val()+$("input[name='check5_11']:checked").val(),
                 },
                 dataType: "json",
                 cache: false,
@@ -2164,7 +2361,7 @@ $(function(){
             });
         }
     });
-    // 将name=lc1的文本框清空，以便重新下一次填充
+    // 将name=lc5的文本框清空，以便重新下一次填充
     $("#submit5_27").click(function () {
         $("input[name='lc5']").val(""); // 将name=lc5的文本框清空，以便重新下一次修改
         $("input[name='lc5']").removeAttr("title");
@@ -2183,6 +2380,150 @@ $(function(){
      * EE回路电阻菜单  Part6 电阻稳定性误差 开始
      */
 
+    //获取数据 采样 全检 part6 稳定性误差 读数 6-1
+    $("#submit5_4_16_1_1").click(function () {
+        $("#part5_4_16_1_1").val("");
+        $("#submit5_4_16_1_1").val("获取中...");
+        setTimeout(caiyangds61, time);//延迟500ms执行
+    });
+    //采样 全检 part6
+    function caiyangds61() {
+        $.ajax({
+            type: "POST",
+            url: "Action_getCaiyangDataPart1.action",
+            contentType: "application/x-www-form-urlencoded; charset=utf-8",
+            dataType: "json",
+            cache: false,
+            success: function (data) {
+                $("#part5_4_16_1_1").val(( parseFloat(data.average2) * danweijinzhi).toString());
+                $("#submit5_4_16_1_1").val("获取数据");
+            },
+            error: function (jqXHR) {
+                alert("发生错误代码：" + jqXHR.status + "，数据未加载成功！");
+            }
+        });
+    }
+
+    //获取数据 采样 全检 part6 稳定性误差 读数 6-2
+    $("#submit5_4_16_2_1").click(function () {
+        $("#part5_4_16_2_1").val("");
+        $("#submit5_4_16_2_1").val("获取中...");
+        setTimeout(caiyangds62, time);//延迟500ms执行
+    });
+    //采样 全检 part6
+    function caiyangds62() {
+        $.ajax({
+            type: "POST",
+            url: "Action_getCaiyangDataPart1.action",
+            contentType: "application/x-www-form-urlencoded; charset=utf-8",
+            dataType: "json",
+            cache: false,
+            success: function (data) {
+                $("#part5_4_16_2_1").val(( parseFloat(data.average2) * danweijinzhi).toString());
+                $("#submit5_4_16_2_1").val("获取数据");
+            },
+            error: function (jqXHR) {
+                alert("发生错误代码：" + jqXHR.status + "，数据未加载成功！");
+            }
+        });
+    }
+
+    //获取数据 采样 全检 part6 稳定性误差 读数 6-3
+    $("#submit5_4_16_3_1").click(function () {
+        $("#part5_4_16_3_1").val("");
+        $("#submit5_4_16_3_1").val("获取中...");
+        setTimeout(caiyangds63, time);//延迟500ms执行
+    });
+    //采样 全检 part6
+    function caiyangds63() {
+        $.ajax({
+            type: "POST",
+            url: "Action_getCaiyangDataPart1.action",
+            contentType: "application/x-www-form-urlencoded; charset=utf-8",
+            dataType: "json",
+            cache: false,
+            success: function (data) {
+                $("#part5_4_16_3_1").val(( parseFloat(data.average2) * danweijinzhi).toString());
+                $("#submit5_4_16_3_1").val("获取数据");
+            },
+            error: function (jqXHR) {
+                alert("发生错误代码：" + jqXHR.status + "，数据未加载成功！");
+            }
+        });
+    }
+
+    //获取数据 采样 全检 part6 稳定性误差 读数 6-4
+    $("#submit5_4_16_4_1").click(function () {
+        $("#part5_4_16_4_1").val("");
+        $("#submit5_4_16_4_1").val("获取中...");
+        setTimeout(caiyangds64, time);//延迟500ms执行
+    });
+    //采样 全检 part6
+    function caiyangds64() {
+        $.ajax({
+            type: "POST",
+            url: "Action_getCaiyangDataPart1.action",
+            contentType: "application/x-www-form-urlencoded; charset=utf-8",
+            dataType: "json",
+            cache: false,
+            success: function (data) {
+                $("#part5_4_16_4_1").val(( parseFloat(data.average2) * danweijinzhi).toString());
+                $("#submit5_4_16_4_1").val("获取数据");
+            },
+            error: function (jqXHR) {
+                alert("发生错误代码：" + jqXHR.status + "，数据未加载成功！");
+            }
+        });
+    }
+
+    //获取数据 采样 全检 part6 稳定性误差 读数 6-5
+    $("#submit5_4_16_5_1").click(function () {
+        $("#part5_4_16_5_1").val("");
+        $("#submit5_4_16_5_1").val("获取中...");
+        setTimeout(caiyangds65, time);//延迟500ms执行
+    });
+    //采样 全检 part6
+    function caiyangds65() {
+        $.ajax({
+            type: "POST",
+            url: "Action_getCaiyangDataPart1.action",
+            contentType: "application/x-www-form-urlencoded; charset=utf-8",
+            dataType: "json",
+            cache: false,
+            success: function (data) {
+                $("#part5_4_16_5_1").val(( parseFloat(data.average2) * danweijinzhi).toString());
+                $("#submit5_4_16_5_1").val("获取数据");
+            },
+            error: function (jqXHR) {
+                alert("发生错误代码：" + jqXHR.status + "，数据未加载成功！");
+            }
+        });
+    }
+
+    //获取数据 采样 全检 part6 稳定性误差 读数 6-6
+    $("#submit5_4_16_6_1").click(function () {
+        $("#part5_4_16_6_1").val("");
+        $("#submit5_4_16_6_1").val("获取中...");
+        setTimeout(caiyangds66, time);//延迟500ms执行
+    });
+    //采样 全检 part6
+    function caiyangds66() {
+        $.ajax({
+            type: "POST",
+            url: "Action_getCaiyangDataPart1.action",
+            contentType: "application/x-www-form-urlencoded; charset=utf-8",
+            dataType: "json",
+            cache: false,
+            success: function (data) {
+                $("#part5_4_16_6_1").val(( parseFloat(data.average2) * danweijinzhi).toString());
+                $("#submit5_4_16_6_1").val("获取数据");
+            },
+            error: function (jqXHR) {
+                alert("发生错误代码：" + jqXHR.status + "，数据未加载成功！");
+            }
+        });
+    }
+
     //获取数据 采样 全检 part6 稳定性误差 6-7
     $("#submit5_4_16_7_1").click(function () {
         $("#part5_4_16_7_1").val("");
@@ -2194,23 +2535,33 @@ $(function(){
         var data=new Array(6);
         var maxds=0;
         var minds=0;
-        data[0]=$("#part5_4_16_1_1").val();
-        data[1]=$("#part5_4_16_2_1").val();
-        data[2]=$("#part5_4_16_3_1").val();
-        data[3]=$("#part5_4_16_4_1").val();
-        data[4]=$("#part5_4_16_5_1").val();
-        data[5]=$("#part5_4_16_6_1").val();
+        var average=0;
+        data[0]=parseFloat($("#part5_4_16_1_1").val());
+        data[1]=parseFloat($("#part5_4_16_2_1").val());
+        data[2]=parseFloat($("#part5_4_16_3_1").val());
+        data[3]=parseFloat($("#part5_4_16_4_1").val());
+        data[4]=parseFloat($("#part5_4_16_5_1").val());
+        data[5]=parseFloat($("#part5_4_16_6_1").val());
         for(var i=0; i<6; i++){
             if(maxds<data[i]){
                 maxds=data[i];
             }
         }
         for(var i=0; i<6; i++){
+            minds=data[0];
             if(minds>data[i]){
                 minds=data[i];
             }
         }
-        $.ajax({
+        for(var j=0;j<6;j++){
+            average+=data[j];
+        }
+        var averageds=average/6;
+        if(averageds==0){
+            $("#part5_4_16_7_1").val("0");
+            $("#submit5_4_16_7_1").val("获取数据");
+        }else{
+            $.ajax({
            type: "POST",
            url: "Action_getCaiyangDataPart1.action",
            contentType: "application/x-www-form-urlencoded; charset=utf-8",
@@ -2223,7 +2574,8 @@ $(function(){
            error: function (jqXHR) {
                alert("发生错误代码：" + jqXHR.status + "，数据未加载成功！");
            }
-       });
+           });
+        }
     }
 
     //处理单位之间的转换问题 第二行数据
@@ -2270,22 +2622,22 @@ $(function(){
     //进制转换公共程序
     function jinzhizhuanhuan6_9(jinzhi) {
         if ($("#part5_4_16_1_1").val() != "") {
-            $("#part5_4_16_1_1").val((parseFloat($("#part5_4_16_1_1").val()) * jinzhi).toString());
+            $("#part5_4_16_1_1").val((parseFloat($("#part5_4_16_1_1").val()) * jinzhi).toFixed(2).toString());
         }
         if ($("#part5_4_16_2_1").val() != "") {
-            $("#part5_4_16_2_1").val((parseFloat($("#part5_4_16_2_1").val()) * jinzhi).toString());
+            $("#part5_4_16_2_1").val((parseFloat($("#part5_4_16_2_1").val()) * jinzhi).toFixed(2).toString());
         }
         if ($("#part5_4_16_3_1").val() != "") {
-            $("#part5_4_16_3_1").val((parseFloat($("#part5_4_16_3_1").val()) * jinzhi).toString());
+            $("#part5_4_16_3_1").val((parseFloat($("#part5_4_16_3_1").val()) * jinzhi).toFixed(2).toString());
         }
         if ($("#part5_4_16_4_1").val() != "") {
-            $("#part5_4_16_4_1").val((parseFloat($("#part5_4_16_4_1").val()) * jinzhi).toString());
+            $("#part5_4_16_4_1").val((parseFloat($("#part5_4_16_4_1").val()) * jinzhi).toFixed(2).toString());
         }
         if ($("#part5_4_16_5_1").val() != "") {
-            $("#part5_4_16_5_1").val((parseFloat($("#part5_4_16_5_1").val()) * jinzhi).toString());
+            $("#part5_4_16_5_1").val((parseFloat($("#part5_4_16_5_1").val()) * jinzhi).toFixed(2).toString());
         }
         if ($("#part5_4_16_6_1").val() != "") {
-            $("#part5_4_16_6_1").val((parseFloat($("#part5_4_16_6_1").val()) * jinzhi).toString());
+            $("#part5_4_16_6_1").val((parseFloat($("#part5_4_16_6_1").val()) * jinzhi).toFixed(2).toString());
         }
     }
 
@@ -2293,6 +2645,8 @@ $(function(){
     $("#submit5_28").click(function () {
         if ($("#leixing5_1").text() == "" || $("#zsbh5_1").text() == "") {
             alert("请先选择一条待检测的送检仪器！")
+        } else if($("#part5_4_16_1_1").val()==""){
+            alert("请先获取数据！")
         } else {
             $.ajax({
                 type: "POST",
@@ -2355,7 +2709,7 @@ $(function(){
             cache: false,
             success: function (data) {
                 $("#part5_4_17_1_1").val(((parseFloat(data.average3)) * danweijinzhi).toString());
-                $("#part5_4_17_1_2").val(readValue($("#part5_4_17_1_1").val()));
+                $("#part5_4_17_1_2").val(displayValue($("#part5_4_17_1_1").val()));
                 $("#submit5_4_17_1_1").val("获取数据");
             },
             error: function (jqXHR) {
@@ -2379,7 +2733,7 @@ $(function(){
             cache: false,
             success: function (data) {
                 $("#part5_4_17_2_1").val(((parseFloat(data.average3)) * danweijinzhi).toString());
-                $("#part5_4_17_2_2").val(readValue($("#part5_4_17_2_1").val()));
+                $("#part5_4_17_2_2").val(displayValue($("#part5_4_17_2_1").val()));
                 $("#submit5_4_17_2_1").val("获取数据");
             },
             error: function (jqXHR) {
@@ -2403,7 +2757,7 @@ $(function(){
             cache: false,
             success: function (data) {
                 $("#part5_4_17_3_1").val(((parseFloat(data.average3)) * danweijinzhi).toString());
-                $("#part5_4_17_3_2").val(readValue($("#part5_4_17_3_1").val()));
+                $("#part5_4_17_3_2").val(displayValue($("#part5_4_17_3_1").val()));
                 $("#submit5_4_17_3_1").val("获取数据");
             },
             error: function (jqXHR) {
@@ -2427,7 +2781,7 @@ $(function(){
             cache: false,
             success: function (data) {
                 $("#part5_4_17_4_1").val(((parseFloat(data.average3)) * danweijinzhi).toString());
-                $("#part5_4_17_4_2").val(readValue($("#part5_4_17_4_1").val()));
+                $("#part5_4_17_4_2").val(displayValue($("#part5_4_17_4_1").val()));
                 $("#submit5_4_17_4_1").val("获取数据");
             },
             error: function (jqXHR) {
@@ -2451,7 +2805,7 @@ $(function(){
             cache: false,
             success: function (data) {
                 $("#part5_4_17_5_1").val(((parseFloat(data.average3)) * danweijinzhi).toString());
-                $("#part5_4_17_5_2").val(readValue($("#part5_4_17_5_1").val()));
+                $("#part5_4_17_5_2").val(displayValue($("#part5_4_17_5_1").val()));
                 $("#submit5_4_17_5_1").val("获取数据");
             },
             error: function (jqXHR) {
@@ -2539,6 +2893,8 @@ $(function(){
     $("#submit5_30").click(function () {
         if ($("#leixing5_1").text() == "" || $("#zsbh5_1").text() == "") {
             alert("请先选择一条待检测的送检仪器！")
+        } else if($("#part5_4_17_1_1").val()=="") {
+            alert("请先获取数据！")
         } else {
             $.ajax({
                 type: "POST",
@@ -2557,8 +2913,9 @@ $(function(){
                      "shijizhi3": $("#part5_4_17_3_2").val(),
                      "shijizhi4": $("#part5_4_17_4_2").val(),
                      "shijizhi5": $("#part5_4_17_5_2").val(),
-                     "dlgc": $("#part5_4_17_6_1").val(),
-                     "gcmk": $("#part5_4_17_6_2").val(),
+                    ////
+                    // "dlgc": $("#part5_4_17_6_1").val(),
+                    // "gcmk": $("#part5_4_17_6_2").val(),
                 },
                 dataType: "json",
                 cache: false,

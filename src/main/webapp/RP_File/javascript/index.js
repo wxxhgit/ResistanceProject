@@ -8,9 +8,6 @@ $(function () {
             $(this).children().hide();
             $(this).children().eq(6).show();//0代表第一个
         });
-        //$(tabTit).each(function () {
-        //    $(this).children().eq(0).addClass(on);
-        //});
         $(tabTit).children().click(function () {
             if ($.session.get("username") != null) {
                 $(this).addClass(on).siblings().removeClass(on);
@@ -23,6 +20,7 @@ $(function () {
     }
 
     tabs(".choice", "on", ".context");
+
 
     //对日期字符串进行截取,2017-01-01变为2017年01月01日，后台传来的数据处理后放到表格里
     function formatdatetime(temp) {
@@ -168,6 +166,94 @@ $(function () {
             });
         });
     });
+
+    // var hl_flag=0;
+    // var jy_flag=0;
+    // var jd_flag=0;
+    //模块选中
+    // function checkboxXZ(){
+    //    if($("huilu").is(':checked')){
+    //        hl_flag=1;
+    //    }
+    //     if($("jueyuan").is(':checked')){
+    //         jy_flag=1;
+    //     }
+    //     if($("jiedi").is(':checked')){
+    //         jd_flag=1;
+    //     }
+    // }
+    //checkboxXZ();
+    //保存电阻模块选中情况
+    // function saveFlag(){
+    //     $.ajax({
+    //         type: "POST",
+    //         url: "Action_addDZBZW.action",
+    //         contentType: "application/x-www-form-urlencoded; charset=utf-8",
+    //         data: {
+    //             "jyflag":jy_flag,
+    //             "hlflag":hl_flag,
+    //             "jdflag":jd_flag
+    //         },
+    //         dataType: "json",
+    //         cache: false,
+    //         success: function (data) {
+    //             if (data.jsonObject == "1") {
+    //
+    //             } else {
+    //
+    //             }
+    //         },
+    //         error: function (jqXHR) {
+    //             alert("发生错误代码：" + jqXHR.status + "，数据未加载成功！");
+    //         }
+    //     });
+    // }
+    //saveFlag();
+
+    //查询电阻模块选中情况
+    // function findDZBZW(){
+    //     $.ajax({
+    //         type: "POST",
+    //         url: "Action_findDZBZW.action",
+    //         contentType: "application/x-www-form-urlencoded; charset=utf-8",
+    //         dataType: "json",
+    //         cache: false,
+    //         success: function (data) {
+    //             var hlflag;
+    //             var jyflag;
+    //             var jdflag;
+    //             var huilu=document.getElementById("huilu");
+    //             var jueyuan=document.getElementById("jueyuan");
+    //             var jiedi=document.getElementById("jiedi");
+    //             for (var i = 0; i < data.allJsonArray.length; i++) {
+    //                 jyflag=data.allJsonArray[i].jyflag;
+    //                 jdflag=data.allJsonArray[i].jdflag;
+    //                 hlflag=data.allJsonArray[i].hlflag;
+    //             }
+    //             if(jyflag.eq("1")){
+    //                 jueyuan.checked="true";
+    //             }else{
+    //                 jueyuan.checked="false";
+    //             }
+    //             if(jdflag.eq("1")){
+    //                 jiedi.checked="true";
+    //             }else{
+    //                 jiedi.checked="false";
+    //             }
+    //             if(hlflag.eq("1")){
+    //                 huilu.checked="true";
+    //             }else{
+    //                 huilu.checked="false";
+    //             }
+    //         },
+    //         error: function (jqXHR) {
+    //             alert("发生错误代码：" + jqXHR.status + "，数据未加载成功！");
+    //         }
+    //     });
+    // }
+    //findDZBZW();
+
+
     /**
      * part1 送检仪器录入  开始
      */
@@ -1772,7 +1858,7 @@ $(function () {
                 $("#jydz5").val(data.allJsonArray[0].jydz);
                 $("#jyqd5").val(data.allJsonArray[0].jyqd);
                 $("#xldl").val(data.allJsonArray[0].xldl);
-                $("#wdxwc").val(data.allJsonArray[0].wdxwc);
+                // $("#wdxwc").val(data.allJsonArray[0].wdxwc);
                 $("#dlgc").val(data.allJsonArray[0].dlgc);
                 $("#gcmk").val(data.allJsonArray[0].gcmk);
                 $("#eddlwcsj").val(data.allJsonArray[0].eddlwcsj);
@@ -1783,7 +1869,22 @@ $(function () {
                 alert("发生错误代码：" + jqXHR.status + "，数据未加载成功！");
             }
         });
-
+        $.ajax({
+            type: "POST",
+            url: "Action_findWdxwcByZsh.action",
+            contentType: "application/x-www-form-urlencoded; charset=utf-8",
+            data: {
+                "id": $("#zsbh6_1").text()//送检仪器证书编号
+            },
+            dataType: "json",
+            cache: false,
+            success: function (data) {
+                $("#wdxwc").val(data.allJsonArray[0].wdxwc);
+            },
+            error: function (jqXHR) {
+                alert("发生错误代码：" + jqXHR.status + "，数据未加载成功！");
+            }
+        });
     });
     //显示回路电阻表检定证书记录6
     $("#submit6_0_6").click(function () {
@@ -1814,7 +1915,7 @@ $(function () {
                 $("#jydz6").val(data.allJsonArray[0].jydz);
                 $("#jyqd6").val(data.allJsonArray[0].jyqd);
                 $("#xldl2").val(data.allJsonArray[0].xldl);
-                $("#wdxwc2").val(data.allJsonArray[0].wdxwc);
+                // $("#wdxwc2").val(data.allJsonArray[0].wdxwc);
                 $("#dlgc2").val(data.allJsonArray[0].dlgc);
                 $("#gcmk2").val(data.allJsonArray[0].gcmk);
                 $("#jdjl6").val(data.allJsonArray[0].jdjl);
@@ -1827,7 +1928,22 @@ $(function () {
                 alert("发生错误代码：" + jqXHR.status + "，数据未加载成功！");
             }
         });
-
+        $.ajax({
+            type: "POST",
+            url: "Action_findWdxwcByZsh.action",
+            contentType: "application/x-www-form-urlencoded; charset=utf-8",
+            data: {
+                "id": $("#zsbh6_1").text()//送检仪器证书编号
+            },
+            dataType: "json",
+            cache: false,
+            success: function (data) {
+                $("#wdxwc2").val(data.allJsonArray[0].wdxwc);
+            },
+            error: function (jqXHR) {
+                alert("发生错误代码：" + jqXHR.status + "，数据未加载成功！");
+            }
+        });
     });
 
 

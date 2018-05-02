@@ -23,6 +23,8 @@ public class InspectionDecLeft {
 	private String eddlwcsj;//额定电流维持时间
 	private String eddl;//额定电流
 	private String xdkzbqdd;//相对扩展不确定度
+    /////
+	private String flag;  //模块选中标志位
 	public InspectionDecLeft() {
 		super();
 		this.zsbh = "";
@@ -47,6 +49,7 @@ public class InspectionDecLeft {
 		this.eddlwcsj="";
 		this.eddl="";
 		this.xdkzbqdd="";
+		this.flag="";
 	}
 	public String getZsbh() {
 		return zsbh;
@@ -185,7 +188,11 @@ public class InspectionDecLeft {
 
 	public void setXdkzbqdd(String xdkzbqdd) { this.xdkzbqdd = xdkzbqdd; }
 
-	@Override
+    public String getFlag() { return flag; }
+
+    public void setFlag(String flag) { this.flag = flag; }
+
+    @Override
 	public String toString() {
 		return "InspectionDecLeft [zsbh=" + zsbh + ", wg=" + wg + ", jydz="
 				+ jydz + ", jyqd=" + jyqd + ", xsnl=" + xsnl + ", klcldy="
@@ -194,7 +201,8 @@ public class InspectionDecLeft {
 				+ ", wzyxsy=" + wzyxsy + ", fzjddzyxsy=" + fzjddzyxsy
 				+ ", fbl=" + fbl + ", xxwc=" + xxwc + ", xldl=" + xldl
 				+ ", wdxwc=" + wdxwc + ", dlgc=" + dlgc +", gcmk=" + gcmk
-				+", eddlwcsj=" + eddlwcsj + ", eddl=" + eddl +", xdkzbqdd=" + xdkzbqdd+"]";
+				+", eddlwcsj=" + eddlwcsj + ", eddl=" + eddl +", xdkzbqdd=" + xdkzbqdd
+                + ", flag=" + flag +"]";
 	}
 	
 	

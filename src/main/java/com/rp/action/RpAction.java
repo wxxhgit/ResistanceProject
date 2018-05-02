@@ -1,8 +1,10 @@
 package com.rp.action;
 
 import java.io.IOException;
-import java.time.LocalTime;
+import java.text.SimpleDateFormat;
+//import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -83,6 +85,9 @@ public class RpAction extends BaseAction {
 	 * @throws IOException
 	 */
 	public String addInspectionDevice() throws IOException {
+	    //
+	    Calendar c= Calendar.getInstance();
+	    String time=new SimpleDateFormat("HH:mm:ss").format(c.getTime());
 		InspectionDevice inspectionDevice = new InspectionDevice();
 		inspectionDevice.setLeixing(this.getRequest().getParameter("leixing"));
 		inspectionDevice.setXinghao(this.getRequest().getParameter("xinghao"));
@@ -95,8 +100,8 @@ public class RpAction extends BaseAction {
 		inspectionDevice.setJddd(this.getRequest().getParameter("jddd"));
 		inspectionDevice.setWendu(this.getRequest().getParameter("wendu"));
 		inspectionDevice.setShidu(this.getRequest().getParameter("shidu"));
-		inspectionDevice.setJdsj(this.getRequest().getParameter("jdsj")+" "+LocalTime.now());
-		inspectionDevice.setYxqsj(this.getRequest().getParameter("yxqsj")+" "+LocalTime.now());
+		inspectionDevice.setJdsj(this.getRequest().getParameter("jdsj")+" "+time);
+		inspectionDevice.setYxqsj(this.getRequest().getParameter("yxqsj")+" "+time);
 		inspectionDevice.setJdyj(this.getRequest().getParameter("jdyj"));
 		inspectionDevice.setZsbh(this.getRequest().getParameter("zsbh"));
 		if(inspectionDevice.getLeixing().equals("绝缘电阻表")){
@@ -202,8 +207,9 @@ public class RpAction extends BaseAction {
 	 * @throws IOException
 	 */
 	public String modifyInspectionDevice() throws IOException {
+        Calendar c= Calendar.getInstance();
+        String time=new SimpleDateFormat("HH:mm:ss").format(c.getTime());
 		InspectionDevice inspectionDevice = new InspectionDevice();
-
 		inspectionDevice.setLeixing(this.getRequest().getParameter("leixing"));
 		inspectionDevice.setXinghao(this.getRequest().getParameter("xinghao"));
 		inspectionDevice.setYqmc(this.getRequest().getParameter("yqmc"));
@@ -215,8 +221,8 @@ public class RpAction extends BaseAction {
 		inspectionDevice.setJddd(this.getRequest().getParameter("jddd"));
 		inspectionDevice.setWendu(this.getRequest().getParameter("wendu"));
 		inspectionDevice.setShidu(this.getRequest().getParameter("shidu"));
-		inspectionDevice.setJdsj(this.getRequest().getParameter("jdsj")+" "+LocalTime.now());
-		inspectionDevice.setYxqsj(this.getRequest().getParameter("yxqsj")+" "+LocalTime.now());
+		inspectionDevice.setJdsj(this.getRequest().getParameter("jdsj")+" "+time);
+		inspectionDevice.setYxqsj(this.getRequest().getParameter("yxqsj")+" "+time);
 		inspectionDevice.setJdyj(this.getRequest().getParameter("jdyj"));
 		inspectionDevice.setZsbh(this.getRequest().getParameter("zsbh"));
         System.out.println(inspectionDevice.toString());
@@ -241,6 +247,8 @@ public class RpAction extends BaseAction {
 	 * @throws IOException
 	 */
 	public String addStandardDevice() throws IOException {
+        Calendar c= Calendar.getInstance();
+        String time=new SimpleDateFormat("HH:mm:ss").format(c.getTime());
 		StandardDevice standardDevice = new StandardDevice();
 		standardDevice.setLx(this.getRequest().getParameter("leixing"));
 		standardDevice.setXinghao(this.getRequest().getParameter("xinghao"));
@@ -248,7 +256,7 @@ public class RpAction extends BaseAction {
 		standardDevice.setYqbh(this.getRequest().getParameter("yqbh"));
 		standardDevice.setBqdd(this.getRequest().getParameter("bqdd"));
 		standardDevice.setJlbzzsh(this.getRequest().getParameter("jlbzzsh"));
-		standardDevice.setYxqz(this.getRequest().getParameter("yxqz")+" "+ LocalTime.now());
+		standardDevice.setYxqz(this.getRequest().getParameter("yxqz")+" "+ time);
 		
 		boolean result = rpService.addStandardDevice(standardDevice);
 		String flag;
@@ -283,13 +291,15 @@ public class RpAction extends BaseAction {
 	 * @throws IOException
 	 */
 	public String modifyStandardDevice() throws IOException {
+        Calendar c= Calendar.getInstance();
+        String time=new SimpleDateFormat("HH:mm:ss").format(c.getTime());
 		StandardDevice standardDevice = new StandardDevice();
 		standardDevice.setXinghao(this.getRequest().getParameter("xinghao"));
 		standardDevice.setMingchen(this.getRequest().getParameter("mingchen"));
 		standardDevice.setYqbh(this.getRequest().getParameter("yqbh"));
 		standardDevice.setBqdd(this.getRequest().getParameter("bqdd"));
 		standardDevice.setJlbzzsh(this.getRequest().getParameter("jlbzzsh"));
-		standardDevice.setYxqz(this.getRequest().getParameter("yxqz")+" "+LocalTime.now());
+		standardDevice.setYxqz(this.getRequest().getParameter("yxqz")+" "+time);
 		standardDevice.setLx(this.getRequest().getParameter("leixing"));
 		boolean result = rpService.modifyStandardDevice(standardDevice);
 
@@ -518,6 +528,7 @@ public class RpAction extends BaseAction {
         String zsbh = this.getRequest().getParameter("zsbh");// //送检仪器证书编号
         String dw = this.getRequest().getParameter("dw");// 单位6/9/12--->M/G/T
 		String lc=this.getRequest().getParameter("lc");
+		String lc_value=this.getRequest().getParameter("lc_value");
         ArrayList<CaiYangHL> CaiYangHLList = new ArrayList<CaiYangHL>();
 
         for (int i = 1; i <= 10; i++) {
@@ -530,6 +541,7 @@ public class RpAction extends BaseAction {
                 continue;
             caiYangHL.setZsbh(zsbh);
 			caiYangHL.setLc(lc);
+            caiYangHL.setLc_value(lc_value);
             caiYangHL.setDw(dw);
             caiYangHL.setId(i);
             CaiYangHLList.add(caiYangHL);
@@ -755,8 +767,8 @@ public class RpAction extends BaseAction {
 	public void addDLGC()throws Exception {
         String zsbh=this.getRequest().getParameter("zsbh");//送检仪器证书编号
         String dw=this.getRequest().getParameter("dw");//单位
-        String dlgc=this.getRequest().getParameter("dlgc");//单位
-        String gcmk=this.getRequest().getParameter("gcmk");//单位
+//        String dlgc=this.getRequest().getParameter("dlgc");//单位
+//        String gcmk=this.getRequest().getParameter("gcmk");//单位
 
         ArrayList<CaiYangDLGC> caiYangDLGCList = new ArrayList<CaiYangDLGC>();
 
@@ -771,8 +783,8 @@ public class RpAction extends BaseAction {
             caiYangDLGC.setZsbh(zsbh);
             caiYangDLGC.setDw(dw);
             caiYangDLGC.setId(i);
-            caiYangDLGC.setDlgc(dlgc);
-            caiYangDLGC.setGcmk(gcmk);
+//            caiYangDLGC.setDlgc(dlgc);
+//            caiYangDLGC.setGcmk(gcmk);
             caiYangDLGCList.add(caiYangDLGC);
         }
 		boolean result = rpService.addDLGC(caiYangDLGCList);
@@ -787,6 +799,39 @@ public class RpAction extends BaseAction {
 		this.getResponse().setContentType("text/html;charset=UTF-8");// 设置响应数据类型
 		this.getResponse().getWriter().print(jo);// 向前台发送json数据
 	}
+
+    /**
+     * 方法序号：8_8 提交  电阻模块标志位
+     */
+//    public void addDZBZW() throws IOException {
+//        String jyflag = this.getRequest().getParameter("jyflag");// 绝缘电阻标志位
+//        String jdflag = this.getRequest().getParameter("jdflag");// 接地电阻标志位
+//        String hlflag = this.getRequest().getParameter("hlflag");// 回路电阻标志位
+//        boolean result = rpService.addDZBZW(jyflag,jdflag,hlflag);// 打包json数据
+//        String flag;
+//        if (result) {
+//            flag = "1";
+//        } else {
+//            flag = "0";
+//        }
+//        JSONObject jo = new JSONObject();
+//        jo.put("jsonObject", flag);
+//        this.getResponse().setContentType("text/html;charset=UTF-8");// 设置响应数据类型
+//        this.getResponse().getWriter().print(jo);// 向前台发送json数据
+//    }
+
+    /**
+     * 方法序号：8_9 查询  电阻模块标志位
+     */
+//    public String findDZBZW() throws IOException{
+//        String result=rpService.findDZBZW();
+//        JSONArray allJsonArray = new JSONArray(result);
+//        JSONObject jo = new JSONObject();
+//        jo.put("allJsonArray", allJsonArray);
+//        this.getResponse().setContentType("text/html;charset=UTF-8");// 设置响应数据类型
+//        this.getResponse().getWriter().print(jo);// 向前台发送json数据
+//        return null;
+//    }
 
 	/**
 	 * 方法序号：9_1 生成绝缘电阻表原始记录证书
@@ -1025,7 +1070,8 @@ public class RpAction extends BaseAction {
 
 	 	String reaPath=this.getServletContext().getRealPath("");//得到当前应用在服务器的绝对路径
 	 	//System.out.println(ins.toString());
-	 	boolean result = rpService.addInspectionDecLeftHl(ins);// 添加回路电阻表剩余部分数据到数据库
+         ////
+	 	boolean result = rpService.addInspectionDecLeftHl1(ins);// 添加回路电阻表剩余部分数据到数据库
 	 	boolean p = false;
 	 	if (result) {
 	 		String inspectionDevice = rpService.findOneInspectionDevice(zsbh);// 送检仪器
@@ -1043,6 +1089,7 @@ public class RpAction extends BaseAction {
 			String lcData3 = rpService.findLCDataById(zsbh,lc3);// 量程3
 			String lc4="lc4";
 			String lcData4 = rpService.findLCDataById(zsbh,lc4);// 量程4
+			////////
 			String lc5="lc5";
 			String lcData5 = rpService.findLCDataById(zsbh,lc5);// 量程5
 	 		String wdxwcData = rpService.findOneWdxwc(zsbh);// 电阻稳定性误差
@@ -1090,7 +1137,7 @@ public class RpAction extends BaseAction {
          ins.setXxwc(this.getRequest().getParameter("value3"));
          ins.setJydz(this.getRequest().getParameter("value4"));
          ins.setJyqd(this.getRequest().getParameter("value5"));
-         ins.setXsnl(this.getRequest().getParameter("value6"));
+         ins.setXldl(this.getRequest().getParameter("value6"));
          ins.setWdxwc(this.getRequest().getParameter("value7"));
          ins.setDlgc(this.getRequest().getParameter("value8"));
          ins.setGcmk(this.getRequest().getParameter("value9"));
@@ -1153,8 +1200,19 @@ public class RpAction extends BaseAction {
      }
 
 
-
-
+    /**
+    * 方法序号：9_7 根据某一证书编号查询其下所有回路电阻的稳定性误差
+    */
+    public String findWdxwcByZsh() throws IOException {
+        String zsh = this.getRequest().getParameter("id");// 证书编号
+        String result = rpService.findWdxwcByZsh(zsh);// 打包json数据
+        JSONArray allJsonArray = new JSONArray(result);
+        JSONObject jo = new JSONObject();
+        jo.put("allJsonArray", allJsonArray);
+        this.getResponse().setContentType("text/html;charset=UTF-8");// 设置响应数据类型
+        this.getResponse().getWriter().print(jo);// 向前台发送json数据
+        return null;
+    }
 
 
 
