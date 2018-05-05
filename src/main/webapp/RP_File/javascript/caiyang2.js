@@ -1399,14 +1399,19 @@ $(function() {
         }
     }
 
-
+    var lc1_value;
     //提交量程1
     $("#submit5_18").click(function () {
         if ($("#leixing5_1").text() == "" || $("#zsbh5_1").text() == "") {
             alert("请先选择一条待检测的送检仪器！");
-        } else if($("#part5_4_11_1_1").val() == ""){
-            alert("请先获取数据！");
+        // } else if($("#part5_4_11_1_1").val() == ""){
+        //     alert("请先获取数据！");
         } else {
+            if($("#lc1_value").val()==""){
+                lc1_value="/";
+            }else{
+                lc1_value=$("#lc1_value").val()+$("input[name='check5_7']:checked").val();
+            }
             $.ajax({
                 type: "POST",
                 url: "Action_addLCData.action",
@@ -1868,14 +1873,19 @@ $(function() {
         }
     }
 
-
+    var lc2_value;
     //提交量程2
     $("#submit5_20").click(function () {
         if ($("#leixing5_1").text() == "" || $("#zsbh5_1").text() == "") {
             alert("请先选择一条待检测的送检仪器！")
-        } else if($("#part5_4_12_1_1").val()==""){
-            alert("请先获取数据！")
+        // } else if($("#part5_4_12_1_1").val()==""){
+        //     alert("请先获取数据！")
         } else {
+            if($("#lc2_value").val()==""){
+                lc2_value="/";
+            }else{
+                lc2_value=$("#lc2_value").val()+$("input[name='check5_8']:checked").val();
+            }
             $.ajax({
                 type: "POST",
                 url: "Action_addLCData.action",
