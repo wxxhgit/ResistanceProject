@@ -106,8 +106,10 @@ public class RpAction extends BaseAction {
 		inspectionDevice.setZsbh(this.getRequest().getParameter("zsbh"));
 		if(inspectionDevice.getLeixing().equals("绝缘电阻表")){
 		inspectionDevice.setStaDevLX("绝缘电阻表标准器");
-		}else {
+		}else if(inspectionDevice.getLeixing().equals("接地电阻表")){
 			inspectionDevice.setStaDevLX("接地电阻表标准器");
+		}else if(inspectionDevice.getLeixing().equals("回路电阻表")){
+			inspectionDevice.setStaDevLX("回路电阻表标准器");
 		}
 		// System.out.println(inspectionDevice.toString());
 		boolean result = rpService.addInspectionDevice(inspectionDevice);
@@ -520,14 +522,15 @@ public class RpAction extends BaseAction {
 		this.getResponse().getWriter().print(jo);// 向前台发送json数据
 	}
 
-	/////////////////////////////////////????
+	///////////////////////////////////
     /**
      * 方法序号： 8_1_2 提交回路电阻表中表4的值
      */
-    public void addLCData() throws IOException {
+    public void addLCData() throws IOException{
         String zsbh = this.getRequest().getParameter("zsbh");// //送检仪器证书编号
         String dw = this.getRequest().getParameter("dw");// 单位6/9/12--->M/G/T
 		String lc=this.getRequest().getParameter("lc");
+		String lczhi=this.getRequest().getParameter("lczhi");
 		String lc_value=this.getRequest().getParameter("lc_value");
         ArrayList<CaiYangHL> CaiYangHLList = new ArrayList<CaiYangHL>();
 
@@ -536,11 +539,12 @@ public class RpAction extends BaseAction {
             caiYangHL.setStandardvalue(this.getRequest().getParameter(
                     "bzz" + i));
             caiYangHL.setDisplayvalue(this.getRequest().getParameter("dsz" + i));
-            if (caiYangHL.getStandardvalue() == ""
-                    || caiYangHL.getDisplayvalue() == "")
-                continue;
+//            if (caiYangHL.getStandardvalue() == ""
+//                    || caiYangHL.getDisplayvalue() == "")
+//                continue;
             caiYangHL.setZsbh(zsbh);
 			caiYangHL.setLc(lc);
+			caiYangHL.setLczhi(lczhi);
             caiYangHL.setLc_value(lc_value);
             caiYangHL.setDw(dw);
             caiYangHL.setId(i);
@@ -1107,7 +1111,7 @@ public class RpAction extends BaseAction {
 
 			jsonObject.put("wdxwc", wdxwcData);// 电阻稳定性误差
 	 		jsonObject.put("dlgc", dlgcData);// 电流基本误差和过冲测量
-
+			//System.out.println(jsonObject);
 	 		WordCreation wordTest = new WordCreation();
 	 		wordTest.createHLOriginFile(reaPath,jsonObject.toString());
 	 		p = true;
@@ -1214,7 +1218,45 @@ public class RpAction extends BaseAction {
         return null;
     }
 
+    //查询稳定性误差记录
+    public String findOneWdxwc() throws IOException {
+        String zsh = this.getRequest().getParameter("id");// 证书编号
+        String result = rpService.findOneWdxwc(zsh);// 打包json数据
+        JSONArray allJsonArray = new JSONArray(result);
+        JSONObject jo = new JSONObject();
+        jo.put("allJsonArray", allJsonArray);
+        this.getResponse().setContentType("text/html;charset=UTF-8");// 设置响应数据类型
+        this.getResponse().getWriter().print(jo);// 向前台发送json数据
+        return null;
+    }
 
+    //查询电流过冲记录
+    public String findOneDlgc() throws IOException {
+        String zsh = this.getRequest().getParameter("id");// 证书编号
+        String result = rpService.findOneDlgc(zsh);// 打包json数据
+        JSONArray allJsonArray = new JSONArray(result);
+        JSONObject jo = new JSONObject();
+        jo.put("allJsonArray", allJsonArray);
+        this.getResponse().setContentType("text/html;charset=UTF-8");// 设置响应数据类型
+        this.getResponse().getWriter().print(jo);// 向前台发送json数据
+        return null;
+    }
+
+
+	/**
+	 * 方法序号：9_8 根据某一证书编号及量程查询其下所有回路电阻相关数据
+	 */
+    public String findLCDataById() throws IOException {
+        String zsh = this.getRequest().getParameter("zsh");// 证书编号
+        String lc=this.getRequest().getParameter("lc");
+        String result = rpService.findLCDataById(zsh,lc);// 打包json数据
+        JSONArray allJsonArray = new JSONArray(result);
+        JSONObject jo = new JSONObject();
+        jo.put("allJsonArray", allJsonArray);
+        this.getResponse().setContentType("text/html;charset=UTF-8");// 设置响应数据类型
+        this.getResponse().getWriter().print(jo);// 向前台发送json数据
+        return null;
+    }
 
 
 

@@ -26,16 +26,17 @@ public class BaseDao {
     private PreparedStatement ps = null;
     private ResultSet rs = null;
 
-    private static Properties properties = null;
+//    private static Properties properties = null;
+    private static String url = "jdbc:sqlite:D:/ResistanceProject.db";//数据源URL
     //    private static String url="jdbc:ucanaccess:ResistanceProject";//数据源URL
-    private static String url = "jdbc:ucanaccess://D:\\ResistanceProject.mdb";//数据源URL
+    //private static String url = "jdbc:ucanaccess://D:\\ResistanceProject.mdb";//数据源URL
 
     static {
         try {
-            properties = new Properties();
-            properties.setProperty("charSet", "gbk");//access编码格式为gbk
+//            properties = new Properties();
+//            properties.setProperty("charSet", "gbk");//access编码格式为gbk
 //			Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");//加载驱动
-            Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");//加载驱动
+            Class.forName("org.sqlite.JDBC");//加载驱动
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
@@ -51,7 +52,7 @@ public class BaseDao {
      * @throws SQLException
      */
     public long getCount(String sql, Object... args) throws SQLException {
-        conn = DriverManager.getConnection(url, properties);
+        conn = DriverManager.getConnection(url);
 //        conn = DriverManager.getConnection(url, properties);
         try {
             ps = conn.prepareStatement(sql);
@@ -79,8 +80,9 @@ public class BaseDao {
      * @return 字段的值, 如果没值的话就返回null
      * @throws SQLException
      */
-    public String getOneRecard(String sql, Object... args) throws SQLException {
-        conn = DriverManager.getConnection(url, properties);
+    public String getOneRecard(String sql,Object... args) throws SQLException {
+        //conn = DriverManager.getConnection(url, properties);
+        conn = DriverManager.getConnection(url);
         try {
             ps = conn.prepareStatement(sql);
             for (int i = 0; i < args.length; i++) {
@@ -106,8 +108,9 @@ public class BaseDao {
      * @return 要查询的类的集合，返回Json数组形如[{"name":"mark","sex":"man"};{,}]，如果没值就返回空数组[ ]
      * @throws SQLException
      */
-    public String getForJson(String sql, Object... args) throws SQLException {
-        conn = DriverManager.getConnection(url, properties);
+    public String getForJson(String sql,Object... args) throws SQLException {
+        //conn = DriverManager.getConnection(url, properties);
+        conn = DriverManager.getConnection(url);
         try {
             ps = conn.prepareStatement(sql);
             for (int i = 0; i < args.length; i++) {
@@ -149,8 +152,8 @@ public class BaseDao {
      * @return 要查询的类的集合，返回List,无结果时返回null
      * @throws SQLException
      */
-    public List<Map<String, Object>> getListForMap(String sql, Object... args) throws SQLException {
-        conn = DriverManager.getConnection(url, properties);
+    public List<Map<String, Object>> getListForMap(String sql,Object... args) throws SQLException {
+        conn = DriverManager.getConnection(url);
         List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
         try {
             ps = conn.prepareStatement(sql);
@@ -187,8 +190,9 @@ public class BaseDao {
      * @throws SQLException
      */
     @SuppressWarnings("unchecked")
-    public <T> List<T> getListForEntity(String sql, Class<T> clazz, Object... args) throws SQLException {
-        conn = DriverManager.getConnection(url, properties);
+    public <T> List<T> getListForEntity(String sql,Class<T> clazz, Object... args) throws SQLException {
+        //conn = DriverManager.getConnection(url, properties);
+        conn = DriverManager.getConnection(url);
         @SuppressWarnings("rawtypes")
         List list = new ArrayList();
         try {
@@ -257,7 +261,8 @@ public class BaseDao {
      */
     @SuppressWarnings({"unchecked", "rawtypes"})
     public int saveEntity(String sql, Object object, int... args) throws SQLException {
-        conn = DriverManager.getConnection(url, properties);
+        //conn = DriverManager.getConnection(url, properties);
+        conn = DriverManager.getConnection(url);
         try {
             ps = conn.prepareStatement(sql);
             Class c = object.getClass();
@@ -300,7 +305,8 @@ public class BaseDao {
      * @throws SQLException
      */
     public int saveOrUpdateOrDelete(String sql, Object... args) throws SQLException {
-        conn = DriverManager.getConnection(url, properties);
+        //conn = DriverManager.getConnection(url, properties);
+        conn = DriverManager.getConnection(url);
         try {
             ps = conn.prepareStatement(sql);
             for (int j = 0; j < args.length; j++) {

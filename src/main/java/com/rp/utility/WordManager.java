@@ -213,7 +213,7 @@ public class WordManager {
     }
 
     /**
-     * 替换页眉中的内容，只做一次操作
+     * 替换页眉中的内容，循环替换多次，有多少个替换多少次
      *
      * @param toFindText 查找字符串
      * @param newText    要替换的内容
@@ -224,7 +224,7 @@ public class WordManager {
                 .toDispatch();
         Dispatch View = Dispatch.get(ActivePane, "View").toDispatch();
         Dispatch.put(View, "SeekView", new Variant(9));// 9是设置页眉,10是设置页脚
-        if (find(toFindText)) {
+        while (find(toFindText)) {
             Dispatch.put(selection, "Text", newText);
             Dispatch.call(selection, "MoveRight");
         }

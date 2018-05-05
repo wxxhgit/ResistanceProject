@@ -125,6 +125,9 @@ public class RpService {
 			this.rpDao.deleteFQJData(string);//删除非全检量程区段
 			this.rpDao.deletePositionEffectData(string);//删除位置影响试验
 			this.rpDao.deleteAssistantData(string);//删除辅助接地电阻影响试验数据
+            this.rpDao.deleteWDXWCData(string);//删除稳定性误差
+            this.rpDao.deleteDLGCData(string);//删除电流过冲
+            this.rpDao.deleteLCDataByzsbh(string);//删除Part1-5数据
 		} catch (Exception e) {
 			System.out.println("4_2  删除一条送检仪器信息时出错！");
 			e.printStackTrace();
@@ -258,7 +261,7 @@ public class RpService {
 	 */
 	public boolean addLCData(ArrayList<CaiYangHL> caiYangHLList) {
 		try {
-			this.rpDao.deleteLCData(caiYangHLList.get(0).getZsbh(),caiYangHLList.get(0).getLc()); // 先删除该证书编号已有数据
+            this.rpDao.deleteLCData(caiYangHLList.get(0).getZsbh(), caiYangHLList.get(0).getLc()); // 先删除该证书编号已有数据
 			for (int i = 0; i < caiYangHLList.size(); i++) { // 逐条保存信息
 				this.rpDao.addLCData(caiYangHLList.get(i));
 			}

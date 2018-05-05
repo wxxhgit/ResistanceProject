@@ -13,6 +13,7 @@ $(function () {
                 $(this).addClass(on).siblings().removeClass(on);
                 var index = $(tabTit).children().index(this);
                 $(tabCon).children().eq(index).show().siblings().hide();
+                //refresh();
             } else {
                 alert("请您先登录！")
             }
@@ -166,93 +167,6 @@ $(function () {
             });
         });
     });
-
-    // var hl_flag=0;
-    // var jy_flag=0;
-    // var jd_flag=0;
-    //模块选中
-    // function checkboxXZ(){
-    //    if($("huilu").is(':checked')){
-    //        hl_flag=1;
-    //    }
-    //     if($("jueyuan").is(':checked')){
-    //         jy_flag=1;
-    //     }
-    //     if($("jiedi").is(':checked')){
-    //         jd_flag=1;
-    //     }
-    // }
-    //checkboxXZ();
-    //保存电阻模块选中情况
-    // function saveFlag(){
-    //     $.ajax({
-    //         type: "POST",
-    //         url: "Action_addDZBZW.action",
-    //         contentType: "application/x-www-form-urlencoded; charset=utf-8",
-    //         data: {
-    //             "jyflag":jy_flag,
-    //             "hlflag":hl_flag,
-    //             "jdflag":jd_flag
-    //         },
-    //         dataType: "json",
-    //         cache: false,
-    //         success: function (data) {
-    //             if (data.jsonObject == "1") {
-    //
-    //             } else {
-    //
-    //             }
-    //         },
-    //         error: function (jqXHR) {
-    //             alert("发生错误代码：" + jqXHR.status + "，数据未加载成功！");
-    //         }
-    //     });
-    // }
-    //saveFlag();
-
-    //查询电阻模块选中情况
-    // function findDZBZW(){
-    //     $.ajax({
-    //         type: "POST",
-    //         url: "Action_findDZBZW.action",
-    //         contentType: "application/x-www-form-urlencoded; charset=utf-8",
-    //         dataType: "json",
-    //         cache: false,
-    //         success: function (data) {
-    //             var hlflag;
-    //             var jyflag;
-    //             var jdflag;
-    //             var huilu=document.getElementById("huilu");
-    //             var jueyuan=document.getElementById("jueyuan");
-    //             var jiedi=document.getElementById("jiedi");
-    //             for (var i = 0; i < data.allJsonArray.length; i++) {
-    //                 jyflag=data.allJsonArray[i].jyflag;
-    //                 jdflag=data.allJsonArray[i].jdflag;
-    //                 hlflag=data.allJsonArray[i].hlflag;
-    //             }
-    //             if(jyflag.eq("1")){
-    //                 jueyuan.checked="true";
-    //             }else{
-    //                 jueyuan.checked="false";
-    //             }
-    //             if(jdflag.eq("1")){
-    //                 jiedi.checked="true";
-    //             }else{
-    //                 jiedi.checked="false";
-    //             }
-    //             if(hlflag.eq("1")){
-    //                 huilu.checked="true";
-    //             }else{
-    //                 huilu.checked="false";
-    //             }
-    //         },
-    //         error: function (jqXHR) {
-    //             alert("发生错误代码：" + jqXHR.status + "，数据未加载成功！");
-    //         }
-    //     });
-    // }
-    //findDZBZW();
-
 
     /**
      * part1 送检仪器录入  开始
@@ -421,9 +335,7 @@ $(function () {
                     alert("发生错误代码：" + jqXHR.status + "，数据未加载成功！");
                 }
             });
-            //} else {
-            //    alert("请您先登录！")
-            //}
+
         }
     );
 
@@ -538,7 +450,7 @@ $(function () {
         }
     });
 
-    //删除一条送检仪器信息后刷新页面，加载用的函数
+    //查询一条送检仪器信息后刷新页面，加载用的函数
     function findAllInspectionDeviceAgain() {
         $.ajax({
             type: "POST",
@@ -1000,7 +912,60 @@ $(function () {
             $("#part5_1").show(speed_value);
             $("input[id='submit5_0_0']").val("隐藏选择区");
         }
+        refresh();
     });
+
+    function refresh(){
+        $("input[name='lc1']").val(""); // 将name=lc1的文本框清空，以便重新下一次修改
+        $("input[name='lc1']").removeAttr("title");
+        $("input[name='lc1']").css("background", "white"); // 清除红色标记
+        $("input[name='lc1_value']").val(""); // 将name=lc1_value的文本框清空，以便重新下一次修改
+        $("input[name='lc1_value']").removeAttr("title");
+        $("input[name='lc1_value']").css("background", "white"); // 清除红色标记
+        $("#part5_4_12_1").html("");
+
+        $("input[name='lc2']").val(""); // 将name=lc2的文本框清空，以便重新下一次修改
+        $("input[name='lc2']").removeAttr("title");
+        $("input[name='lc2']").css("background", "white"); // 清除红色标记
+        $("input[name='lc2_value']").val(""); // 将name=lc2_value的文本框清空，以便重新下一次修改
+        $("input[name='lc2_value']").removeAttr("title");
+        $("input[name='lc2_value']").css("background", "white"); // 清除红色标记
+        $("#part5_4_12_2").html("");
+
+        $("input[name='lc3']").val(""); // 将name=lc3的文本框清空，以便重新下一次修改
+        $("input[name='lc3']").removeAttr("title");
+        $("input[name='lc3']").css("background", "white"); // 清除红色标记
+        $("input[name='lc3_value']").val(""); // 将name=lc3_value的文本框清空，以便重新下一次修改
+        $("input[name='lc3_value']").removeAttr("title");
+        $("input[name='lc3_value']").css("background", "white"); // 清除红色标记
+        $("#part5_4_12_3").html("");
+
+        $("input[name='lc4']").val(""); // 将name=lc4的文本框清空，以便重新下一次修改
+        $("input[name='lc4']").removeAttr("title");
+        $("input[name='lc4']").css("background", "white"); // 清除红色标记
+        $("input[name='lc4_value']").val(""); // 将name=lc4_value的文本框清空，以便重新下一次修改
+        $("input[name='lc4_value']").removeAttr("title");
+        $("input[name='lc4_value']").css("background", "white"); // 清除红色标记
+        $("#part5_4_12_4").html("");
+
+        $("input[name='lc5']").val(""); // 将name=lc5的文本框清空，以便重新下一次修改
+        $("input[name='lc5']").removeAttr("title");
+        $("input[name='lc5']").css("background", "white"); // 清除红色标记
+        $("input[name='lc5_value']").val(""); // 将name=lc5_value的文本框清空，以便重新下一次修改
+        $("input[name='lc5_value']").removeAttr("title");
+        $("input[name='lc5_value']").css("background", "white"); // 清除红色标记
+        $("#part5_4_12_5").html("");
+
+        $("input[name='ds']").val(""); // 将name=ds的文本框清空，以便重新下一次修改
+        $("input[name='ds']").removeAttr("title");
+        $("input[name='ds']").css("background", "white"); // 清除红色标记
+        $("#part5_4_12_6").html("");
+
+        $("input[name='sz']").val(""); // 将name=sz的文本框清空，以便重新下一次修改
+        $("input[name='sz']").removeAttr("title");
+        $("input[name='sz']").css("background", "white"); // 清除红色标记
+        $("#part5_4_12_7").html("");
+    }
 
     //查询所有送检仪器和标准器信息 ----电阻表采样检测   part5
     $("#dzbcyjc").click(function () {
@@ -1030,9 +995,6 @@ $(function () {
                 alert("发生错误代码：" + jqXHR.status + "，数据未加载成功！");
             }
         });
-        //} else {
-        //    alert("请您先登录！")
-        //}
     });
 
     //按类型顺序，查询所有送检仪器信息 ---电阻表采样检测   part5  select1
@@ -1245,20 +1207,786 @@ $(function () {
         }
     });
 
+    /////////////////////////////////////////////////////////////////////////////////
     //选择一条送检仪器信息 part5
-    $("#list5_1").on("click", "input", function () {
-        $("#leixing5_1").html($(this).parents("tr").find(".leixing").text());
-        $("#xinghao5_1").html($(this).parents("tr").find(".xinghao").text());
-        $("#yqmc5_1").html($(this).parents("tr").find(".yqmc").text());
-        $("#jdsj5_1").html($(this).parents("tr").find(".jdsj").text());
-        $("#sjdw5_1").html($(this).parents("tr").find(".sjdw").text());
-        $("#zsbh5_1").html($(this).parents("tr").find(".zsbh").text());
-        //$("#submit5_0_1").attr('disabled', false);
-        $("#part5_2").html("");
-        $("#part5_1").hide(speed_value);
-        $("#part5_4").show();
-        $("input[id='submit5_0_0']").val("显示选择区");
-    });
+    // $("#list5_1").on("click", "input", function () {
+    //     $("#leixing5_1").html($(this).parents("tr").find(".leixing").text());
+    //     $("#xinghao5_1").html($(this).parents("tr").find(".xinghao").text());
+    //     $("#yqmc5_1").html($(this).parents("tr").find(".yqmc").text());
+    //     $("#jdsj5_1").html($(this).parents("tr").find(".jdsj").text());
+    //     $("#sjdw5_1").html($(this).parents("tr").find(".sjdw").text());
+    //     $("#zsbh5_1").html($(this).parents("tr").find(".zsbh").text());
+    //     //$("#submit5_0_1").attr('disabled', false);
+    //     $("#part5_2").html("");
+    //     $("#part5_1").hide(speed_value);
+    //     $("#part5_4").show();
+    //     $("input[id='submit5_0_0']").val("显示选择区");
+    //
+    //     ////////////////////
+    //     var lc1="lc1";
+    //     $.ajax({
+    //         type: "POST",
+    //         url: "Action_findLCDataById.action",
+    //         contentType: "application/x-www-form-urlencoded; charset=utf-8",
+    //         data:{
+    //             zsh: $("#zsbh5_1").text(),
+    //             lc: lc1,
+    //         },
+    //         dataType: "json",
+    //         cache: false,
+    //         success: function (data) {
+    //             var dw=data.allJsonArray[0].dw;
+    //             if(dw=="μΩ"){
+    //             }else if(dw=="mΩ"){
+    //                 $("#radio5_20").attr("checked","checked");
+    //                 $("#radio5_19").removeAttr("checked");
+    //             }else if(dw=="Ω"){
+    //                 $("#radio5_21").attr("checked","checked");
+    //                 $("#radio5_19").removeAttr("checked");
+    //             }
+    //             var length=data.allJsonArray.length;;
+    //             if(length==1){
+    //                  $("#lc1_value").val(data.allJsonArray[0].lczhi);
+    //                  $("#part5_4_11_1_1").val(data.allJsonArray[0].standardvalue);
+    //                  $("#part5_4_11_1_2").val(data.allJsonArray[0].displayvalue);
+    //             }else if(length==2){
+    //                 $("#lc1_value").val(data.allJsonArray[0].lczhi);
+    //                 $("#part5_4_11_1_1").val(data.allJsonArray[0].standardvalue);
+    //                 $("#part5_4_11_1_2").val(data.allJsonArray[0].displayvalue);
+    //                 $("#part5_4_11_2_1").val(data.allJsonArray[1].standardvalue);
+    //                 $("#part5_4_11_2_2").val(data.allJsonArray[1].displayvalue);
+    //             }else if(length==3){
+    //                 $("#lc1_value").val(data.allJsonArray[0].lczhi);
+    //                 $("#part5_4_11_1_1").val(data.allJsonArray[0].standardvalue);
+    //                 $("#part5_4_11_1_2").val(data.allJsonArray[0].displayvalue);
+    //                 $("#part5_4_11_2_1").val(data.allJsonArray[1].standardvalue);
+    //                 $("#part5_4_11_2_2").val(data.allJsonArray[1].displayvalue);
+    //                 $("#part5_4_11_3_1").val(data.allJsonArray[2].standardvalue);
+    //                 $("#part5_4_11_3_2").val(data.allJsonArray[2].displayvalue);
+    //             }else if(length==4){
+    //                 $("#lc1_value").val(data.allJsonArray[0].lczhi);
+    //                 $("#part5_4_11_1_1").val(data.allJsonArray[0].standardvalue);
+    //                 $("#part5_4_11_1_2").val(data.allJsonArray[0].displayvalue);
+    //                 $("#part5_4_11_2_1").val(data.allJsonArray[1].standardvalue);
+    //                 $("#part5_4_11_2_2").val(data.allJsonArray[1].displayvalue);
+    //                 $("#part5_4_11_3_1").val(data.allJsonArray[2].standardvalue);
+    //                 $("#part5_4_11_3_2").val(data.allJsonArray[2].displayvalue);
+    //                 $("#part5_4_11_4_1").val(data.allJsonArray[3].standardvalue);
+    //                 $("#part5_4_11_4_2").val(data.allJsonArray[3].displayvalue);
+    //             }else if(length==5){
+    //                 $("#lc1_value").val(data.allJsonArray[0].lczhi);
+    //                 $("#part5_4_11_1_1").val(data.allJsonArray[0].standardvalue);
+    //                 $("#part5_4_11_1_2").val(data.allJsonArray[0].displayvalue);
+    //                 $("#part5_4_11_2_1").val(data.allJsonArray[1].standardvalue);
+    //                 $("#part5_4_11_2_2").val(data.allJsonArray[1].displayvalue);
+    //                 $("#part5_4_11_3_1").val(data.allJsonArray[2].standardvalue);
+    //                 $("#part5_4_11_3_2").val(data.allJsonArray[2].displayvalue);
+    //                 $("#part5_4_11_4_1").val(data.allJsonArray[3].standardvalue);
+    //                 $("#part5_4_11_4_2").val(data.allJsonArray[3].displayvalue);
+    //                 $("#part5_4_11_5_1").val(data.allJsonArray[4].standardvalue);
+    //                 $("#part5_4_11_5_2").val(data.allJsonArray[4].displayvalue);
+    //             }else if(length==6){
+    //                 $("#lc1_value").val(data.allJsonArray[0].lczhi);
+    //                 $("#part5_4_11_1_1").val(data.allJsonArray[0].standardvalue);
+    //                 $("#part5_4_11_1_2").val(data.allJsonArray[0].displayvalue);
+    //                 $("#part5_4_11_2_1").val(data.allJsonArray[1].standardvalue);
+    //                 $("#part5_4_11_2_2").val(data.allJsonArray[1].displayvalue);
+    //                 $("#part5_4_11_3_1").val(data.allJsonArray[2].standardvalue);
+    //                 $("#part5_4_11_3_2").val(data.allJsonArray[2].displayvalue);
+    //                 $("#part5_4_11_4_1").val(data.allJsonArray[3].standardvalue);
+    //                 $("#part5_4_11_4_2").val(data.allJsonArray[3].displayvalue);
+    //                 $("#part5_4_11_5_1").val(data.allJsonArray[4].standardvalue);
+    //                 $("#part5_4_11_5_2").val(data.allJsonArray[4].displayvalue);
+    //                 $("#part5_4_11_6_1").val(data.allJsonArray[5].standardvalue);
+    //                 $("#part5_4_11_6_2").val(data.allJsonArray[5].displayvalue);
+    //             }else if(length==7){
+    //                 $("#lc1_value").val(data.allJsonArray[0].lczhi);
+    //                 $("#part5_4_11_1_1").val(data.allJsonArray[0].standardvalue);
+    //                 $("#part5_4_11_1_2").val(data.allJsonArray[0].displayvalue);
+    //                 $("#part5_4_11_2_1").val(data.allJsonArray[1].standardvalue);
+    //                 $("#part5_4_11_2_2").val(data.allJsonArray[1].displayvalue);
+    //                 $("#part5_4_11_3_1").val(data.allJsonArray[2].standardvalue);
+    //                 $("#part5_4_11_3_2").val(data.allJsonArray[2].displayvalue);
+    //                 $("#part5_4_11_4_1").val(data.allJsonArray[3].standardvalue);
+    //                 $("#part5_4_11_4_2").val(data.allJsonArray[3].displayvalue);
+    //                 $("#part5_4_11_5_1").val(data.allJsonArray[4].standardvalue);
+    //                 $("#part5_4_11_5_2").val(data.allJsonArray[4].displayvalue);
+    //                 $("#part5_4_11_6_1").val(data.allJsonArray[5].standardvalue);
+    //                 $("#part5_4_11_6_2").val(data.allJsonArray[5].displayvalue);
+    //                 $("#part5_4_11_7_1").val(data.allJsonArray[6].standardvalue);
+    //                 $("#part5_4_11_7_2").val(data.allJsonArray[6].displayvalue);
+    //             }else if(length==8){
+    //                 $("#lc1_value").val(data.allJsonArray[0].lczhi);
+    //                 $("#part5_4_11_1_1").val(data.allJsonArray[0].standardvalue);
+    //                 $("#part5_4_11_1_2").val(data.allJsonArray[0].displayvalue);
+    //                 $("#part5_4_11_2_1").val(data.allJsonArray[1].standardvalue);
+    //                 $("#part5_4_11_2_2").val(data.allJsonArray[1].displayvalue);
+    //                 $("#part5_4_11_3_1").val(data.allJsonArray[2].standardvalue);
+    //                 $("#part5_4_11_3_2").val(data.allJsonArray[2].displayvalue);
+    //                 $("#part5_4_11_4_1").val(data.allJsonArray[3].standardvalue);
+    //                 $("#part5_4_11_4_2").val(data.allJsonArray[3].displayvalue);
+    //                 $("#part5_4_11_5_1").val(data.allJsonArray[4].standardvalue);
+    //                 $("#part5_4_11_5_2").val(data.allJsonArray[4].displayvalue);
+    //                 $("#part5_4_11_6_1").val(data.allJsonArray[5].standardvalue);
+    //                 $("#part5_4_11_6_2").val(data.allJsonArray[5].displayvalue);
+    //                 $("#part5_4_11_7_1").val(data.allJsonArray[6].standardvalue);
+    //                 $("#part5_4_11_7_2").val(data.allJsonArray[6].displayvalue);
+    //                 $("#part5_4_11_8_1").val(data.allJsonArray[7].standardvalue);
+    //                 $("#part5_4_11_8_2").val(data.allJsonArray[7].displayvalue);
+    //             }else if(length==9){
+    //                 $("#lc1_value").val(data.allJsonArray[0].lczhi);
+    //                 $("#part5_4_11_1_1").val(data.allJsonArray[0].standardvalue);
+    //                 $("#part5_4_11_1_2").val(data.allJsonArray[0].displayvalue);
+    //                 $("#part5_4_11_2_1").val(data.allJsonArray[1].standardvalue);
+    //                 $("#part5_4_11_2_2").val(data.allJsonArray[1].displayvalue);
+    //                 $("#part5_4_11_3_1").val(data.allJsonArray[2].standardvalue);
+    //                 $("#part5_4_11_3_2").val(data.allJsonArray[2].displayvalue);
+    //                 $("#part5_4_11_4_1").val(data.allJsonArray[3].standardvalue);
+    //                 $("#part5_4_11_4_2").val(data.allJsonArray[3].displayvalue);
+    //                 $("#part5_4_11_5_1").val(data.allJsonArray[4].standardvalue);
+    //                 $("#part5_4_11_5_2").val(data.allJsonArray[4].displayvalue);
+    //                 $("#part5_4_11_6_1").val(data.allJsonArray[5].standardvalue);
+    //                 $("#part5_4_11_6_2").val(data.allJsonArray[5].displayvalue);
+    //                 $("#part5_4_11_7_1").val(data.allJsonArray[6].standardvalue);
+    //                 $("#part5_4_11_7_2").val(data.allJsonArray[6].displayvalue);
+    //                 $("#part5_4_11_8_1").val(data.allJsonArray[7].standardvalue);
+    //                 $("#part5_4_11_8_2").val(data.allJsonArray[7].displayvalue);
+    //                 $("#part5_4_11_9_1").val(data.allJsonArray[8].standardvalue);
+    //                 $("#part5_4_11_9_2").val(data.allJsonArray[8].displayvalue);
+    //             }else if(length==10){
+    //                 $("#lc1_value").val(data.allJsonArray[0].lczhi);
+    //                 $("#part5_4_11_1_1").val(data.allJsonArray[0].standardvalue);
+    //                 $("#part5_4_11_1_2").val(data.allJsonArray[0].displayvalue);
+    //                 $("#part5_4_11_2_1").val(data.allJsonArray[1].standardvalue);
+    //                 $("#part5_4_11_2_2").val(data.allJsonArray[1].displayvalue);
+    //                 $("#part5_4_11_3_1").val(data.allJsonArray[2].standardvalue);
+    //                 $("#part5_4_11_3_2").val(data.allJsonArray[2].displayvalue);
+    //                 $("#part5_4_11_4_1").val(data.allJsonArray[3].standardvalue);
+    //                 $("#part5_4_11_4_2").val(data.allJsonArray[3].displayvalue);
+    //                 $("#part5_4_11_5_1").val(data.allJsonArray[4].standardvalue);
+    //                 $("#part5_4_11_5_2").val(data.allJsonArray[4].displayvalue);
+    //                 $("#part5_4_11_6_1").val(data.allJsonArray[5].standardvalue);
+    //                 $("#part5_4_11_6_2").val(data.allJsonArray[5].displayvalue);
+    //                 $("#part5_4_11_7_1").val(data.allJsonArray[6].standardvalue);
+    //                 $("#part5_4_11_7_2").val(data.allJsonArray[6].displayvalue);
+    //                 $("#part5_4_11_8_1").val(data.allJsonArray[7].standardvalue);
+    //                 $("#part5_4_11_8_2").val(data.allJsonArray[7].displayvalue);
+    //                 $("#part5_4_11_9_1").val(data.allJsonArray[8].standardvalue);
+    //                 $("#part5_4_11_9_2").val(data.allJsonArray[8].displayvalue);
+    //                 $("#part5_4_11_10_1").val(data.allJsonArray[9].standardvalue);
+    //                 $("#part5_4_11_10_2").val(data.allJsonArray[9].displayvalue);
+    //             }
+    //         },
+    //         error: function (jqXHR) {
+    //             alert("发生错误代码：" + jqXHR.status + "，数据未加载成功！");
+    //         }
+    //     });
+    //
+    //     var lc2="lc2";
+    //     $.ajax({
+    //         type: "POST",
+    //         url: "Action_findLCDataById.action",
+    //         contentType: "application/x-www-form-urlencoded; charset=utf-8",
+    //         data:{
+    //             zsh: $("#zsbh5_1").text(),
+    //             lc: lc2,
+    //         },
+    //         dataType: "json",
+    //         cache: false,
+    //         success: function (data) {
+    //             var length=data.allJsonArray.length;
+    //             var dw=data.allJsonArray[0].dw;
+    //             if(dw=="μΩ"){
+    //             }else if(dw=="mΩ"){
+    //                 $("#radio5_23").attr("checked","checked");
+    //                 $("#radio5_22").removeAttr("checked");
+    //             }else if(dw=="Ω"){
+    //                 $("#radio5_24").attr("checked","checked");
+    //                 $("#radio5_22").removeAttr("checked");
+    //             }
+    //
+    //                 $("#lc2_value").val(data.allJsonArray[0].lczhi);
+    //                 $("#part5_4_12_1_1").val(data.allJsonArray[0].standardvalue);
+    //                 $("#part5_4_12_1_2").val(data.allJsonArray[0].displayvalue);
+    //                 $("#part5_4_12_2_1").val(data.allJsonArray[1].standardvalue);
+    //                 $("#part5_4_12_2_2").val(data.allJsonArray[1].displayvalue);
+    //                 $("#part5_4_12_3_1").val(data.allJsonArray[2].standardvalue);
+    //                 $("#part5_4_12_3_2").val(data.allJsonArray[2].displayvalue);
+    //                 $("#part5_4_12_4_1").val(data.allJsonArray[3].standardvalue);
+    //                 $("#part5_4_12_4_2").val(data.allJsonArray[3].displayvalue);
+    //                 $("#part5_4_12_5_1").val(data.allJsonArray[4].standardvalue);
+    //                 $("#part5_4_12_5_2").val(data.allJsonArray[4].displayvalue);
+    //                 $("#part5_4_12_6_1").val(data.allJsonArray[5].standardvalue);
+    //                 $("#part5_4_12_6_2").val(data.allJsonArray[5].displayvalue);
+    //                 $("#part5_4_12_7_1").val(data.allJsonArray[6].standardvalue);
+    //                 $("#part5_4_12_7_2").val(data.allJsonArray[6].displayvalue);
+    //                 $("#part5_4_12_8_1").val(data.allJsonArray[7].standardvalue);
+    //                 $("#part5_4_12_8_2").val(data.allJsonArray[7].displayvalue);
+    //                 $("#part5_4_12_9_1").val(data.allJsonArray[8].standardvalue);
+    //                 $("#part5_4_12_9_2").val(data.allJsonArray[8].displayvalue);
+    //                 $("#part5_4_12_10_1").val(data.allJsonArray[9].standardvalue);
+    //                 $("#part5_4_12_10_2").val(data.allJsonArray[9].displayvalue);
+    //
+    //         },
+    //         error: function (jqXHR) {
+    //             alert("发生错误代码：" + jqXHR.status + "，数据未加载成功！");
+    //         }
+    //     });
+    //
+    //     var lc3="lc3";
+    //     $.ajax({
+    //         type: "POST",
+    //         url: "Action_findLCDataById.action",
+    //         contentType: "application/x-www-form-urlencoded; charset=utf-8",
+    //         data:{
+    //             zsh: $("#zsbh5_1").text(),
+    //             lc: lc3,
+    //         },
+    //         dataType: "json",
+    //         cache: false,
+    //         success: function (data) {
+    //             var dw=data.allJsonArray[0].dw;
+    //             if(dw=="μΩ"){
+    //             }else if(dw=="mΩ"){
+    //                 $("#radio5_26").attr("checked","checked");
+    //                 $("#radio5_25").removeAttr("checked");
+    //             }else if(dw=="Ω"){
+    //                 $("#radio5_27").attr("checked","checked");
+    //                 $("#radio5_25").removeAttr("checked");
+    //             }
+    //             var length=data.allJsonArray.length;;
+    //             if(length==1){
+    //                 $("#lc3_value").val(data.allJsonArray[0].lczhi);
+    //                 $("#part5_4_13_1_1").val(data.allJsonArray[0].standardvalue);
+    //                 $("#part5_4_13_1_2").val(data.allJsonArray[0].displayvalue);
+    //             }else if(length==2){
+    //                 $("#lc3_value").val(data.allJsonArray[0].lczhi);
+    //                 $("#part5_4_13_1_1").val(data.allJsonArray[0].standardvalue);
+    //                 $("#part5_4_13_1_2").val(data.allJsonArray[0].displayvalue);
+    //                 $("#part5_4_13_2_1").val(data.allJsonArray[1].standardvalue);
+    //                 $("#part5_4_13_2_2").val(data.allJsonArray[1].displayvalue);
+    //             }else if(length==3){
+    //                 $("#lc3_value").val(data.allJsonArray[0].lczhi);
+    //                 $("#part5_4_13_1_1").val(data.allJsonArray[0].standardvalue);
+    //                 $("#part5_4_13_1_2").val(data.allJsonArray[0].displayvalue);
+    //                 $("#part5_4_13_2_1").val(data.allJsonArray[1].standardvalue);
+    //                 $("#part5_4_13_2_2").val(data.allJsonArray[1].displayvalue);
+    //                 $("#part5_4_13_3_1").val(data.allJsonArray[2].standardvalue);
+    //                 $("#part5_4_13_3_2").val(data.allJsonArray[2].displayvalue);
+    //             }else if(length==4){
+    //                 $("#lc3_value").val(data.allJsonArray[0].lczhi);
+    //                 $("#part5_4_13_1_1").val(data.allJsonArray[0].standardvalue);
+    //                 $("#part5_4_13_1_2").val(data.allJsonArray[0].displayvalue);
+    //                 $("#part5_4_13_2_1").val(data.allJsonArray[1].standardvalue);
+    //                 $("#part5_4_13_2_2").val(data.allJsonArray[1].displayvalue);
+    //                 $("#part5_4_13_3_1").val(data.allJsonArray[2].standardvalue);
+    //                 $("#part5_4_13_3_2").val(data.allJsonArray[2].displayvalue);
+    //                 $("#part5_4_13_4_1").val(data.allJsonArray[3].standardvalue);
+    //                 $("#part5_4_13_4_2").val(data.allJsonArray[3].displayvalue);
+    //             }else if(length==5){
+    //                 $("#lc3_value").val(data.allJsonArray[0].lczhi);
+    //                 $("#part5_4_13_1_1").val(data.allJsonArray[0].standardvalue);
+    //                 $("#part5_4_13_1_2").val(data.allJsonArray[0].displayvalue);
+    //                 $("#part5_4_13_2_1").val(data.allJsonArray[1].standardvalue);
+    //                 $("#part5_4_13_2_2").val(data.allJsonArray[1].displayvalue);
+    //                 $("#part5_4_13_3_1").val(data.allJsonArray[2].standardvalue);
+    //                 $("#part5_4_13_3_2").val(data.allJsonArray[2].displayvalue);
+    //                 $("#part5_4_13_4_1").val(data.allJsonArray[3].standardvalue);
+    //                 $("#part5_4_13_4_2").val(data.allJsonArray[3].displayvalue);
+    //                 $("#part5_4_13_5_1").val(data.allJsonArray[4].standardvalue);
+    //                 $("#part5_4_13_5_2").val(data.allJsonArray[4].displayvalue);
+    //             }else if(length==6){
+    //                 $("#lc3_value").val(data.allJsonArray[0].lczhi);
+    //                 $("#part5_4_13_1_1").val(data.allJsonArray[0].standardvalue);
+    //                 $("#part5_4_13_1_2").val(data.allJsonArray[0].displayvalue);
+    //                 $("#part5_4_13_2_1").val(data.allJsonArray[1].standardvalue);
+    //                 $("#part5_4_13_2_2").val(data.allJsonArray[1].displayvalue);
+    //                 $("#part5_4_13_3_1").val(data.allJsonArray[2].standardvalue);
+    //                 $("#part5_4_13_3_2").val(data.allJsonArray[2].displayvalue);
+    //                 $("#part5_4_13_4_1").val(data.allJsonArray[3].standardvalue);
+    //                 $("#part5_4_13_4_2").val(data.allJsonArray[3].displayvalue);
+    //                 $("#part5_4_13_5_1").val(data.allJsonArray[4].standardvalue);
+    //                 $("#part5_4_13_5_2").val(data.allJsonArray[4].displayvalue);
+    //                 $("#part5_4_13_6_1").val(data.allJsonArray[5].standardvalue);
+    //                 $("#part5_4_13_6_2").val(data.allJsonArray[5].displayvalue);
+    //             }else if(length==7){
+    //                 $("#lc3_value").val(data.allJsonArray[0].lczhi);
+    //                 $("#part5_4_13_1_1").val(data.allJsonArray[0].standardvalue);
+    //                 $("#part5_4_13_1_2").val(data.allJsonArray[0].displayvalue);
+    //                 $("#part5_4_13_2_1").val(data.allJsonArray[1].standardvalue);
+    //                 $("#part5_4_13_2_2").val(data.allJsonArray[1].displayvalue);
+    //                 $("#part5_4_13_3_1").val(data.allJsonArray[2].standardvalue);
+    //                 $("#part5_4_13_3_2").val(data.allJsonArray[2].displayvalue);
+    //                 $("#part5_4_13_4_1").val(data.allJsonArray[3].standardvalue);
+    //                 $("#part5_4_13_4_2").val(data.allJsonArray[3].displayvalue);
+    //                 $("#part5_4_13_5_1").val(data.allJsonArray[4].standardvalue);
+    //                 $("#part5_4_13_5_2").val(data.allJsonArray[4].displayvalue);
+    //                 $("#part5_4_13_6_1").val(data.allJsonArray[5].standardvalue);
+    //                 $("#part5_4_13_6_2").val(data.allJsonArray[5].displayvalue);
+    //                 $("#part5_4_13_7_1").val(data.allJsonArray[6].standardvalue);
+    //                 $("#part5_4_13_7_2").val(data.allJsonArray[6].displayvalue);
+    //             }else if(length==8){
+    //                 $("#lc3_value").val(data.allJsonArray[0].lczhi);
+    //                 $("#part5_4_13_1_1").val(data.allJsonArray[0].standardvalue);
+    //                 $("#part5_4_13_1_2").val(data.allJsonArray[0].displayvalue);
+    //                 $("#part5_4_13_2_1").val(data.allJsonArray[1].standardvalue);
+    //                 $("#part5_4_13_2_2").val(data.allJsonArray[1].displayvalue);
+    //                 $("#part5_4_13_3_1").val(data.allJsonArray[2].standardvalue);
+    //                 $("#part5_4_13_3_2").val(data.allJsonArray[2].displayvalue);
+    //                 $("#part5_4_13_4_1").val(data.allJsonArray[3].standardvalue);
+    //                 $("#part5_4_13_4_2").val(data.allJsonArray[3].displayvalue);
+    //                 $("#part5_4_13_5_1").val(data.allJsonArray[4].standardvalue);
+    //                 $("#part5_4_13_5_2").val(data.allJsonArray[4].displayvalue);
+    //                 $("#part5_4_13_6_1").val(data.allJsonArray[5].standardvalue);
+    //                 $("#part5_4_13_6_2").val(data.allJsonArray[5].displayvalue);
+    //                 $("#part5_4_13_7_1").val(data.allJsonArray[6].standardvalue);
+    //                 $("#part5_4_13_7_2").val(data.allJsonArray[6].displayvalue);
+    //                 $("#part5_4_13_8_1").val(data.allJsonArray[7].standardvalue);
+    //                 $("#part5_4_13_8_2").val(data.allJsonArray[7].displayvalue);
+    //             }else if(length==9){
+    //                 $("#lc3_value").val(data.allJsonArray[0].lczhi);
+    //                 $("#part5_4_13_1_1").val(data.allJsonArray[0].standardvalue);
+    //                 $("#part5_4_13_1_2").val(data.allJsonArray[0].displayvalue);
+    //                 $("#part5_4_13_2_1").val(data.allJsonArray[1].standardvalue);
+    //                 $("#part5_4_13_2_2").val(data.allJsonArray[1].displayvalue);
+    //                 $("#part5_4_13_3_1").val(data.allJsonArray[2].standardvalue);
+    //                 $("#part5_4_13_3_2").val(data.allJsonArray[2].displayvalue);
+    //                 $("#part5_4_13_4_1").val(data.allJsonArray[3].standardvalue);
+    //                 $("#part5_4_13_4_2").val(data.allJsonArray[3].displayvalue);
+    //                 $("#part5_4_13_5_1").val(data.allJsonArray[4].standardvalue);
+    //                 $("#part5_4_13_5_2").val(data.allJsonArray[4].displayvalue);
+    //                 $("#part5_4_13_6_1").val(data.allJsonArray[5].standardvalue);
+    //                 $("#part5_4_13_6_2").val(data.allJsonArray[5].displayvalue);
+    //                 $("#part5_4_13_7_1").val(data.allJsonArray[6].standardvalue);
+    //                 $("#part5_4_13_7_2").val(data.allJsonArray[6].displayvalue);
+    //                 $("#part5_4_13_8_1").val(data.allJsonArray[7].standardvalue);
+    //                 $("#part5_4_13_8_2").val(data.allJsonArray[7].displayvalue);
+    //                 $("#part5_4_13_9_1").val(data.allJsonArray[8].standardvalue);
+    //                 $("#part5_4_13_9_2").val(data.allJsonArray[8].displayvalue);
+    //             }else if(length==10){
+    //                 $("#lc3_value").val(data.allJsonArray[0].lczhi);
+    //                 $("#part5_4_13_1_1").val(data.allJsonArray[0].standardvalue);
+    //                 $("#part5_4_13_1_2").val(data.allJsonArray[0].displayvalue);
+    //                 $("#part5_4_13_2_1").val(data.allJsonArray[1].standardvalue);
+    //                 $("#part5_4_13_2_2").val(data.allJsonArray[1].displayvalue);
+    //                 $("#part5_4_13_3_1").val(data.allJsonArray[2].standardvalue);
+    //                 $("#part5_4_13_3_2").val(data.allJsonArray[2].displayvalue);
+    //                 $("#part5_4_13_4_1").val(data.allJsonArray[3].standardvalue);
+    //                 $("#part5_4_13_4_2").val(data.allJsonArray[3].displayvalue);
+    //                 $("#part5_4_13_5_1").val(data.allJsonArray[4].standardvalue);
+    //                 $("#part5_4_13_5_2").val(data.allJsonArray[4].displayvalue);
+    //                 $("#part5_4_13_6_1").val(data.allJsonArray[5].standardvalue);
+    //                 $("#part5_4_13_6_2").val(data.allJsonArray[5].displayvalue);
+    //                 $("#part5_4_13_7_1").val(data.allJsonArray[6].standardvalue);
+    //                 $("#part5_4_13_7_2").val(data.allJsonArray[6].displayvalue);
+    //                 $("#part5_4_13_8_1").val(data.allJsonArray[7].standardvalue);
+    //                 $("#part5_4_13_8_2").val(data.allJsonArray[7].displayvalue);
+    //                 $("#part5_4_13_9_1").val(data.allJsonArray[8].standardvalue);
+    //                 $("#part5_4_13_9_2").val(data.allJsonArray[8].displayvalue);
+    //                 $("#part5_4_13_10_1").val(data.allJsonArray[9].standardvalue);
+    //                 $("#part5_4_13_10_2").val(data.allJsonArray[9].displayvalue);
+    //             }
+    //         },
+    //         error: function (jqXHR) {
+    //             alert("发生错误代码：" + jqXHR.status + "，数据未加载成功！");
+    //         }
+    //     });
+    //
+    //     var lc4="lc4";
+    //     $.ajax({
+    //         type: "POST",
+    //         url: "Action_findLCDataById.action",
+    //         contentType: "application/x-www-form-urlencoded; charset=utf-8",
+    //         data:{
+    //             zsh: $("#zsbh5_1").text(),
+    //             lc: lc4,
+    //         },
+    //         dataType: "json",
+    //         cache: false,
+    //         success: function (data) {
+    //             var dw=data.allJsonArray[0].dw;
+    //             if(dw=="μΩ"){
+    //             }else if(dw=="mΩ"){
+    //                 $("#radio5_29").attr("checked","checked");
+    //                 $("#radio5_28").removeAttr("checked");
+    //             }else if(dw=="Ω"){
+    //                 $("#radio5_30").attr("checked","checked");
+    //                 $("#radio5_28").removeAttr("checked");
+    //             }
+    //             var length=data.allJsonArray.length;;
+    //             if(length==1){
+    //                 $("#lc4_value").val(data.allJsonArray[0].lczhi);
+    //                 $("#part5_4_14_1_1").val(data.allJsonArray[0].standardvalue);
+    //                 $("#part5_4_14_1_2").val(data.allJsonArray[0].displayvalue);
+    //             }else if(length==2){
+    //                 $("#lc4_value").val(data.allJsonArray[0].lczhi);
+    //                 $("#part5_4_14_1_1").val(data.allJsonArray[0].standardvalue);
+    //                 $("#part5_4_14_1_2").val(data.allJsonArray[0].displayvalue);
+    //                 $("#part5_4_14_2_1").val(data.allJsonArray[1].standardvalue);
+    //                 $("#part5_4_14_2_2").val(data.allJsonArray[1].displayvalue);
+    //             }else if(length==3){
+    //                 $("#lc3_value").val(data.allJsonArray[0].lczhi);
+    //                 $("#part5_4_14_1_1").val(data.allJsonArray[0].standardvalue);
+    //                 $("#part5_4_14_1_2").val(data.allJsonArray[0].displayvalue);
+    //                 $("#part5_4_14_2_1").val(data.allJsonArray[1].standardvalue);
+    //                 $("#part5_4_14_2_2").val(data.allJsonArray[1].displayvalue);
+    //                 $("#part5_4_14_3_1").val(data.allJsonArray[2].standardvalue);
+    //                 $("#part5_4_14_3_2").val(data.allJsonArray[2].displayvalue);
+    //             }else if(length==4){
+    //                 $("#lc4_value").val(data.allJsonArray[0].lczhi);
+    //                 $("#part5_4_14_1_1").val(data.allJsonArray[0].standardvalue);
+    //                 $("#part5_4_14_1_2").val(data.allJsonArray[0].displayvalue);
+    //                 $("#part5_4_14_2_1").val(data.allJsonArray[1].standardvalue);
+    //                 $("#part5_4_14_2_2").val(data.allJsonArray[1].displayvalue);
+    //                 $("#part5_4_14_3_1").val(data.allJsonArray[2].standardvalue);
+    //                 $("#part5_4_14_3_2").val(data.allJsonArray[2].displayvalue);
+    //                 $("#part5_4_14_4_1").val(data.allJsonArray[3].standardvalue);
+    //                 $("#part5_4_14_4_2").val(data.allJsonArray[3].displayvalue);
+    //             }else if(length==5){
+    //                 $("#lc4_value").val(data.allJsonArray[0].lczhi);
+    //                 $("#part5_4_14_1_1").val(data.allJsonArray[0].standardvalue);
+    //                 $("#part5_4_14_1_2").val(data.allJsonArray[0].displayvalue);
+    //                 $("#part5_4_14_2_1").val(data.allJsonArray[1].standardvalue);
+    //                 $("#part5_4_14_2_2").val(data.allJsonArray[1].displayvalue);
+    //                 $("#part5_4_14_3_1").val(data.allJsonArray[2].standardvalue);
+    //                 $("#part5_4_14_3_2").val(data.allJsonArray[2].displayvalue);
+    //                 $("#part5_4_14_4_1").val(data.allJsonArray[3].standardvalue);
+    //                 $("#part5_4_14_4_2").val(data.allJsonArray[3].displayvalue);
+    //                 $("#part5_4_14_5_1").val(data.allJsonArray[4].standardvalue);
+    //                 $("#part5_4_14_5_2").val(data.allJsonArray[4].displayvalue);
+    //             }else if(length==6){
+    //                 $("#lc4_value").val(data.allJsonArray[0].lczhi);
+    //                 $("#part5_4_14_1_1").val(data.allJsonArray[0].standardvalue);
+    //                 $("#part5_4_14_1_2").val(data.allJsonArray[0].displayvalue);
+    //                 $("#part5_4_14_2_1").val(data.allJsonArray[1].standardvalue);
+    //                 $("#part5_4_14_2_2").val(data.allJsonArray[1].displayvalue);
+    //                 $("#part5_4_14_3_1").val(data.allJsonArray[2].standardvalue);
+    //                 $("#part5_4_14_3_2").val(data.allJsonArray[2].displayvalue);
+    //                 $("#part5_4_14_4_1").val(data.allJsonArray[3].standardvalue);
+    //                 $("#part5_4_14_4_2").val(data.allJsonArray[3].displayvalue);
+    //                 $("#part5_4_14_5_1").val(data.allJsonArray[4].standardvalue);
+    //                 $("#part5_4_14_5_2").val(data.allJsonArray[4].displayvalue);
+    //                 $("#part5_4_14_6_1").val(data.allJsonArray[5].standardvalue);
+    //                 $("#part5_4_14_6_2").val(data.allJsonArray[5].displayvalue);
+    //             }else if(length==7){
+    //                 $("#lc4_value").val(data.allJsonArray[0].lczhi);
+    //                 $("#part5_4_14_1_1").val(data.allJsonArray[0].standardvalue);
+    //                 $("#part5_4_14_1_2").val(data.allJsonArray[0].displayvalue);
+    //                 $("#part5_4_14_2_1").val(data.allJsonArray[1].standardvalue);
+    //                 $("#part5_4_14_2_2").val(data.allJsonArray[1].displayvalue);
+    //                 $("#part5_4_14_3_1").val(data.allJsonArray[2].standardvalue);
+    //                 $("#part5_4_14_3_2").val(data.allJsonArray[2].displayvalue);
+    //                 $("#part5_4_14_4_1").val(data.allJsonArray[3].standardvalue);
+    //                 $("#part5_4_14_4_2").val(data.allJsonArray[3].displayvalue);
+    //                 $("#part5_4_14_5_1").val(data.allJsonArray[4].standardvalue);
+    //                 $("#part5_4_14_5_2").val(data.allJsonArray[4].displayvalue);
+    //                 $("#part5_4_14_6_1").val(data.allJsonArray[5].standardvalue);
+    //                 $("#part5_4_14_6_2").val(data.allJsonArray[5].displayvalue);
+    //                 $("#part5_4_14_7_1").val(data.allJsonArray[6].standardvalue);
+    //                 $("#part5_4_14_7_2").val(data.allJsonArray[6].displayvalue);
+    //             }else if(length==8){
+    //                 $("#lc4_value").val(data.allJsonArray[0].lczhi);
+    //                 $("#part5_4_14_1_1").val(data.allJsonArray[0].standardvalue);
+    //                 $("#part5_4_14_1_2").val(data.allJsonArray[0].displayvalue);
+    //                 $("#part5_4_14_2_1").val(data.allJsonArray[1].standardvalue);
+    //                 $("#part5_4_14_2_2").val(data.allJsonArray[1].displayvalue);
+    //                 $("#part5_4_14_3_1").val(data.allJsonArray[2].standardvalue);
+    //                 $("#part5_4_14_3_2").val(data.allJsonArray[2].displayvalue);
+    //                 $("#part5_4_14_4_1").val(data.allJsonArray[3].standardvalue);
+    //                 $("#part5_4_14_4_2").val(data.allJsonArray[3].displayvalue);
+    //                 $("#part5_4_14_5_1").val(data.allJsonArray[4].standardvalue);
+    //                 $("#part5_4_14_5_2").val(data.allJsonArray[4].displayvalue);
+    //                 $("#part5_4_14_6_1").val(data.allJsonArray[5].standardvalue);
+    //                 $("#part5_4_14_6_2").val(data.allJsonArray[5].displayvalue);
+    //                 $("#part5_4_14_7_1").val(data.allJsonArray[6].standardvalue);
+    //                 $("#part5_4_14_7_2").val(data.allJsonArray[6].displayvalue);
+    //                 $("#part5_4_14_8_1").val(data.allJsonArray[7].standardvalue);
+    //                 $("#part5_4_14_8_2").val(data.allJsonArray[7].displayvalue);
+    //             }else if(length==9){
+    //                 $("#lc4_value").val(data.allJsonArray[0].lczhi);
+    //                 $("#part5_4_14_1_1").val(data.allJsonArray[0].standardvalue);
+    //                 $("#part5_4_14_1_2").val(data.allJsonArray[0].displayvalue);
+    //                 $("#part5_4_14_2_1").val(data.allJsonArray[1].standardvalue);
+    //                 $("#part5_4_14_2_2").val(data.allJsonArray[1].displayvalue);
+    //                 $("#part5_4_14_3_1").val(data.allJsonArray[2].standardvalue);
+    //                 $("#part5_4_14_3_2").val(data.allJsonArray[2].displayvalue);
+    //                 $("#part5_4_14_4_1").val(data.allJsonArray[3].standardvalue);
+    //                 $("#part5_4_14_4_2").val(data.allJsonArray[3].displayvalue);
+    //                 $("#part5_4_14_5_1").val(data.allJsonArray[4].standardvalue);
+    //                 $("#part5_4_14_5_2").val(data.allJsonArray[4].displayvalue);
+    //                 $("#part5_4_14_6_1").val(data.allJsonArray[5].standardvalue);
+    //                 $("#part5_4_14_6_2").val(data.allJsonArray[5].displayvalue);
+    //                 $("#part5_4_14_7_1").val(data.allJsonArray[6].standardvalue);
+    //                 $("#part5_4_14_7_2").val(data.allJsonArray[6].displayvalue);
+    //                 $("#part5_4_14_8_1").val(data.allJsonArray[7].standardvalue);
+    //                 $("#part5_4_14_8_2").val(data.allJsonArray[7].displayvalue);
+    //                 $("#part5_4_14_9_1").val(data.allJsonArray[8].standardvalue);
+    //                 $("#part5_4_14_9_2").val(data.allJsonArray[8].displayvalue);
+    //             }else if(length==10){
+    //                 $("#lc4_value").val(data.allJsonArray[0].lczhi);
+    //                 $("#part5_4_14_1_1").val(data.allJsonArray[0].standardvalue);
+    //                 $("#part5_4_14_1_2").val(data.allJsonArray[0].displayvalue);
+    //                 $("#part5_4_14_2_1").val(data.allJsonArray[1].standardvalue);
+    //                 $("#part5_4_14_2_2").val(data.allJsonArray[1].displayvalue);
+    //                 $("#part5_4_14_3_1").val(data.allJsonArray[2].standardvalue);
+    //                 $("#part5_4_14_3_2").val(data.allJsonArray[2].displayvalue);
+    //                 $("#part5_4_14_4_1").val(data.allJsonArray[3].standardvalue);
+    //                 $("#part5_4_14_4_2").val(data.allJsonArray[3].displayvalue);
+    //                 $("#part5_4_14_5_1").val(data.allJsonArray[4].standardvalue);
+    //                 $("#part5_4_14_5_2").val(data.allJsonArray[4].displayvalue);
+    //                 $("#part5_4_14_6_1").val(data.allJsonArray[5].standardvalue);
+    //                 $("#part5_4_14_6_2").val(data.allJsonArray[5].displayvalue);
+    //                 $("#part5_4_14_7_1").val(data.allJsonArray[6].standardvalue);
+    //                 $("#part5_4_14_7_2").val(data.allJsonArray[6].displayvalue);
+    //                 $("#part5_4_14_8_1").val(data.allJsonArray[7].standardvalue);
+    //                 $("#part5_4_14_8_2").val(data.allJsonArray[7].displayvalue);
+    //                 $("#part5_4_14_9_1").val(data.allJsonArray[8].standardvalue);
+    //                 $("#part5_4_14_9_2").val(data.allJsonArray[8].displayvalue);
+    //                 $("#part5_4_14_10_1").val(data.allJsonArray[9].standardvalue);
+    //                 $("#part5_4_14_10_2").val(data.allJsonArray[9].displayvalue);
+    //             }
+    //         },
+    //         error: function (jqXHR) {
+    //             alert("发生错误代码：" + jqXHR.status + "，数据未加载成功！");
+    //         }
+    //     });
+    //
+    //     var lc5="lc5";
+    //     $.ajax({
+    //         type: "POST",
+    //         url: "Action_findLCDataById.action",
+    //         contentType: "application/x-www-form-urlencoded; charset=utf-8",
+    //         data:{
+    //             zsh: $("#zsbh5_1").text(),
+    //             lc: lc5,
+    //         },
+    //         dataType: "json",
+    //         cache: false,
+    //         success: function (data) {
+    //             var dw=data.allJsonArray[0].dw;
+    //             if(dw=="μΩ"){
+    //             }else if(dw=="mΩ"){
+    //                 $("#radio5_32").attr("checked","checked");
+    //                 $("#radio5_31").removeAttr("checked");
+    //             }else if(dw=="Ω"){
+    //                 $("#radio5_33").attr("checked","checked");
+    //                 $("#radio5_31").removeAttr("checked");
+    //             }
+    //             var length=data.allJsonArray.length;;
+    //             if(length==1){
+    //                 $("#lc5_value").val(data.allJsonArray[0].lczhi);
+    //                 $("#part5_4_15_1_1").val(data.allJsonArray[0].standardvalue);
+    //                 $("#part5_4_15_1_2").val(data.allJsonArray[0].displayvalue);
+    //             }else if(length==2){
+    //                 $("#lc5_value").val(data.allJsonArray[0].lczhi);
+    //                 $("#part5_4_15_1_1").val(data.allJsonArray[0].standardvalue);
+    //                 $("#part5_4_15_1_2").val(data.allJsonArray[0].displayvalue);
+    //                 $("#part5_4_15_2_1").val(data.allJsonArray[1].standardvalue);
+    //                 $("#part5_4_15_2_2").val(data.allJsonArray[1].displayvalue);
+    //             }else if(length==3){
+    //                 $("#lc5_value").val(data.allJsonArray[0].lczhi);
+    //                 $("#part5_4_15_1_1").val(data.allJsonArray[0].standardvalue);
+    //                 $("#part5_4_15_1_2").val(data.allJsonArray[0].displayvalue);
+    //                 $("#part5_4_15_2_1").val(data.allJsonArray[1].standardvalue);
+    //                 $("#part5_4_15_2_2").val(data.allJsonArray[1].displayvalue);
+    //                 $("#part5_4_15_3_1").val(data.allJsonArray[2].standardvalue);
+    //                 $("#part5_4_15_3_2").val(data.allJsonArray[2].displayvalue);
+    //             }else if(length==4){
+    //                 $("#lc5_value").val(data.allJsonArray[0].lczhi);
+    //                 $("#part5_4_15_1_1").val(data.allJsonArray[0].standardvalue);
+    //                 $("#part5_4_15_1_2").val(data.allJsonArray[0].displayvalue);
+    //                 $("#part5_4_15_2_1").val(data.allJsonArray[1].standardvalue);
+    //                 $("#part5_4_15_2_2").val(data.allJsonArray[1].displayvalue);
+    //                 $("#part5_4_15_3_1").val(data.allJsonArray[2].standardvalue);
+    //                 $("#part5_4_15_3_2").val(data.allJsonArray[2].displayvalue);
+    //                 $("#part5_4_15_4_1").val(data.allJsonArray[3].standardvalue);
+    //                 $("#part5_4_15_4_2").val(data.allJsonArray[3].displayvalue);
+    //             }else if(length==5){
+    //                 $("#lc5_value").val(data.allJsonArray[0].lczhi);
+    //                 $("#part5_4_15_1_1").val(data.allJsonArray[0].standardvalue);
+    //                 $("#part5_4_15_1_2").val(data.allJsonArray[0].displayvalue);
+    //                 $("#part5_4_15_2_1").val(data.allJsonArray[1].standardvalue);
+    //                 $("#part5_4_15_2_2").val(data.allJsonArray[1].displayvalue);
+    //                 $("#part5_4_15_3_1").val(data.allJsonArray[2].standardvalue);
+    //                 $("#part5_4_15_3_2").val(data.allJsonArray[2].displayvalue);
+    //                 $("#part5_4_15_4_1").val(data.allJsonArray[3].standardvalue);
+    //                 $("#part5_4_15_4_2").val(data.allJsonArray[3].displayvalue);
+    //                 $("#part5_4_15_5_1").val(data.allJsonArray[4].standardvalue);
+    //                 $("#part5_4_15_5_2").val(data.allJsonArray[4].displayvalue);
+    //             }else if(length==6){
+    //                 $("#lc5_value").val(data.allJsonArray[0].lczhi);
+    //                 $("#part5_4_15_1_1").val(data.allJsonArray[0].standardvalue);
+    //                 $("#part5_4_15_1_2").val(data.allJsonArray[0].displayvalue);
+    //                 $("#part5_4_15_2_1").val(data.allJsonArray[1].standardvalue);
+    //                 $("#part5_4_15_2_2").val(data.allJsonArray[1].displayvalue);
+    //                 $("#part5_4_15_3_1").val(data.allJsonArray[2].standardvalue);
+    //                 $("#part5_4_15_3_2").val(data.allJsonArray[2].displayvalue);
+    //                 $("#part5_4_15_4_1").val(data.allJsonArray[3].standardvalue);
+    //                 $("#part5_4_15_4_2").val(data.allJsonArray[3].displayvalue);
+    //                 $("#part5_4_15_5_1").val(data.allJsonArray[4].standardvalue);
+    //                 $("#part5_4_15_5_2").val(data.allJsonArray[4].displayvalue);
+    //                 $("#part5_4_15_6_1").val(data.allJsonArray[5].standardvalue);
+    //                 $("#part5_4_15_6_2").val(data.allJsonArray[5].displayvalue);
+    //             }else if(length==7){
+    //                 $("#lc5_value").val(data.allJsonArray[0].lczhi);
+    //                 $("#part5_4_15_1_1").val(data.allJsonArray[0].standardvalue);
+    //                 $("#part5_4_15_1_2").val(data.allJsonArray[0].displayvalue);
+    //                 $("#part5_4_15_2_1").val(data.allJsonArray[1].standardvalue);
+    //                 $("#part5_4_15_2_2").val(data.allJsonArray[1].displayvalue);
+    //                 $("#part5_4_15_3_1").val(data.allJsonArray[2].standardvalue);
+    //                 $("#part5_4_15_3_2").val(data.allJsonArray[2].displayvalue);
+    //                 $("#part5_4_15_4_1").val(data.allJsonArray[3].standardvalue);
+    //                 $("#part5_4_15_4_2").val(data.allJsonArray[3].displayvalue);
+    //                 $("#part5_4_15_5_1").val(data.allJsonArray[4].standardvalue);
+    //                 $("#part5_4_15_5_2").val(data.allJsonArray[4].displayvalue);
+    //                 $("#part5_4_15_6_1").val(data.allJsonArray[5].standardvalue);
+    //                 $("#part5_4_15_6_2").val(data.allJsonArray[5].displayvalue);
+    //                 $("#part5_4_15_7_1").val(data.allJsonArray[6].standardvalue);
+    //                 $("#part5_4_15_7_2").val(data.allJsonArray[6].displayvalue);
+    //             }else if(length==8){
+    //                 $("#lc5_value").val(data.allJsonArray[0].lczhi);
+    //                 $("#part5_4_15_1_1").val(data.allJsonArray[0].standardvalue);
+    //                 $("#part5_4_15_1_2").val(data.allJsonArray[0].displayvalue);
+    //                 $("#part5_4_15_2_1").val(data.allJsonArray[1].standardvalue);
+    //                 $("#part5_4_15_2_2").val(data.allJsonArray[1].displayvalue);
+    //                 $("#part5_4_15_3_1").val(data.allJsonArray[2].standardvalue);
+    //                 $("#part5_4_15_3_2").val(data.allJsonArray[2].displayvalue);
+    //                 $("#part5_4_15_4_1").val(data.allJsonArray[3].standardvalue);
+    //                 $("#part5_4_15_4_2").val(data.allJsonArray[3].displayvalue);
+    //                 $("#part5_4_15_5_1").val(data.allJsonArray[4].standardvalue);
+    //                 $("#part5_4_15_5_2").val(data.allJsonArray[4].displayvalue);
+    //                 $("#part5_4_15_6_1").val(data.allJsonArray[5].standardvalue);
+    //                 $("#part5_4_15_6_2").val(data.allJsonArray[5].displayvalue);
+    //                 $("#part5_4_15_7_1").val(data.allJsonArray[6].standardvalue);
+    //                 $("#part5_4_15_7_2").val(data.allJsonArray[6].displayvalue);
+    //                 $("#part5_4_15_8_1").val(data.allJsonArray[7].standardvalue);
+    //                 $("#part5_4_15_8_2").val(data.allJsonArray[7].displayvalue);
+    //             }else if(length==9){
+    //                 $("#lc5_value").val(data.allJsonArray[0].lczhi);
+    //                 $("#part5_4_15_1_1").val(data.allJsonArray[0].standardvalue);
+    //                 $("#part5_4_15_1_2").val(data.allJsonArray[0].displayvalue);
+    //                 $("#part5_4_15_2_1").val(data.allJsonArray[1].standardvalue);
+    //                 $("#part5_4_15_2_2").val(data.allJsonArray[1].displayvalue);
+    //                 $("#part5_4_15_3_1").val(data.allJsonArray[2].standardvalue);
+    //                 $("#part5_4_15_3_2").val(data.allJsonArray[2].displayvalue);
+    //                 $("#part5_4_15_4_1").val(data.allJsonArray[3].standardvalue);
+    //                 $("#part5_4_15_4_2").val(data.allJsonArray[3].displayvalue);
+    //                 $("#part5_4_15_5_1").val(data.allJsonArray[4].standardvalue);
+    //                 $("#part5_4_15_5_2").val(data.allJsonArray[4].displayvalue);
+    //                 $("#part5_4_15_6_1").val(data.allJsonArray[5].standardvalue);
+    //                 $("#part5_4_15_6_2").val(data.allJsonArray[5].displayvalue);
+    //                 $("#part5_4_15_7_1").val(data.allJsonArray[6].standardvalue);
+    //                 $("#part5_4_15_7_2").val(data.allJsonArray[6].displayvalue);
+    //                 $("#part5_4_15_8_1").val(data.allJsonArray[7].standardvalue);
+    //                 $("#part5_4_15_8_2").val(data.allJsonArray[7].displayvalue);
+    //                 $("#part5_4_15_9_1").val(data.allJsonArray[8].standardvalue);
+    //                 $("#part5_4_15_9_2").val(data.allJsonArray[8].displayvalue);
+    //             }else if(length==10){
+    //                 $("#lc5_value").val(data.allJsonArray[0].lczhi);
+    //                 $("#part5_4_15_1_1").val(data.allJsonArray[0].standardvalue);
+    //                 $("#part5_4_15_1_2").val(data.allJsonArray[0].displayvalue);
+    //                 $("#part5_4_15_2_1").val(data.allJsonArray[1].standardvalue);
+    //                 $("#part5_4_15_2_2").val(data.allJsonArray[1].displayvalue);
+    //                 $("#part5_4_15_3_1").val(data.allJsonArray[2].standardvalue);
+    //                 $("#part5_4_15_3_2").val(data.allJsonArray[2].displayvalue);
+    //                 $("#part5_4_15_4_1").val(data.allJsonArray[3].standardvalue);
+    //                 $("#part5_4_15_4_2").val(data.allJsonArray[3].displayvalue);
+    //                 $("#part5_4_15_5_1").val(data.allJsonArray[4].standardvalue);
+    //                 $("#part5_4_15_5_2").val(data.allJsonArray[4].displayvalue);
+    //                 $("#part5_4_15_6_1").val(data.allJsonArray[5].standardvalue);
+    //                 $("#part5_4_15_6_2").val(data.allJsonArray[5].displayvalue);
+    //                 $("#part5_4_15_7_1").val(data.allJsonArray[6].standardvalue);
+    //                 $("#part5_4_15_7_2").val(data.allJsonArray[6].displayvalue);
+    //                 $("#part5_4_15_8_1").val(data.allJsonArray[7].standardvalue);
+    //                 $("#part5_4_15_8_2").val(data.allJsonArray[7].displayvalue);
+    //                 $("#part5_4_15_9_1").val(data.allJsonArray[8].standardvalue);
+    //                 $("#part5_4_15_9_2").val(data.allJsonArray[8].displayvalue);
+    //                 $("#part5_4_15_10_1").val(data.allJsonArray[9].standardvalue);
+    //                 $("#part5_4_15_10_2").val(data.allJsonArray[9].displayvalue);
+    //             }
+    //         },
+    //         error: function (jqXHR) {
+    //             alert("发生错误代码：" + jqXHR.status + "，数据未加载成功！");
+    //         }
+    //     });
+    //
+    //     $.ajax({
+    //         type: "POST",
+    //         url: "Action_findOneWdxwc.action",
+    //         contentType: "application/x-www-form-urlencoded; charset=utf-8",
+    //         data:{
+    //             id: $("#zsbh5_1").text(),
+    //         },
+    //         dataType: "json",
+    //         cache: false,
+    //         success: function (data) {
+    //             $("#part5_4_16_1_1").val(data.allJsonArray[0].readvalue);
+    //             $("#part5_4_16_2_1").val(data.allJsonArray[1].readvalue);
+    //             $("#part5_4_16_3_1").val(data.allJsonArray[2].readvalue);
+    //             $("#part5_4_16_4_1").val(data.allJsonArray[3].readvalue);
+    //             $("#part5_4_16_5_1").val(data.allJsonArray[4].readvalue);
+    //             $("#part5_4_16_6_1").val(data.allJsonArray[5].readvalue);
+    //             $("#part5_4_16_7_1").val(data.allJsonArray[0].wdxwc);
+    //         },
+    //         error: function (jqXHR) {
+    //             alert("发生错误代码：" + jqXHR.status + "，数据未加载成功！");
+    //         }
+    //     });
+    //
+    //     $.ajax({
+    //         type: "POST",
+    //         url: "Action_findOneDlgc.action",
+    //         contentType: "application/x-www-form-urlencoded; charset=utf-8",
+    //         data:{
+    //             id: $("#zsbh5_1").text(),
+    //         },
+    //         dataType: "json",
+    //         cache: false,
+    //         success: function (data) {
+    //             var length=data.allJsonArray.length;;
+    //             if(length==1){
+    //                 $("#part5_4_17_1_1").val(data.allJsonArray[0].shizhi);
+    //                 $("#part5_4_17_1_2").val(data.allJsonArray[0].shijizhi);
+    //             }else if(length==2){
+    //                 $("#part5_4_17_1_1").val(data.allJsonArray[0].shizhi);
+    //                 $("#part5_4_17_1_2").val(data.allJsonArray[0].shijizhi);
+    //                 $("#part5_4_17_2_1").val(data.allJsonArray[1].shizhi);
+    //                 $("#part5_4_17_2_2").val(data.allJsonArray[1].shijizhi);
+    //             }else if(length==3){
+    //                 $("#part5_4_17_1_1").val(data.allJsonArray[0].shizhi);
+    //                 $("#part5_4_17_1_2").val(data.allJsonArray[0].shijizhi);
+    //                 $("#part5_4_17_2_1").val(data.allJsonArray[1].shizhi);
+    //                 $("#part5_4_17_2_2").val(data.allJsonArray[1].shijizhi);
+    //                 $("#part5_4_17_3_1").val(data.allJsonArray[2].shizhi);
+    //                 $("#part5_4_17_3_2").val(data.allJsonArray[2].shijizhi);
+    //             }else if(length==4){
+    //                 $("#part5_4_17_1_1").val(data.allJsonArray[0].shizhi);
+    //                 $("#part5_4_17_1_2").val(data.allJsonArray[0].shijizhi);
+    //                 $("#part5_4_17_2_1").val(data.allJsonArray[1].shizhi);
+    //                 $("#part5_4_17_2_2").val(data.allJsonArray[1].shijizhi);
+    //                 $("#part5_4_17_3_1").val(data.allJsonArray[2].shizhi);
+    //                 $("#part5_4_17_3_2").val(data.allJsonArray[2].shijizhi);
+    //                 $("#part5_4_17_4_1").val(data.allJsonArray[3].shizhi);
+    //                 $("#part5_4_17_4_2").val(data.allJsonArray[3].shijizhi);
+    //             }else if(length==5){
+    //                 $("#part5_4_17_1_1").val(data.allJsonArray[0].shizhi);
+    //                 $("#part5_4_17_1_2").val(data.allJsonArray[0].shijizhi);
+    //                 $("#part5_4_17_2_1").val(data.allJsonArray[1].shizhi);
+    //                 $("#part5_4_17_2_2").val(data.allJsonArray[1].shijizhi);
+    //                 $("#part5_4_17_3_1").val(data.allJsonArray[2].shizhi);
+    //                 $("#part5_4_17_3_2").val(data.allJsonArray[2].shijizhi);
+    //                 $("#part5_4_17_4_1").val(data.allJsonArray[3].shizhi);
+    //                 $("#part5_4_17_4_2").val(data.allJsonArray[3].shijizhi);
+    //                 $("#part5_4_17_5_1").val(data.allJsonArray[4].shizhi);
+    //                 $("#part5_4_17_5_2").val(data.allJsonArray[4].shijizhi);
+    //             }
+    //         },
+    //         error: function (jqXHR) {
+    //             alert("发生错误代码：" + jqXHR.status + "，数据未加载成功！");
+    //         }
+    //     });
+    //
+    // });
 
     //列举端口，检测可用端口 part5
     $("#submit5_1_0").click(function () {

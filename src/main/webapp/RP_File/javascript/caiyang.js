@@ -20,13 +20,15 @@ $(function () {
             //     alert("菜单选择有误，当前为回路电阻表，应选择EE回路电阻菜单!");
             //}
             //else {
-                $(this).addClass(on).siblings().removeClass(on);
-                $(tabCon).children().eq(index).show().siblings().hide();
+            $(this).addClass(on).siblings().removeClass(on);
+            $(tabCon).children().eq(index).show().siblings().hide();
             //}
+
         });
     }
 
     tabs(".choice2", "on", ".context2");
+
 
     /**
      * AA绝缘电阻菜单  Part1 全检量程区段 开始

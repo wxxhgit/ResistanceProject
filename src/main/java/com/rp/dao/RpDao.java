@@ -4,6 +4,7 @@ import com.rp.model.*;
 
 public class RpDao extends BaseDao {
 
+
 	/**
 	 * 方法序号：1 登录
 	 */
@@ -242,7 +243,7 @@ public class RpDao extends BaseDao {
 	 * 方法序号： 8_1_2 提交回路电阻表中的表4的值
 	 */
 	public boolean addLCData(CaiYangHL caiYangHL) throws Exception {
-		String sql = "INSERT INTO Lcvalue (zsbh,standardvalue,displayvalue,lc,lc_value,dw,id) VALUES (?,?,?,?,?,?,?)";
+		String sql = "INSERT INTO Lcvalue (zsbh,standardvalue,displayvalue,lc,lczhi,lc_value,dw,id) VALUES (?,?,?,?,?,?,?,?)";
 		int result = this.saveEntity(sql, caiYangHL);
 		if (result > 0)
 			return true;
@@ -261,7 +262,14 @@ public class RpDao extends BaseDao {
 		else
 			return false;
 	}
-
+    public boolean deleteLCDataByzsbh(String string) throws Exception {
+        String sql = "DELETE FROM Lcvalue WHERE zsbh =?";
+        int result = this.saveOrUpdateOrDelete(sql, string);
+        if (result > 0)
+            return true;
+        else
+            return false;
+    }
 
 	/**
 	 * 方法序号： 8_2_0 删除非全检量程区段
