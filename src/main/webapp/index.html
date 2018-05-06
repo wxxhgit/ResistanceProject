@@ -350,10 +350,17 @@
             /*font-weight: bold;*/
         /*}*/
     </style>
+    <script language="JavaScript">
+        function keyLogin(){
+            if(event.keyCode==13){
+                document.getElementById("submitlogin").click();
+            }
+        }
+    </script>
     <script type="text/javascript">
     </script>
 </head>
-<body>
+<body onkeydown="keyLogin();">
 <div class="title">
     <span class="title_context"><a href="index.html" title="点击可刷新整个页面">电阻表管理系统</a></span>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

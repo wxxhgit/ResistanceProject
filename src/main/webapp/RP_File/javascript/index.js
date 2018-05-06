@@ -381,13 +381,13 @@ $(function () {
                 $.ajax({
                     type: "POST",
                     url: "Action_deleteInspectionDevice.action",
-                    async: false,
                     contentType: "application/x-www-form-urlencoded; charset=utf-8",
                     data: {
                         "title": $(this).parents("tr").find(".zsbh").text()//获取按钮所在行class为zsbh的元素的值,$(this).parents("tr")获取按钮所在行
                     },
                     dataType: "json",
                     cache: false,
+                    async: false,
                     success: function (data) {
                         //alert(data.jsonObject);
                         findAllInspectionDeviceAgain();
@@ -455,24 +455,29 @@ $(function () {
         $.ajax({
             type: "POST",
             url: "Action_findAllInspectionDevice.action",
-            async: false,//嵌套时最好加上这个，不然容易出问题，外层的应该无所谓，内层一定要加
             contentType: "application/x-www-form-urlencoded; charset=utf-8",
             dataType: "json",
             cache: false,
+            async: false,//嵌套时最好加上这个，不然容易出问题，外层的应该无所谓，内层一定要加
             success: function (data) {
                 var html;
-                for (var i = 0; i < data.allJsonArray.length; i++) {
-                    html += '<tr><td>' + (i + 1) + '</td>'
-                        + '<td>' + data.allJsonArray[i].leixing + '</td>'
-                        + '<td>' + data.allJsonArray[i].xinghao + '</td>'
-                        + '<td>' + data.allJsonArray[i].yqmc + '</td>'
-                        + '<td>' + formatdatetime(data.allJsonArray[i].jdsj) + '</td>'
-                        + '<td>' + data.allJsonArray[i].sjdw + '</td>'
-                        + '<td class="zsbh">' + data.allJsonArray[i].zsbh + '</td>'
-                        + '<td><input class="list_title" type="submit" value="修改"/>'
-                        + '&nbsp;<input class="list_title" type="submit" value="删除"/></td></tr>';
+                if (data.allJsonArray.length != 0) {
+                    for (var i = 0; i < data.allJsonArray.length; i++) {
+                        html += '<tr><td>' + (i + 1) + '</td>'
+                            + '<td>' + data.allJsonArray[i].leixing + '</td>'
+                            + '<td>' + data.allJsonArray[i].xinghao + '</td>'
+                            + '<td>' + data.allJsonArray[i].yqmc + '</td>'
+                            + '<td>' + formatdatetime(data.allJsonArray[i].jdsj) + '</td>'
+                            + '<td>' + data.allJsonArray[i].sjdw + '</td>'
+                            + '<td class="zsbh">' + data.allJsonArray[i].zsbh + '</td>'
+                            + '<td><input class="list_title" type="submit" value="修改"/>'
+                            + '&nbsp;<input class="list_title" type="submit" value="删除"/></td></tr>';
+                    }
+                    $("#list2").html(html);
+                } else {
+                    html = "";
+                    $("#list2").html(html);
                 }
-                $("#list2").html(html);
             },
             error: function (jqXHR) {
                 alert("发生错误代码：" + jqXHR.status + "，数据未加载成功！");
@@ -875,18 +880,23 @@ $(function () {
             cache: false,
             success: function (data) {
                 var html;
-                for (var i = 0; i < data.allJsonArray.length; i++) {
-                    html += '<tr><td class="lx">' + data.allJsonArray[i].lx + '</td>'
-                        + '<td class="xh">' + data.allJsonArray[i].xh + '</td>'
-                        + '<td class="mc">' + data.allJsonArray[i].mc + '</td>'
-                        + '<td class="yqbh">' + data.allJsonArray[i].yqbh + '</td>'
-                        + '<td class="bqdd">' + data.allJsonArray[i].bqdd + '</td>'
-                        + '<td class="jlbzzsh">' + data.allJsonArray[i].jlbzzsh + '</td>'
-                        + '<td class="yxqz">' + formatdatetime(data.allJsonArray[i].yxqz) + '</td>'
-                        + '<td><input class="list_title" type="submit" value="修改"/>'
-                        + '&nbsp;<input class="list_title" type="submit" value="删除"/></td></tr>';
+                if (data.allJsonArray.length != 0) {
+                    for (var i = 0; i < data.allJsonArray.length; i++) {
+                        html += '<tr><td class="lx">' + data.allJsonArray[i].lx + '</td>'
+                            + '<td class="xh">' + data.allJsonArray[i].xh + '</td>'
+                            + '<td class="mc">' + data.allJsonArray[i].mc + '</td>'
+                            + '<td class="yqbh">' + data.allJsonArray[i].yqbh + '</td>'
+                            + '<td class="bqdd">' + data.allJsonArray[i].bqdd + '</td>'
+                            + '<td class="jlbzzsh">' + data.allJsonArray[i].jlbzzsh + '</td>'
+                            + '<td class="yxqz">' + formatdatetime(data.allJsonArray[i].yxqz) + '</td>'
+                            + '<td><input class="list_title" type="submit" value="修改"/>'
+                            + '&nbsp;<input class="list_title" type="submit" value="删除"/></td></tr>';
+                    }
+                    $("#list4").html(html);
+                }else{
+                    html="";
+                    $("#list4").html(html);
                 }
-                $("#list4").html(html);
             },
             error: function (jqXHR) {
                 alert("发生错误代码：" + jqXHR.status + "，数据未加载成功！");
@@ -915,7 +925,7 @@ $(function () {
         refresh();
     });
 
-    function refresh(){
+    function refresh() {
         $("input[name='lc1']").val(""); // 将name=lc1的文本框清空，以便重新下一次修改
         $("input[name='lc1']").removeAttr("title");
         $("input[name='lc1']").css("background", "white"); // 清除红色标记
@@ -2390,7 +2400,7 @@ $(function () {
             $("#submit6_0_4").attr("disabled", false);
             $("#submit6_0_5").attr("disabled", "disabled");
             $("#submit6_0_6").attr("disabled", "disabled");
-        }else if ($("#leixing6_1").text() == "回路电阻表") {
+        } else if ($("#leixing6_1").text() == "回路电阻表") {
             $("#submit6_0_1").attr("disabled", "disabled");
             $("#submit6_0_2").attr("disabled", "disabled");
             $("#submit6_0_3").attr("disabled", "disabled");
