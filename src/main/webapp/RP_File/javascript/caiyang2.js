@@ -32,125 +32,16 @@ $(function() {
             cache: false,
             async: false,
             success: function (data) {
-                var dw=data.allJsonArray[0].dw;
-                if(dw=="μΩ"){
-                }else if(dw=="mΩ"){
-                    $("#radio5_20").attr("checked","checked");
-                    $("#radio5_19").removeAttr("checked");
-                }else if(dw=="Ω"){
-                    $("#radio5_21").attr("checked","checked");
-                    $("#radio5_19").removeAttr("checked");
-                }
-                var length=data.allJsonArray.length;;
-                if(length==1){
-                    $("#lc1_value").val(data.allJsonArray[0].lczhi);
-                    $("#part5_4_11_1_1").val(data.allJsonArray[0].standardvalue);
-                    $("#part5_4_11_1_2").val(data.allJsonArray[0].displayvalue);
-                }else if(length==2){
-                    $("#lc1_value").val(data.allJsonArray[0].lczhi);
-                    $("#part5_4_11_1_1").val(data.allJsonArray[0].standardvalue);
-                    $("#part5_4_11_1_2").val(data.allJsonArray[0].displayvalue);
-                    $("#part5_4_11_2_1").val(data.allJsonArray[1].standardvalue);
-                    $("#part5_4_11_2_2").val(data.allJsonArray[1].displayvalue);
-                }else if(length==3){
-                    $("#lc1_value").val(data.allJsonArray[0].lczhi);
-                    $("#part5_4_11_1_1").val(data.allJsonArray[0].standardvalue);
-                    $("#part5_4_11_1_2").val(data.allJsonArray[0].displayvalue);
-                    $("#part5_4_11_2_1").val(data.allJsonArray[1].standardvalue);
-                    $("#part5_4_11_2_2").val(data.allJsonArray[1].displayvalue);
-                    $("#part5_4_11_3_1").val(data.allJsonArray[2].standardvalue);
-                    $("#part5_4_11_3_2").val(data.allJsonArray[2].displayvalue);
-                }else if(length==4){
-                    $("#lc1_value").val(data.allJsonArray[0].lczhi);
-                    $("#part5_4_11_1_1").val(data.allJsonArray[0].standardvalue);
-                    $("#part5_4_11_1_2").val(data.allJsonArray[0].displayvalue);
-                    $("#part5_4_11_2_1").val(data.allJsonArray[1].standardvalue);
-                    $("#part5_4_11_2_2").val(data.allJsonArray[1].displayvalue);
-                    $("#part5_4_11_3_1").val(data.allJsonArray[2].standardvalue);
-                    $("#part5_4_11_3_2").val(data.allJsonArray[2].displayvalue);
-                    $("#part5_4_11_4_1").val(data.allJsonArray[3].standardvalue);
-                    $("#part5_4_11_4_2").val(data.allJsonArray[3].displayvalue);
-                }else if(length==5){
-                    $("#lc1_value").val(data.allJsonArray[0].lczhi);
-                    $("#part5_4_11_1_1").val(data.allJsonArray[0].standardvalue);
-                    $("#part5_4_11_1_2").val(data.allJsonArray[0].displayvalue);
-                    $("#part5_4_11_2_1").val(data.allJsonArray[1].standardvalue);
-                    $("#part5_4_11_2_2").val(data.allJsonArray[1].displayvalue);
-                    $("#part5_4_11_3_1").val(data.allJsonArray[2].standardvalue);
-                    $("#part5_4_11_3_2").val(data.allJsonArray[2].displayvalue);
-                    $("#part5_4_11_4_1").val(data.allJsonArray[3].standardvalue);
-                    $("#part5_4_11_4_2").val(data.allJsonArray[3].displayvalue);
-                    $("#part5_4_11_5_1").val(data.allJsonArray[4].standardvalue);
-                    $("#part5_4_11_5_2").val(data.allJsonArray[4].displayvalue);
-                }else if(length==6){
-                    $("#lc1_value").val(data.allJsonArray[0].lczhi);
-                    $("#part5_4_11_1_1").val(data.allJsonArray[0].standardvalue);
-                    $("#part5_4_11_1_2").val(data.allJsonArray[0].displayvalue);
-                    $("#part5_4_11_2_1").val(data.allJsonArray[1].standardvalue);
-                    $("#part5_4_11_2_2").val(data.allJsonArray[1].displayvalue);
-                    $("#part5_4_11_3_1").val(data.allJsonArray[2].standardvalue);
-                    $("#part5_4_11_3_2").val(data.allJsonArray[2].displayvalue);
-                    $("#part5_4_11_4_1").val(data.allJsonArray[3].standardvalue);
-                    $("#part5_4_11_4_2").val(data.allJsonArray[3].displayvalue);
-                    $("#part5_4_11_5_1").val(data.allJsonArray[4].standardvalue);
-                    $("#part5_4_11_5_2").val(data.allJsonArray[4].displayvalue);
-                    $("#part5_4_11_6_1").val(data.allJsonArray[5].standardvalue);
-                    $("#part5_4_11_6_2").val(data.allJsonArray[5].displayvalue);
-                }else if(length==7){
-                    $("#lc1_value").val(data.allJsonArray[0].lczhi);
-                    $("#part5_4_11_1_1").val(data.allJsonArray[0].standardvalue);
-                    $("#part5_4_11_1_2").val(data.allJsonArray[0].displayvalue);
-                    $("#part5_4_11_2_1").val(data.allJsonArray[1].standardvalue);
-                    $("#part5_4_11_2_2").val(data.allJsonArray[1].displayvalue);
-                    $("#part5_4_11_3_1").val(data.allJsonArray[2].standardvalue);
-                    $("#part5_4_11_3_2").val(data.allJsonArray[2].displayvalue);
-                    $("#part5_4_11_4_1").val(data.allJsonArray[3].standardvalue);
-                    $("#part5_4_11_4_2").val(data.allJsonArray[3].displayvalue);
-                    $("#part5_4_11_5_1").val(data.allJsonArray[4].standardvalue);
-                    $("#part5_4_11_5_2").val(data.allJsonArray[4].displayvalue);
-                    $("#part5_4_11_6_1").val(data.allJsonArray[5].standardvalue);
-                    $("#part5_4_11_6_2").val(data.allJsonArray[5].displayvalue);
-                    $("#part5_4_11_7_1").val(data.allJsonArray[6].standardvalue);
-                    $("#part5_4_11_7_2").val(data.allJsonArray[6].displayvalue);
-                }else if(length==8){
-                    $("#lc1_value").val(data.allJsonArray[0].lczhi);
-                    $("#part5_4_11_1_1").val(data.allJsonArray[0].standardvalue);
-                    $("#part5_4_11_1_2").val(data.allJsonArray[0].displayvalue);
-                    $("#part5_4_11_2_1").val(data.allJsonArray[1].standardvalue);
-                    $("#part5_4_11_2_2").val(data.allJsonArray[1].displayvalue);
-                    $("#part5_4_11_3_1").val(data.allJsonArray[2].standardvalue);
-                    $("#part5_4_11_3_2").val(data.allJsonArray[2].displayvalue);
-                    $("#part5_4_11_4_1").val(data.allJsonArray[3].standardvalue);
-                    $("#part5_4_11_4_2").val(data.allJsonArray[3].displayvalue);
-                    $("#part5_4_11_5_1").val(data.allJsonArray[4].standardvalue);
-                    $("#part5_4_11_5_2").val(data.allJsonArray[4].displayvalue);
-                    $("#part5_4_11_6_1").val(data.allJsonArray[5].standardvalue);
-                    $("#part5_4_11_6_2").val(data.allJsonArray[5].displayvalue);
-                    $("#part5_4_11_7_1").val(data.allJsonArray[6].standardvalue);
-                    $("#part5_4_11_7_2").val(data.allJsonArray[6].displayvalue);
-                    $("#part5_4_11_8_1").val(data.allJsonArray[7].standardvalue);
-                    $("#part5_4_11_8_2").val(data.allJsonArray[7].displayvalue);
-                }else if(length==9){
-                    $("#lc1_value").val(data.allJsonArray[0].lczhi);
-                    $("#part5_4_11_1_1").val(data.allJsonArray[0].standardvalue);
-                    $("#part5_4_11_1_2").val(data.allJsonArray[0].displayvalue);
-                    $("#part5_4_11_2_1").val(data.allJsonArray[1].standardvalue);
-                    $("#part5_4_11_2_2").val(data.allJsonArray[1].displayvalue);
-                    $("#part5_4_11_3_1").val(data.allJsonArray[2].standardvalue);
-                    $("#part5_4_11_3_2").val(data.allJsonArray[2].displayvalue);
-                    $("#part5_4_11_4_1").val(data.allJsonArray[3].standardvalue);
-                    $("#part5_4_11_4_2").val(data.allJsonArray[3].displayvalue);
-                    $("#part5_4_11_5_1").val(data.allJsonArray[4].standardvalue);
-                    $("#part5_4_11_5_2").val(data.allJsonArray[4].displayvalue);
-                    $("#part5_4_11_6_1").val(data.allJsonArray[5].standardvalue);
-                    $("#part5_4_11_6_2").val(data.allJsonArray[5].displayvalue);
-                    $("#part5_4_11_7_1").val(data.allJsonArray[6].standardvalue);
-                    $("#part5_4_11_7_2").val(data.allJsonArray[6].displayvalue);
-                    $("#part5_4_11_8_1").val(data.allJsonArray[7].standardvalue);
-                    $("#part5_4_11_8_2").val(data.allJsonArray[7].displayvalue);
-                    $("#part5_4_11_9_1").val(data.allJsonArray[8].standardvalue);
-                    $("#part5_4_11_9_2").val(data.allJsonArray[8].displayvalue);
-                }else if(length==10){
+                if(data.allJsonArray.length!=0) {
+                    var dw = data.allJsonArray[0].dw;
+                    if (dw == "μΩ") {
+                    } else if (dw == "mΩ") {
+                        $("#radio5_20").attr("checked", "checked");
+                        $("#radio5_19").removeAttr("checked");
+                    } else if (dw == "Ω") {
+                        $("#radio5_21").attr("checked", "checked");
+                        $("#radio5_19").removeAttr("checked");
+                    }
                     $("#lc1_value").val(data.allJsonArray[0].lczhi);
                     $("#part5_4_11_1_1").val(data.allJsonArray[0].standardvalue);
                     $("#part5_4_11_1_2").val(data.allJsonArray[0].displayvalue);
@@ -172,7 +63,7 @@ $(function() {
                     $("#part5_4_11_9_2").val(data.allJsonArray[8].displayvalue);
                     $("#part5_4_11_10_1").val(data.allJsonArray[9].standardvalue);
                     $("#part5_4_11_10_2").val(data.allJsonArray[9].displayvalue);
-                }
+                }else{}
             },
             error: function (jqXHR) {
                 alert("发生错误代码：" + jqXHR.status + "，数据未加载成功！");
@@ -193,38 +84,39 @@ $(function() {
             async: false,
             success: function (data) {
                 var length=data.allJsonArray.length;
-                var dw=data.allJsonArray[0].dw;
-                if(dw=="μΩ"){
-                }else if(dw=="mΩ"){
-                    $("#radio5_23").attr("checked","checked");
-                    $("#radio5_22").removeAttr("checked");
-                }else if(dw=="Ω"){
-                    $("#radio5_24").attr("checked","checked");
-                    $("#radio5_22").removeAttr("checked");
-                }
+                if(length!=0) {
+                    var dw = data.allJsonArray[0].dw;
+                    if (dw == "μΩ") {
+                    } else if (dw == "mΩ") {
+                        $("#radio5_23").attr("checked", "checked");
+                        $("#radio5_22").removeAttr("checked");
+                    } else if (dw == "Ω") {
+                        $("#radio5_24").attr("checked", "checked");
+                        $("#radio5_22").removeAttr("checked");
+                    }
 
-                $("#lc2_value").val(data.allJsonArray[0].lczhi);
-                $("#part5_4_12_1_1").val(data.allJsonArray[0].standardvalue);
-                $("#part5_4_12_1_2").val(data.allJsonArray[0].displayvalue);
-                $("#part5_4_12_2_1").val(data.allJsonArray[1].standardvalue);
-                $("#part5_4_12_2_2").val(data.allJsonArray[1].displayvalue);
-                $("#part5_4_12_3_1").val(data.allJsonArray[2].standardvalue);
-                $("#part5_4_12_3_2").val(data.allJsonArray[2].displayvalue);
-                $("#part5_4_12_4_1").val(data.allJsonArray[3].standardvalue);
-                $("#part5_4_12_4_2").val(data.allJsonArray[3].displayvalue);
-                $("#part5_4_12_5_1").val(data.allJsonArray[4].standardvalue);
-                $("#part5_4_12_5_2").val(data.allJsonArray[4].displayvalue);
-                $("#part5_4_12_6_1").val(data.allJsonArray[5].standardvalue);
-                $("#part5_4_12_6_2").val(data.allJsonArray[5].displayvalue);
-                $("#part5_4_12_7_1").val(data.allJsonArray[6].standardvalue);
-                $("#part5_4_12_7_2").val(data.allJsonArray[6].displayvalue);
-                $("#part5_4_12_8_1").val(data.allJsonArray[7].standardvalue);
-                $("#part5_4_12_8_2").val(data.allJsonArray[7].displayvalue);
-                $("#part5_4_12_9_1").val(data.allJsonArray[8].standardvalue);
-                $("#part5_4_12_9_2").val(data.allJsonArray[8].displayvalue);
-                $("#part5_4_12_10_1").val(data.allJsonArray[9].standardvalue);
-                $("#part5_4_12_10_2").val(data.allJsonArray[9].displayvalue);
-
+                    $("#lc2_value").val(data.allJsonArray[0].lczhi);
+                    $("#part5_4_12_1_1").val(data.allJsonArray[0].standardvalue);
+                    $("#part5_4_12_1_2").val(data.allJsonArray[0].displayvalue);
+                    $("#part5_4_12_2_1").val(data.allJsonArray[1].standardvalue);
+                    $("#part5_4_12_2_2").val(data.allJsonArray[1].displayvalue);
+                    $("#part5_4_12_3_1").val(data.allJsonArray[2].standardvalue);
+                    $("#part5_4_12_3_2").val(data.allJsonArray[2].displayvalue);
+                    $("#part5_4_12_4_1").val(data.allJsonArray[3].standardvalue);
+                    $("#part5_4_12_4_2").val(data.allJsonArray[3].displayvalue);
+                    $("#part5_4_12_5_1").val(data.allJsonArray[4].standardvalue);
+                    $("#part5_4_12_5_2").val(data.allJsonArray[4].displayvalue);
+                    $("#part5_4_12_6_1").val(data.allJsonArray[5].standardvalue);
+                    $("#part5_4_12_6_2").val(data.allJsonArray[5].displayvalue);
+                    $("#part5_4_12_7_1").val(data.allJsonArray[6].standardvalue);
+                    $("#part5_4_12_7_2").val(data.allJsonArray[6].displayvalue);
+                    $("#part5_4_12_8_1").val(data.allJsonArray[7].standardvalue);
+                    $("#part5_4_12_8_2").val(data.allJsonArray[7].displayvalue);
+                    $("#part5_4_12_9_1").val(data.allJsonArray[8].standardvalue);
+                    $("#part5_4_12_9_2").val(data.allJsonArray[8].displayvalue);
+                    $("#part5_4_12_10_1").val(data.allJsonArray[9].standardvalue);
+                    $("#part5_4_12_10_2").val(data.allJsonArray[9].displayvalue);
+                }else{}
             },
             error: function (jqXHR) {
                 alert("发生错误代码：" + jqXHR.status + "，数据未加载成功！");
@@ -244,125 +136,16 @@ $(function() {
             cache: false,
             async: false,
             success: function (data) {
-                var dw=data.allJsonArray[0].dw;
-                if(dw=="μΩ"){
-                }else if(dw=="mΩ"){
-                    $("#radio5_26").attr("checked","checked");
-                    $("#radio5_25").removeAttr("checked");
-                }else if(dw=="Ω"){
-                    $("#radio5_27").attr("checked","checked");
-                    $("#radio5_25").removeAttr("checked");
-                }
-                var length=data.allJsonArray.length;;
-                if(length==1){
-                    $("#lc3_value").val(data.allJsonArray[0].lczhi);
-                    $("#part5_4_13_1_1").val(data.allJsonArray[0].standardvalue);
-                    $("#part5_4_13_1_2").val(data.allJsonArray[0].displayvalue);
-                }else if(length==2){
-                    $("#lc3_value").val(data.allJsonArray[0].lczhi);
-                    $("#part5_4_13_1_1").val(data.allJsonArray[0].standardvalue);
-                    $("#part5_4_13_1_2").val(data.allJsonArray[0].displayvalue);
-                    $("#part5_4_13_2_1").val(data.allJsonArray[1].standardvalue);
-                    $("#part5_4_13_2_2").val(data.allJsonArray[1].displayvalue);
-                }else if(length==3){
-                    $("#lc3_value").val(data.allJsonArray[0].lczhi);
-                    $("#part5_4_13_1_1").val(data.allJsonArray[0].standardvalue);
-                    $("#part5_4_13_1_2").val(data.allJsonArray[0].displayvalue);
-                    $("#part5_4_13_2_1").val(data.allJsonArray[1].standardvalue);
-                    $("#part5_4_13_2_2").val(data.allJsonArray[1].displayvalue);
-                    $("#part5_4_13_3_1").val(data.allJsonArray[2].standardvalue);
-                    $("#part5_4_13_3_2").val(data.allJsonArray[2].displayvalue);
-                }else if(length==4){
-                    $("#lc3_value").val(data.allJsonArray[0].lczhi);
-                    $("#part5_4_13_1_1").val(data.allJsonArray[0].standardvalue);
-                    $("#part5_4_13_1_2").val(data.allJsonArray[0].displayvalue);
-                    $("#part5_4_13_2_1").val(data.allJsonArray[1].standardvalue);
-                    $("#part5_4_13_2_2").val(data.allJsonArray[1].displayvalue);
-                    $("#part5_4_13_3_1").val(data.allJsonArray[2].standardvalue);
-                    $("#part5_4_13_3_2").val(data.allJsonArray[2].displayvalue);
-                    $("#part5_4_13_4_1").val(data.allJsonArray[3].standardvalue);
-                    $("#part5_4_13_4_2").val(data.allJsonArray[3].displayvalue);
-                }else if(length==5){
-                    $("#lc3_value").val(data.allJsonArray[0].lczhi);
-                    $("#part5_4_13_1_1").val(data.allJsonArray[0].standardvalue);
-                    $("#part5_4_13_1_2").val(data.allJsonArray[0].displayvalue);
-                    $("#part5_4_13_2_1").val(data.allJsonArray[1].standardvalue);
-                    $("#part5_4_13_2_2").val(data.allJsonArray[1].displayvalue);
-                    $("#part5_4_13_3_1").val(data.allJsonArray[2].standardvalue);
-                    $("#part5_4_13_3_2").val(data.allJsonArray[2].displayvalue);
-                    $("#part5_4_13_4_1").val(data.allJsonArray[3].standardvalue);
-                    $("#part5_4_13_4_2").val(data.allJsonArray[3].displayvalue);
-                    $("#part5_4_13_5_1").val(data.allJsonArray[4].standardvalue);
-                    $("#part5_4_13_5_2").val(data.allJsonArray[4].displayvalue);
-                }else if(length==6){
-                    $("#lc3_value").val(data.allJsonArray[0].lczhi);
-                    $("#part5_4_13_1_1").val(data.allJsonArray[0].standardvalue);
-                    $("#part5_4_13_1_2").val(data.allJsonArray[0].displayvalue);
-                    $("#part5_4_13_2_1").val(data.allJsonArray[1].standardvalue);
-                    $("#part5_4_13_2_2").val(data.allJsonArray[1].displayvalue);
-                    $("#part5_4_13_3_1").val(data.allJsonArray[2].standardvalue);
-                    $("#part5_4_13_3_2").val(data.allJsonArray[2].displayvalue);
-                    $("#part5_4_13_4_1").val(data.allJsonArray[3].standardvalue);
-                    $("#part5_4_13_4_2").val(data.allJsonArray[3].displayvalue);
-                    $("#part5_4_13_5_1").val(data.allJsonArray[4].standardvalue);
-                    $("#part5_4_13_5_2").val(data.allJsonArray[4].displayvalue);
-                    $("#part5_4_13_6_1").val(data.allJsonArray[5].standardvalue);
-                    $("#part5_4_13_6_2").val(data.allJsonArray[5].displayvalue);
-                }else if(length==7){
-                    $("#lc3_value").val(data.allJsonArray[0].lczhi);
-                    $("#part5_4_13_1_1").val(data.allJsonArray[0].standardvalue);
-                    $("#part5_4_13_1_2").val(data.allJsonArray[0].displayvalue);
-                    $("#part5_4_13_2_1").val(data.allJsonArray[1].standardvalue);
-                    $("#part5_4_13_2_2").val(data.allJsonArray[1].displayvalue);
-                    $("#part5_4_13_3_1").val(data.allJsonArray[2].standardvalue);
-                    $("#part5_4_13_3_2").val(data.allJsonArray[2].displayvalue);
-                    $("#part5_4_13_4_1").val(data.allJsonArray[3].standardvalue);
-                    $("#part5_4_13_4_2").val(data.allJsonArray[3].displayvalue);
-                    $("#part5_4_13_5_1").val(data.allJsonArray[4].standardvalue);
-                    $("#part5_4_13_5_2").val(data.allJsonArray[4].displayvalue);
-                    $("#part5_4_13_6_1").val(data.allJsonArray[5].standardvalue);
-                    $("#part5_4_13_6_2").val(data.allJsonArray[5].displayvalue);
-                    $("#part5_4_13_7_1").val(data.allJsonArray[6].standardvalue);
-                    $("#part5_4_13_7_2").val(data.allJsonArray[6].displayvalue);
-                }else if(length==8){
-                    $("#lc3_value").val(data.allJsonArray[0].lczhi);
-                    $("#part5_4_13_1_1").val(data.allJsonArray[0].standardvalue);
-                    $("#part5_4_13_1_2").val(data.allJsonArray[0].displayvalue);
-                    $("#part5_4_13_2_1").val(data.allJsonArray[1].standardvalue);
-                    $("#part5_4_13_2_2").val(data.allJsonArray[1].displayvalue);
-                    $("#part5_4_13_3_1").val(data.allJsonArray[2].standardvalue);
-                    $("#part5_4_13_3_2").val(data.allJsonArray[2].displayvalue);
-                    $("#part5_4_13_4_1").val(data.allJsonArray[3].standardvalue);
-                    $("#part5_4_13_4_2").val(data.allJsonArray[3].displayvalue);
-                    $("#part5_4_13_5_1").val(data.allJsonArray[4].standardvalue);
-                    $("#part5_4_13_5_2").val(data.allJsonArray[4].displayvalue);
-                    $("#part5_4_13_6_1").val(data.allJsonArray[5].standardvalue);
-                    $("#part5_4_13_6_2").val(data.allJsonArray[5].displayvalue);
-                    $("#part5_4_13_7_1").val(data.allJsonArray[6].standardvalue);
-                    $("#part5_4_13_7_2").val(data.allJsonArray[6].displayvalue);
-                    $("#part5_4_13_8_1").val(data.allJsonArray[7].standardvalue);
-                    $("#part5_4_13_8_2").val(data.allJsonArray[7].displayvalue);
-                }else if(length==9){
-                    $("#lc3_value").val(data.allJsonArray[0].lczhi);
-                    $("#part5_4_13_1_1").val(data.allJsonArray[0].standardvalue);
-                    $("#part5_4_13_1_2").val(data.allJsonArray[0].displayvalue);
-                    $("#part5_4_13_2_1").val(data.allJsonArray[1].standardvalue);
-                    $("#part5_4_13_2_2").val(data.allJsonArray[1].displayvalue);
-                    $("#part5_4_13_3_1").val(data.allJsonArray[2].standardvalue);
-                    $("#part5_4_13_3_2").val(data.allJsonArray[2].displayvalue);
-                    $("#part5_4_13_4_1").val(data.allJsonArray[3].standardvalue);
-                    $("#part5_4_13_4_2").val(data.allJsonArray[3].displayvalue);
-                    $("#part5_4_13_5_1").val(data.allJsonArray[4].standardvalue);
-                    $("#part5_4_13_5_2").val(data.allJsonArray[4].displayvalue);
-                    $("#part5_4_13_6_1").val(data.allJsonArray[5].standardvalue);
-                    $("#part5_4_13_6_2").val(data.allJsonArray[5].displayvalue);
-                    $("#part5_4_13_7_1").val(data.allJsonArray[6].standardvalue);
-                    $("#part5_4_13_7_2").val(data.allJsonArray[6].displayvalue);
-                    $("#part5_4_13_8_1").val(data.allJsonArray[7].standardvalue);
-                    $("#part5_4_13_8_2").val(data.allJsonArray[7].displayvalue);
-                    $("#part5_4_13_9_1").val(data.allJsonArray[8].standardvalue);
-                    $("#part5_4_13_9_2").val(data.allJsonArray[8].displayvalue);
-                }else if(length==10){
+                if(data.allJsonArray.length!=0) {
+                    var dw = data.allJsonArray[0].dw;
+                    if (dw == "μΩ") {
+                    } else if (dw == "mΩ") {
+                        $("#radio5_26").attr("checked", "checked");
+                        $("#radio5_25").removeAttr("checked");
+                    } else if (dw == "Ω") {
+                        $("#radio5_27").attr("checked", "checked");
+                        $("#radio5_25").removeAttr("checked");
+                    }
                     $("#lc3_value").val(data.allJsonArray[0].lczhi);
                     $("#part5_4_13_1_1").val(data.allJsonArray[0].standardvalue);
                     $("#part5_4_13_1_2").val(data.allJsonArray[0].displayvalue);
@@ -384,7 +167,7 @@ $(function() {
                     $("#part5_4_13_9_2").val(data.allJsonArray[8].displayvalue);
                     $("#part5_4_13_10_1").val(data.allJsonArray[9].standardvalue);
                     $("#part5_4_13_10_2").val(data.allJsonArray[9].displayvalue);
-                }
+                }else{}
             },
             error: function (jqXHR) {
                 alert("发生错误代码：" + jqXHR.status + "，数据未加载成功！");
@@ -404,125 +187,16 @@ $(function() {
             cache: false,
             async: false,
             success: function (data) {
-                var dw=data.allJsonArray[0].dw;
-                if(dw=="μΩ"){
-                }else if(dw=="mΩ"){
-                    $("#radio5_29").attr("checked","checked");
-                    $("#radio5_28").removeAttr("checked");
-                }else if(dw=="Ω"){
-                    $("#radio5_30").attr("checked","checked");
-                    $("#radio5_28").removeAttr("checked");
-                }
-                var length=data.allJsonArray.length;;
-                if(length==1){
-                    $("#lc4_value").val(data.allJsonArray[0].lczhi);
-                    $("#part5_4_14_1_1").val(data.allJsonArray[0].standardvalue);
-                    $("#part5_4_14_1_2").val(data.allJsonArray[0].displayvalue);
-                }else if(length==2){
-                    $("#lc4_value").val(data.allJsonArray[0].lczhi);
-                    $("#part5_4_14_1_1").val(data.allJsonArray[0].standardvalue);
-                    $("#part5_4_14_1_2").val(data.allJsonArray[0].displayvalue);
-                    $("#part5_4_14_2_1").val(data.allJsonArray[1].standardvalue);
-                    $("#part5_4_14_2_2").val(data.allJsonArray[1].displayvalue);
-                }else if(length==3){
-                    $("#lc3_value").val(data.allJsonArray[0].lczhi);
-                    $("#part5_4_14_1_1").val(data.allJsonArray[0].standardvalue);
-                    $("#part5_4_14_1_2").val(data.allJsonArray[0].displayvalue);
-                    $("#part5_4_14_2_1").val(data.allJsonArray[1].standardvalue);
-                    $("#part5_4_14_2_2").val(data.allJsonArray[1].displayvalue);
-                    $("#part5_4_14_3_1").val(data.allJsonArray[2].standardvalue);
-                    $("#part5_4_14_3_2").val(data.allJsonArray[2].displayvalue);
-                }else if(length==4){
-                    $("#lc4_value").val(data.allJsonArray[0].lczhi);
-                    $("#part5_4_14_1_1").val(data.allJsonArray[0].standardvalue);
-                    $("#part5_4_14_1_2").val(data.allJsonArray[0].displayvalue);
-                    $("#part5_4_14_2_1").val(data.allJsonArray[1].standardvalue);
-                    $("#part5_4_14_2_2").val(data.allJsonArray[1].displayvalue);
-                    $("#part5_4_14_3_1").val(data.allJsonArray[2].standardvalue);
-                    $("#part5_4_14_3_2").val(data.allJsonArray[2].displayvalue);
-                    $("#part5_4_14_4_1").val(data.allJsonArray[3].standardvalue);
-                    $("#part5_4_14_4_2").val(data.allJsonArray[3].displayvalue);
-                }else if(length==5){
-                    $("#lc4_value").val(data.allJsonArray[0].lczhi);
-                    $("#part5_4_14_1_1").val(data.allJsonArray[0].standardvalue);
-                    $("#part5_4_14_1_2").val(data.allJsonArray[0].displayvalue);
-                    $("#part5_4_14_2_1").val(data.allJsonArray[1].standardvalue);
-                    $("#part5_4_14_2_2").val(data.allJsonArray[1].displayvalue);
-                    $("#part5_4_14_3_1").val(data.allJsonArray[2].standardvalue);
-                    $("#part5_4_14_3_2").val(data.allJsonArray[2].displayvalue);
-                    $("#part5_4_14_4_1").val(data.allJsonArray[3].standardvalue);
-                    $("#part5_4_14_4_2").val(data.allJsonArray[3].displayvalue);
-                    $("#part5_4_14_5_1").val(data.allJsonArray[4].standardvalue);
-                    $("#part5_4_14_5_2").val(data.allJsonArray[4].displayvalue);
-                }else if(length==6){
-                    $("#lc4_value").val(data.allJsonArray[0].lczhi);
-                    $("#part5_4_14_1_1").val(data.allJsonArray[0].standardvalue);
-                    $("#part5_4_14_1_2").val(data.allJsonArray[0].displayvalue);
-                    $("#part5_4_14_2_1").val(data.allJsonArray[1].standardvalue);
-                    $("#part5_4_14_2_2").val(data.allJsonArray[1].displayvalue);
-                    $("#part5_4_14_3_1").val(data.allJsonArray[2].standardvalue);
-                    $("#part5_4_14_3_2").val(data.allJsonArray[2].displayvalue);
-                    $("#part5_4_14_4_1").val(data.allJsonArray[3].standardvalue);
-                    $("#part5_4_14_4_2").val(data.allJsonArray[3].displayvalue);
-                    $("#part5_4_14_5_1").val(data.allJsonArray[4].standardvalue);
-                    $("#part5_4_14_5_2").val(data.allJsonArray[4].displayvalue);
-                    $("#part5_4_14_6_1").val(data.allJsonArray[5].standardvalue);
-                    $("#part5_4_14_6_2").val(data.allJsonArray[5].displayvalue);
-                }else if(length==7){
-                    $("#lc4_value").val(data.allJsonArray[0].lczhi);
-                    $("#part5_4_14_1_1").val(data.allJsonArray[0].standardvalue);
-                    $("#part5_4_14_1_2").val(data.allJsonArray[0].displayvalue);
-                    $("#part5_4_14_2_1").val(data.allJsonArray[1].standardvalue);
-                    $("#part5_4_14_2_2").val(data.allJsonArray[1].displayvalue);
-                    $("#part5_4_14_3_1").val(data.allJsonArray[2].standardvalue);
-                    $("#part5_4_14_3_2").val(data.allJsonArray[2].displayvalue);
-                    $("#part5_4_14_4_1").val(data.allJsonArray[3].standardvalue);
-                    $("#part5_4_14_4_2").val(data.allJsonArray[3].displayvalue);
-                    $("#part5_4_14_5_1").val(data.allJsonArray[4].standardvalue);
-                    $("#part5_4_14_5_2").val(data.allJsonArray[4].displayvalue);
-                    $("#part5_4_14_6_1").val(data.allJsonArray[5].standardvalue);
-                    $("#part5_4_14_6_2").val(data.allJsonArray[5].displayvalue);
-                    $("#part5_4_14_7_1").val(data.allJsonArray[6].standardvalue);
-                    $("#part5_4_14_7_2").val(data.allJsonArray[6].displayvalue);
-                }else if(length==8){
-                    $("#lc4_value").val(data.allJsonArray[0].lczhi);
-                    $("#part5_4_14_1_1").val(data.allJsonArray[0].standardvalue);
-                    $("#part5_4_14_1_2").val(data.allJsonArray[0].displayvalue);
-                    $("#part5_4_14_2_1").val(data.allJsonArray[1].standardvalue);
-                    $("#part5_4_14_2_2").val(data.allJsonArray[1].displayvalue);
-                    $("#part5_4_14_3_1").val(data.allJsonArray[2].standardvalue);
-                    $("#part5_4_14_3_2").val(data.allJsonArray[2].displayvalue);
-                    $("#part5_4_14_4_1").val(data.allJsonArray[3].standardvalue);
-                    $("#part5_4_14_4_2").val(data.allJsonArray[3].displayvalue);
-                    $("#part5_4_14_5_1").val(data.allJsonArray[4].standardvalue);
-                    $("#part5_4_14_5_2").val(data.allJsonArray[4].displayvalue);
-                    $("#part5_4_14_6_1").val(data.allJsonArray[5].standardvalue);
-                    $("#part5_4_14_6_2").val(data.allJsonArray[5].displayvalue);
-                    $("#part5_4_14_7_1").val(data.allJsonArray[6].standardvalue);
-                    $("#part5_4_14_7_2").val(data.allJsonArray[6].displayvalue);
-                    $("#part5_4_14_8_1").val(data.allJsonArray[7].standardvalue);
-                    $("#part5_4_14_8_2").val(data.allJsonArray[7].displayvalue);
-                }else if(length==9){
-                    $("#lc4_value").val(data.allJsonArray[0].lczhi);
-                    $("#part5_4_14_1_1").val(data.allJsonArray[0].standardvalue);
-                    $("#part5_4_14_1_2").val(data.allJsonArray[0].displayvalue);
-                    $("#part5_4_14_2_1").val(data.allJsonArray[1].standardvalue);
-                    $("#part5_4_14_2_2").val(data.allJsonArray[1].displayvalue);
-                    $("#part5_4_14_3_1").val(data.allJsonArray[2].standardvalue);
-                    $("#part5_4_14_3_2").val(data.allJsonArray[2].displayvalue);
-                    $("#part5_4_14_4_1").val(data.allJsonArray[3].standardvalue);
-                    $("#part5_4_14_4_2").val(data.allJsonArray[3].displayvalue);
-                    $("#part5_4_14_5_1").val(data.allJsonArray[4].standardvalue);
-                    $("#part5_4_14_5_2").val(data.allJsonArray[4].displayvalue);
-                    $("#part5_4_14_6_1").val(data.allJsonArray[5].standardvalue);
-                    $("#part5_4_14_6_2").val(data.allJsonArray[5].displayvalue);
-                    $("#part5_4_14_7_1").val(data.allJsonArray[6].standardvalue);
-                    $("#part5_4_14_7_2").val(data.allJsonArray[6].displayvalue);
-                    $("#part5_4_14_8_1").val(data.allJsonArray[7].standardvalue);
-                    $("#part5_4_14_8_2").val(data.allJsonArray[7].displayvalue);
-                    $("#part5_4_14_9_1").val(data.allJsonArray[8].standardvalue);
-                    $("#part5_4_14_9_2").val(data.allJsonArray[8].displayvalue);
-                }else if(length==10){
+                if(data.allJsonArray.length!=0) {
+                    var dw = data.allJsonArray[0].dw;
+                    if (dw == "μΩ") {
+                    } else if (dw == "mΩ") {
+                        $("#radio5_29").attr("checked", "checked");
+                        $("#radio5_28").removeAttr("checked");
+                    } else if (dw == "Ω") {
+                        $("#radio5_30").attr("checked", "checked");
+                        $("#radio5_28").removeAttr("checked");
+                    }
                     $("#lc4_value").val(data.allJsonArray[0].lczhi);
                     $("#part5_4_14_1_1").val(data.allJsonArray[0].standardvalue);
                     $("#part5_4_14_1_2").val(data.allJsonArray[0].displayvalue);
@@ -544,7 +218,8 @@ $(function() {
                     $("#part5_4_14_9_2").val(data.allJsonArray[8].displayvalue);
                     $("#part5_4_14_10_1").val(data.allJsonArray[9].standardvalue);
                     $("#part5_4_14_10_2").val(data.allJsonArray[9].displayvalue);
-                }
+                }else{}
+
             },
             error: function (jqXHR) {
                 alert("发生错误代码：" + jqXHR.status + "，数据未加载成功！");
@@ -564,125 +239,16 @@ $(function() {
             cache: false,
             async: false,
             success: function (data) {
-                var dw=data.allJsonArray[0].dw;
-                if(dw=="μΩ"){
-                }else if(dw=="mΩ"){
-                    $("#radio5_32").attr("checked","checked");
-                    $("#radio5_31").removeAttr("checked");
-                }else if(dw=="Ω"){
-                    $("#radio5_33").attr("checked","checked");
-                    $("#radio5_31").removeAttr("checked");
-                }
-                var length=data.allJsonArray.length;;
-                if(length==1){
-                    $("#lc5_value").val(data.allJsonArray[0].lczhi);
-                    $("#part5_4_15_1_1").val(data.allJsonArray[0].standardvalue);
-                    $("#part5_4_15_1_2").val(data.allJsonArray[0].displayvalue);
-                }else if(length==2){
-                    $("#lc5_value").val(data.allJsonArray[0].lczhi);
-                    $("#part5_4_15_1_1").val(data.allJsonArray[0].standardvalue);
-                    $("#part5_4_15_1_2").val(data.allJsonArray[0].displayvalue);
-                    $("#part5_4_15_2_1").val(data.allJsonArray[1].standardvalue);
-                    $("#part5_4_15_2_2").val(data.allJsonArray[1].displayvalue);
-                }else if(length==3){
-                    $("#lc5_value").val(data.allJsonArray[0].lczhi);
-                    $("#part5_4_15_1_1").val(data.allJsonArray[0].standardvalue);
-                    $("#part5_4_15_1_2").val(data.allJsonArray[0].displayvalue);
-                    $("#part5_4_15_2_1").val(data.allJsonArray[1].standardvalue);
-                    $("#part5_4_15_2_2").val(data.allJsonArray[1].displayvalue);
-                    $("#part5_4_15_3_1").val(data.allJsonArray[2].standardvalue);
-                    $("#part5_4_15_3_2").val(data.allJsonArray[2].displayvalue);
-                }else if(length==4){
-                    $("#lc5_value").val(data.allJsonArray[0].lczhi);
-                    $("#part5_4_15_1_1").val(data.allJsonArray[0].standardvalue);
-                    $("#part5_4_15_1_2").val(data.allJsonArray[0].displayvalue);
-                    $("#part5_4_15_2_1").val(data.allJsonArray[1].standardvalue);
-                    $("#part5_4_15_2_2").val(data.allJsonArray[1].displayvalue);
-                    $("#part5_4_15_3_1").val(data.allJsonArray[2].standardvalue);
-                    $("#part5_4_15_3_2").val(data.allJsonArray[2].displayvalue);
-                    $("#part5_4_15_4_1").val(data.allJsonArray[3].standardvalue);
-                    $("#part5_4_15_4_2").val(data.allJsonArray[3].displayvalue);
-                }else if(length==5){
-                    $("#lc5_value").val(data.allJsonArray[0].lczhi);
-                    $("#part5_4_15_1_1").val(data.allJsonArray[0].standardvalue);
-                    $("#part5_4_15_1_2").val(data.allJsonArray[0].displayvalue);
-                    $("#part5_4_15_2_1").val(data.allJsonArray[1].standardvalue);
-                    $("#part5_4_15_2_2").val(data.allJsonArray[1].displayvalue);
-                    $("#part5_4_15_3_1").val(data.allJsonArray[2].standardvalue);
-                    $("#part5_4_15_3_2").val(data.allJsonArray[2].displayvalue);
-                    $("#part5_4_15_4_1").val(data.allJsonArray[3].standardvalue);
-                    $("#part5_4_15_4_2").val(data.allJsonArray[3].displayvalue);
-                    $("#part5_4_15_5_1").val(data.allJsonArray[4].standardvalue);
-                    $("#part5_4_15_5_2").val(data.allJsonArray[4].displayvalue);
-                }else if(length==6){
-                    $("#lc5_value").val(data.allJsonArray[0].lczhi);
-                    $("#part5_4_15_1_1").val(data.allJsonArray[0].standardvalue);
-                    $("#part5_4_15_1_2").val(data.allJsonArray[0].displayvalue);
-                    $("#part5_4_15_2_1").val(data.allJsonArray[1].standardvalue);
-                    $("#part5_4_15_2_2").val(data.allJsonArray[1].displayvalue);
-                    $("#part5_4_15_3_1").val(data.allJsonArray[2].standardvalue);
-                    $("#part5_4_15_3_2").val(data.allJsonArray[2].displayvalue);
-                    $("#part5_4_15_4_1").val(data.allJsonArray[3].standardvalue);
-                    $("#part5_4_15_4_2").val(data.allJsonArray[3].displayvalue);
-                    $("#part5_4_15_5_1").val(data.allJsonArray[4].standardvalue);
-                    $("#part5_4_15_5_2").val(data.allJsonArray[4].displayvalue);
-                    $("#part5_4_15_6_1").val(data.allJsonArray[5].standardvalue);
-                    $("#part5_4_15_6_2").val(data.allJsonArray[5].displayvalue);
-                }else if(length==7){
-                    $("#lc5_value").val(data.allJsonArray[0].lczhi);
-                    $("#part5_4_15_1_1").val(data.allJsonArray[0].standardvalue);
-                    $("#part5_4_15_1_2").val(data.allJsonArray[0].displayvalue);
-                    $("#part5_4_15_2_1").val(data.allJsonArray[1].standardvalue);
-                    $("#part5_4_15_2_2").val(data.allJsonArray[1].displayvalue);
-                    $("#part5_4_15_3_1").val(data.allJsonArray[2].standardvalue);
-                    $("#part5_4_15_3_2").val(data.allJsonArray[2].displayvalue);
-                    $("#part5_4_15_4_1").val(data.allJsonArray[3].standardvalue);
-                    $("#part5_4_15_4_2").val(data.allJsonArray[3].displayvalue);
-                    $("#part5_4_15_5_1").val(data.allJsonArray[4].standardvalue);
-                    $("#part5_4_15_5_2").val(data.allJsonArray[4].displayvalue);
-                    $("#part5_4_15_6_1").val(data.allJsonArray[5].standardvalue);
-                    $("#part5_4_15_6_2").val(data.allJsonArray[5].displayvalue);
-                    $("#part5_4_15_7_1").val(data.allJsonArray[6].standardvalue);
-                    $("#part5_4_15_7_2").val(data.allJsonArray[6].displayvalue);
-                }else if(length==8){
-                    $("#lc5_value").val(data.allJsonArray[0].lczhi);
-                    $("#part5_4_15_1_1").val(data.allJsonArray[0].standardvalue);
-                    $("#part5_4_15_1_2").val(data.allJsonArray[0].displayvalue);
-                    $("#part5_4_15_2_1").val(data.allJsonArray[1].standardvalue);
-                    $("#part5_4_15_2_2").val(data.allJsonArray[1].displayvalue);
-                    $("#part5_4_15_3_1").val(data.allJsonArray[2].standardvalue);
-                    $("#part5_4_15_3_2").val(data.allJsonArray[2].displayvalue);
-                    $("#part5_4_15_4_1").val(data.allJsonArray[3].standardvalue);
-                    $("#part5_4_15_4_2").val(data.allJsonArray[3].displayvalue);
-                    $("#part5_4_15_5_1").val(data.allJsonArray[4].standardvalue);
-                    $("#part5_4_15_5_2").val(data.allJsonArray[4].displayvalue);
-                    $("#part5_4_15_6_1").val(data.allJsonArray[5].standardvalue);
-                    $("#part5_4_15_6_2").val(data.allJsonArray[5].displayvalue);
-                    $("#part5_4_15_7_1").val(data.allJsonArray[6].standardvalue);
-                    $("#part5_4_15_7_2").val(data.allJsonArray[6].displayvalue);
-                    $("#part5_4_15_8_1").val(data.allJsonArray[7].standardvalue);
-                    $("#part5_4_15_8_2").val(data.allJsonArray[7].displayvalue);
-                }else if(length==9){
-                    $("#lc5_value").val(data.allJsonArray[0].lczhi);
-                    $("#part5_4_15_1_1").val(data.allJsonArray[0].standardvalue);
-                    $("#part5_4_15_1_2").val(data.allJsonArray[0].displayvalue);
-                    $("#part5_4_15_2_1").val(data.allJsonArray[1].standardvalue);
-                    $("#part5_4_15_2_2").val(data.allJsonArray[1].displayvalue);
-                    $("#part5_4_15_3_1").val(data.allJsonArray[2].standardvalue);
-                    $("#part5_4_15_3_2").val(data.allJsonArray[2].displayvalue);
-                    $("#part5_4_15_4_1").val(data.allJsonArray[3].standardvalue);
-                    $("#part5_4_15_4_2").val(data.allJsonArray[3].displayvalue);
-                    $("#part5_4_15_5_1").val(data.allJsonArray[4].standardvalue);
-                    $("#part5_4_15_5_2").val(data.allJsonArray[4].displayvalue);
-                    $("#part5_4_15_6_1").val(data.allJsonArray[5].standardvalue);
-                    $("#part5_4_15_6_2").val(data.allJsonArray[5].displayvalue);
-                    $("#part5_4_15_7_1").val(data.allJsonArray[6].standardvalue);
-                    $("#part5_4_15_7_2").val(data.allJsonArray[6].displayvalue);
-                    $("#part5_4_15_8_1").val(data.allJsonArray[7].standardvalue);
-                    $("#part5_4_15_8_2").val(data.allJsonArray[7].displayvalue);
-                    $("#part5_4_15_9_1").val(data.allJsonArray[8].standardvalue);
-                    $("#part5_4_15_9_2").val(data.allJsonArray[8].displayvalue);
-                }else if(length==10){
+                if(data.allJsonArray.length!=0) {
+                    var dw = data.allJsonArray[0].dw;
+                    if (dw == "μΩ") {
+                    } else if (dw == "mΩ") {
+                        $("#radio5_32").attr("checked", "checked");
+                        $("#radio5_31").removeAttr("checked");
+                    } else if (dw == "Ω") {
+                        $("#radio5_33").attr("checked", "checked");
+                        $("#radio5_31").removeAttr("checked");
+                    }
                     $("#lc5_value").val(data.allJsonArray[0].lczhi);
                     $("#part5_4_15_1_1").val(data.allJsonArray[0].standardvalue);
                     $("#part5_4_15_1_2").val(data.allJsonArray[0].displayvalue);
@@ -704,7 +270,7 @@ $(function() {
                     $("#part5_4_15_9_2").val(data.allJsonArray[8].displayvalue);
                     $("#part5_4_15_10_1").val(data.allJsonArray[9].standardvalue);
                     $("#part5_4_15_10_2").val(data.allJsonArray[9].displayvalue);
-                }
+                }else{}
             },
             error: function (jqXHR) {
                 alert("发生错误代码：" + jqXHR.status + "，数据未加载成功！");
@@ -720,15 +286,26 @@ $(function() {
             },
             dataType: "json",
             cache: false,
-            //async: false,
+            async: false,
             success: function (data) {
-                $("#part5_4_16_1_1").val(data.allJsonArray[0].readvalue);
-                $("#part5_4_16_2_1").val(data.allJsonArray[1].readvalue);
-                $("#part5_4_16_3_1").val(data.allJsonArray[2].readvalue);
-                $("#part5_4_16_4_1").val(data.allJsonArray[3].readvalue);
-                $("#part5_4_16_5_1").val(data.allJsonArray[4].readvalue);
-                $("#part5_4_16_6_1").val(data.allJsonArray[5].readvalue);
-                $("#part5_4_16_7_1").val(data.allJsonArray[0].wdxwc);
+                if(data.allJsonArray.length!=0) {
+                    var dw = data.allJsonArray[0].dw;
+                    if (dw == "μΩ") {
+                    } else if (dw == "mΩ") {
+                        $("#radio5_35").attr("checked", "checked");
+                        $("#radio5_34").removeAttr("checked");
+                    } else if (dw == "Ω") {
+                        $("#radio5_36").attr("checked", "checked");
+                        $("#radio5_34").removeAttr("checked");
+                    }
+                    $("#part5_4_16_1_1").val(data.allJsonArray[0].readvalue);
+                    $("#part5_4_16_2_1").val(data.allJsonArray[1].readvalue);
+                    $("#part5_4_16_3_1").val(data.allJsonArray[2].readvalue);
+                    $("#part5_4_16_4_1").val(data.allJsonArray[3].readvalue);
+                    $("#part5_4_16_5_1").val(data.allJsonArray[4].readvalue);
+                    $("#part5_4_16_6_1").val(data.allJsonArray[5].readvalue);
+                    $("#part5_4_16_7_1").val(data.allJsonArray[0].wdxwc);
+                }else{}
             },
             error: function (jqXHR) {
                 alert("发生错误代码：" + jqXHR.status + "，数据未加载成功！");
@@ -744,9 +321,9 @@ $(function() {
             },
             dataType: "json",
             cache: false,
-            //async: false,
+            async: false,
             success: function (data) {
-                var length=data.allJsonArray.length;;
+                var length=data.allJsonArray.length;
                 if(length==1){
                     $("#part5_4_17_1_1").val(data.allJsonArray[0].shizhi);
                     $("#part5_4_17_1_2").val(data.allJsonArray[0].shijizhi);
@@ -782,7 +359,7 @@ $(function() {
                     $("#part5_4_17_4_2").val(data.allJsonArray[3].shijizhi);
                     $("#part5_4_17_5_1").val(data.allJsonArray[4].shizhi);
                     $("#part5_4_17_5_2").val(data.allJsonArray[4].shijizhi);
-                }
+                }else{}
             },
             error: function (jqXHR) {
                 alert("发生错误代码：" + jqXHR.status + "，数据未加载成功！");
@@ -794,7 +371,9 @@ $(function() {
         panduanlc3();
         panduanlc4();
         panduanlc5();
+        panduanlc6();
     });
+
 
     //根据标准值算出读数值,参数为字符串
     function readValue(arg) {
@@ -900,6 +479,8 @@ $(function() {
     var danweijinzhi3 = 1;//μΩ默认为1，μ欧,用于后台传过来的值与之相乘 量程3
     var danweijinzhi4 = 1;//μΩ默认为1，μ欧,用于后台传过来的值与之相乘 量程4
     var danweijinzhi5 = 1;//μΩ默认为1，μ欧,用于后台传过来的值与之相乘 量程5
+    var danweijinzhi6_9 = 1;//默认为1，μΩ,用于后台传过来的值与之相乘
+
     var danweijinzhi1_2 = 1;//mΩ默认为1，m欧,用于后台传过来的值与之相乘 量程1
     var danweijinzhi2_2 = 1;//mΩ默认为1，m欧,用于后台传过来的值与之相乘 量程2
     var danweijinzhi3_2 = 1;//mΩ默认为1，m欧,用于后台传过来的值与之相乘 量程3
@@ -921,6 +502,7 @@ $(function() {
     var danwei6_6 = 1;//默认为1，μΩ
     var danwei6_7 = 1;//默认为1，μΩ
     var danwei6_8 = 1;//默认为1，μΩ
+    var danwei6_9 = 1;//默认为1，μΩ
     var guoduzhi = "";
     var null_value = "/";
 
@@ -1288,8 +870,8 @@ $(function() {
         danwei6_4 = 1;
         danweijinzhi6_4 = 1;
         danweijinzhi1 = 1;
-        danweijinzhi1_2 = 1000;
-        danweijinzhi1_3 = 1000000;
+        //danweijinzhi1_2 = 1000;
+        //danweijinzhi1_3 = 1000000;
     });
 
     //单位为mΩ时,2
@@ -1304,8 +886,8 @@ $(function() {
         danwei6_4 = 2;
         danweijinzhi6_4 = 1000;
         danweijinzhi1 = 0.001;
-        danweijinzhi1_2 = 1;
-        danweijinzhi1_3 = 1000;
+        //danweijinzhi1_2 = 1;
+        //danweijinzhi1_3 = 1000;
     });
 
     //单位为Ω时,3
@@ -1320,8 +902,8 @@ $(function() {
         danwei6_4 = 3;
         danweijinzhi6_4 = 1000000;
         danweijinzhi1 = 0.000001;
-        danweijinzhi1_2 = 0.001;
-        danweijinzhi1_3 = 1;
+        // danweijinzhi1_2 = 0.001;
+        // danweijinzhi1_3 = 1;
     });
 
     //进制转换公共程序
@@ -1764,8 +1346,8 @@ $(function() {
         danwei6_5 = 1;
         //danweijinzhi6_5 = 1;
         danweijinzhi2=1;
-        danweijinzhi2_2 = 1000;
-        danweijinzhi3_3 = 1000000;
+        // danweijinzhi2_2 = 1000;
+        // danweijinzhi3_3 = 1000000;
     });
 
     //单位为mΩ时,2
@@ -1780,8 +1362,8 @@ $(function() {
         danwei6_5 = 2;
         //danweijinzhi6_5 = 1000;
         danweijinzhi2=0.001;
-        danweijinzhi2_2 = 1;
-        danweijinzhi3_3 = 1000;
+        // danweijinzhi2_2 = 1;
+        // danweijinzhi3_3 = 1000;
     });
 
     //单位为Ω时,3
@@ -1796,8 +1378,8 @@ $(function() {
         danwei6_5 = 3;
         //danweijinzhi6_5 = 1000000;
         danweijinzhi2=0.000001;
-        danweijinzhi2_2 = 0.001;
-        danweijinzhi3_3 = 1;
+        // danweijinzhi2_2 = 0.001;
+        // danweijinzhi3_3 = 1;
     });
     //进制转换公共程序
     function jinzhizhuanhuan6_5(jinzhi) {
@@ -3440,7 +3022,16 @@ $(function() {
             dataType: "json",
             cache: false,
             success: function (data) {
-                $("#part5_4_16_1_1").val(( parseFloat(data.average2) * danweijinzhi).toString());
+                if(parseFloat(data.average1)==0.01 || parseFloat(data.average1)==0.1){
+                    //danweijinzhi=1;
+                }else if(parseFloat(data.average1)==1 || parseFloat(data.average1)==10
+                    ||parseFloat(data.average1)==20 || parseFloat(data.average1)==100
+                    ||parseFloat(data.average1)==1000){
+                    //danweijinzhi=1000;
+                    $("#radio5_35").attr("checked","checked");
+                    $("#radio5_34").removeAttr("checked");
+                }
+                $("#part5_4_16_1_1").val(( parseFloat(data.average2) * danweijinzhi6_9).toString());
                 $("#submit5_4_16_1_1").val("获取数据");
             },
             error: function (jqXHR) {
@@ -3464,7 +3055,7 @@ $(function() {
             dataType: "json",
             cache: false,
             success: function (data) {
-                $("#part5_4_16_2_1").val(( parseFloat(data.average2) * danweijinzhi).toString());
+                $("#part5_4_16_2_1").val(( parseFloat(data.average2) * danweijinzhi6_9).toString());
                 $("#submit5_4_16_2_1").val("获取数据");
             },
             error: function (jqXHR) {
@@ -3488,7 +3079,7 @@ $(function() {
             dataType: "json",
             cache: false,
             success: function (data) {
-                $("#part5_4_16_3_1").val(( parseFloat(data.average2) * danweijinzhi).toString());
+                $("#part5_4_16_3_1").val(( parseFloat(data.average2) * danweijinzhi6_9).toString());
                 $("#submit5_4_16_3_1").val("获取数据");
             },
             error: function (jqXHR) {
@@ -3512,7 +3103,7 @@ $(function() {
             dataType: "json",
             cache: false,
             success: function (data) {
-                $("#part5_4_16_4_1").val(( parseFloat(data.average2) * danweijinzhi).toString());
+                $("#part5_4_16_4_1").val(( parseFloat(data.average2) * danweijinzhi6_9).toString());
                 $("#submit5_4_16_4_1").val("获取数据");
             },
             error: function (jqXHR) {
@@ -3536,7 +3127,7 @@ $(function() {
             dataType: "json",
             cache: false,
             success: function (data) {
-                $("#part5_4_16_5_1").val(( parseFloat(data.average2) * danweijinzhi).toString());
+                $("#part5_4_16_5_1").val(( parseFloat(data.average2) * danweijinzhi6_9).toString());
                 $("#submit5_4_16_5_1").val("获取数据");
             },
             error: function (jqXHR) {
@@ -3560,7 +3151,7 @@ $(function() {
             dataType: "json",
             cache: false,
             success: function (data) {
-                $("#part5_4_16_6_1").val(( parseFloat(data.average2) * danweijinzhi).toString());
+                $("#part5_4_16_6_1").val(( parseFloat(data.average2) * danweijinzhi6_9).toString());
                 $("#submit5_4_16_6_1").val("获取数据");
             },
             error: function (jqXHR) {
@@ -3630,8 +3221,8 @@ $(function() {
     }
 
     //处理单位之间的转换问题 第二行数据
-    var danwei6_9 = 1;//默认为1，μΩ
-    var danweijinzhi6_9 = 1;//默认为1，μΩ,用于后台传过来的值与之相乘
+
+
     // 单位为μΩ时,1
     $("#radio5_34").click(function () {
         if (danwei6_9 == 2) {
@@ -3655,7 +3246,7 @@ $(function() {
             jinzhizhuanhuan6_9(jinzhi)
         }
         danwei6_9 = 2;
-        danweijinzhi6_9 = 1000;
+        danweijinzhi6_9 = 0.001;
     });
 
     //单位为Ω时,3
@@ -3668,7 +3259,7 @@ $(function() {
             jinzhizhuanhuan6_9(jinzhi)
         }
         danwei6_9 = 3;
-        danweijinzhi6_9 = 1000000;
+        danweijinzhi6_9 = 0.000001;
     });
     //进制转换公共程序
     function jinzhizhuanhuan6_9(jinzhi) {
@@ -3689,6 +3280,16 @@ $(function() {
         }
         if ($("#part5_4_16_6_1").val() != "") {
             $("#part5_4_16_6_1").val((parseFloat($("#part5_4_16_6_1").val()) * jinzhi).toFixed(2).toString());
+        }
+    }
+
+    function panduanlc6() {
+        if (document.getElementById("radio5_34").checked) {
+
+        } else if(document.getElementById("radio5_35").checked){
+            danwei6_9=2;
+        }else{
+            danwei6_9=3;
         }
     }
 

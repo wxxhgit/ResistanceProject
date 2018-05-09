@@ -1200,7 +1200,8 @@ public class WordCreation {
         ms.replaceAllText("P1_66", joID.getString("eddlwcsj"));// 额定电流维持时间
         ms.replaceAllText("P1_67", joID.getString("eddl"));// 额定电流
         ms.replaceAllText("P1_68", joID.getString("xdkzbqdd"));// 相对扩展不确定度
-
+        ms.replaceAllText("P1_69", jsonArrayWD.getJSONObject(0)
+                .getString("dw"));// 稳定性误差单位
 
         // 量程1-5
         try {
@@ -1621,7 +1622,8 @@ public class WordCreation {
         ms.replaceAllText("P1_66", joID.getString("eddlwcsj"));// 额定电流维持时间
         ms.replaceAllText("P1_67", joID.getString("eddl"));// 额定电流
         ms.replaceAllText("P1_68", joID.getString("xdkzbqdd"));// 相对扩展不确定度
-
+        ms.replaceAllText("P1_69", jsonArrayWD.getJSONObject(0)
+                .getString("dw"));// 稳定性误差单位
 
         // 量程1-5
         try {

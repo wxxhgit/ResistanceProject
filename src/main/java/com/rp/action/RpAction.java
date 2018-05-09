@@ -744,8 +744,8 @@ public class RpAction extends BaseAction {
             CaiYangWDXWC caiYangWDXWC= new CaiYangWDXWC();
             caiYangWDXWC.setReadvalue(this.getRequest().getParameter(
                     "readvalue" + i));
-            if (caiYangWDXWC.getReadvalue() == "")
-                continue;
+//            if (caiYangWDXWC.getReadvalue() == "")
+//                continue;
             caiYangWDXWC.setZsbh(zsbh);
             caiYangWDXWC.setDw(dw);
             caiYangWDXWC.setId(i);
@@ -782,8 +782,8 @@ public class RpAction extends BaseAction {
                     "shizhi" + i));
             caiYangDLGC.setShijizhi(this.getRequest().getParameter(
                     "shijizhi" + i));
-            if (caiYangDLGC.getShizhi() == ""||caiYangDLGC.getShijizhi() == "")
-                continue;
+//            if (caiYangDLGC.getShizhi() == ""||caiYangDLGC.getShijizhi() == "")
+//                continue;
             caiYangDLGC.setZsbh(zsbh);
             caiYangDLGC.setDw(dw);
             caiYangDLGC.setId(i);
