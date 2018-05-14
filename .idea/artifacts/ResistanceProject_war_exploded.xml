@@ -4,7 +4,7 @@
     <root id="root">
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
-          <element id="module-output" name="ResistanceProject" />
+          <element id="module-output" name="ResistanceProject_jy" />
         </element>
         <element id="directory" name="lib">
           <element id="library" level="project" name="Maven: javax.servlet:javax.servlet-api:3.0.1" />
@@ -30,7 +30,7 @@
       <element id="directory" name="META-INF">
         <element id="file-copy" path="$PROJECT_DIR$/target/ResistanceProject/META-INF/MANIFEST.MF" />
       </element>
-      <element id="javaee-facet-resources" facet="ResistanceProject/web/Web" />
+      <element id="javaee-facet-resources" facet="ResistanceProject_jy/web/Web" />
     </root>
   </artifact>
 </component>

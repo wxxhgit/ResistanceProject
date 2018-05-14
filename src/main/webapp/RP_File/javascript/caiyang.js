@@ -6,12 +6,12 @@ $(function () {
     function tabs(tabTit, on, tabCon) {
         $(tabCon).each(function () {
             $(this).children().hide();
-            $(this).children().eq(2).show();//0代表第一个 TODO
+            $(this).children().eq(4).show();//0代表第一个 TODO
         });
         $(tabTit).children().click(function () {
 
             var index = $(tabTit).children().index(this);
-            //$(this).addClass(on).siblings().removeClass(on);
+            $(this).addClass(on).siblings().removeClass(on);
             // if ($("#leixing5_1").text() == "接地电阻表" && (index == 0||index == 4)) {
             //     alert("菜单选择有误，当前为接地电阻表，应选择CC接地电阻菜单!");
             // } else if ($("#leixing5_1").text() == "绝缘电阻表" && (index == 2||index == 4)) {
@@ -19,10 +19,14 @@ $(function () {
             // } else if ($("#leixing5_1").text() == "回路电阻表" && (index == 0||index == 2)) {
             //     alert("菜单选择有误，当前为回路电阻表，应选择EE回路电阻菜单!");
             //}
-            //else {
+            if ($("#leixing5_1").text() == "接地电阻表" && index == 0) {
+                alert("菜单选择有误，当前为接地电阻表，应选择CC接地电阻菜单!");
+            } else if ($("#leixing5_1").text() == "绝缘电阻表" && index == 2) {
+                alert("菜单选择有误，当前为绝缘电阻表，应选择AA绝缘电阻菜单!");
+            } else {
             $(this).addClass(on).siblings().removeClass(on);
             $(tabCon).children().eq(index).show().siblings().hide();
-            //}
+            }
 
         });
     }
