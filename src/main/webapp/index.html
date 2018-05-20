@@ -2455,6 +2455,83 @@
                             <br>
                             <br>
                             <br>
+                            <!--感性负载测量能力检定--><!--EE回路电阻菜单-->
+                            <table width="60%" class="sjyqxxxg"
+                                   style="float:left;margin-bottom: 60px">
+                                <col width="9%">
+                                <col width="46%">
+                                <col width="31%">
+                                <col width="14%">
+                                <tr>
+                                    <td colspan="4">
+                                        <form>
+                                            &nbsp;&nbsp;&nbsp;Part8 感性负载测量能力检定&nbsp;&nbsp;
+                                            <!--<input id="lc8_value" name="lc8_value"-->
+                                                   <!--style="width: 120px;height: 20px" type="text" />&nbsp;&nbsp;-->
+                                            <label><input id="radio5_40" name="check5_14"
+                                                          style="width: 15px;height: 15px"
+                                                          type="radio" value="μΩ"  checked="checked"/>μ&Omega;</label>
+                                            <label><input id="radio5_41" name="check5_14"
+                                                          style="width: 15px;height: 15px"
+                                                          type="radio" value="mΩ" />m&Omega;</label>
+                                            <label><input id="radio5_42" name="check5_14"
+                                                          style="width: 15px;height: 15px"
+                                                          type="radio" value="Ω"/>&Omega;</label>
+                                        </form>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>序号</td>
+                                    <td>电阻实际值</td>
+                                    <td>指示值</td>
+                                    <td>检定工作电流</td>
+                                </tr>
+                                <tbody id="table5_4_14">
+                                <tr>
+                                    <td>1</td>
+                                    <td>
+                                        <input name="lc8" id="part5_4_18_1_1" type="text" class="part5_4_1"/>
+                                        <input id="submit5_4_18_1_1" type="submit" class="part5_4_2" value="获取数据">
+                                    </td>
+                                    <td><input name="lc8" id="part5_4_18_1_2" type="text"/></td>
+                                    <td>≤10A</td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>
+                                        <input name="lc8" id="part5_4_18_2_1" type="text" class="part5_4_1"/>
+                                        <input id="submit5_4_18_2_1" type="submit" class="part5_4_2" value="获取数据">
+                                    </td>
+                                    <td><input name="lc8" id="part5_4_18_2_2" type="text"/></td>
+                                    <td>≤5A</td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>
+                                        <input name="lc8" id="part5_4_18_3_1" type="text" class="part5_4_1"/>
+                                        <input id="submit5_4_18_3_1" type="submit" class="part5_4_2" value="获取数据">
+                                    </td>
+                                    <td><input name="lc8" id="part5_4_18_3_2" type="text"/></td>
+                                    <td>≤1A</td>
+                                </tr>
+                                <tr>
+                                </tbody>
+                                <tr>
+                                    <td colspan="4">
+                                        <p style="color: red;font-weight: 900;">提示：本表填完后，请及时提交以保存该Part8表数据！</p>
+                                        <div style="text-align: center">
+                                            <input id="submit5_32" type="submit"
+                                                   style="width: 150px;height: 30px;font-size: 14px"
+                                                   value="提交Part8表数据">
+                                            <input id="submit5_33" type="submit"
+                                                   style="width: 150px;height: 30px;font-size: 14px"
+                                                   value="清除">
+                                        </div>
+                                        <p><span id="part5_4_12_8" style="color: blue"></span></p>
+                                    </td>
+                                </tr>
+                            </table>
+
                         </div>
                         <!--FF电路电阻菜单-->
                         <div>
@@ -2675,7 +2752,13 @@
                                        value="生成回路电阻表原始记录证书">&nbsp;
                                 <input id="submit6_0_6" type="submit" style="height: 25px;font-size: 14px;"
                                        disabled="disabled"
-                                       value="生成回路电阻表检定证书记录">
+                                       value="生成回路电阻表检定证书记录">&nbsp;
+                                <input id="submit6_0_7" type="submit" style="height: 25px;font-size: 14px;"
+                                       disabled="disabled"
+                                       value="生成直租仪原始记录证书">&nbsp;
+                                <input id="submit6_0_8" type="submit" style="height: 25px;font-size: 14px;"
+                                       disabled="disabled"
+                                       value="生成直租仪检定证书记录">
                             </div>
                         </td>
                     </tr>
@@ -2915,6 +2998,95 @@
                     </div>
                     <hr>
                 </div>
+                <!--直租仪原始记录证书7-->
+                <div id="part6_9" class="part6_2" style="display: none">
+                    <h3>直租仪原始记录证书--检定结果</h3>
+                    <table>
+                        <tr>
+                            <td>外观：</td>
+                            <td><input name="" id="wg7" type="text"/></td>
+                            <td>分辨力：</td>
+                            <td><input name="" id="fbl3" type="text"/></td>
+                            <td>线性误差：</td>
+                            <td><input name="" id="xxwc3" type="text"/></td>
+                        </tr>
+                        <tr>
+                            <td>绝缘电阻(M&Omega;)：</td>
+                            <td><input name="" id="jydz7" type="text"/></td>
+                            <td>绝缘强度：</td>
+                            <td><input name="" id="jyqd7" type="text"/></td>
+                            <td>泄漏电流(A)：</td>
+                            <td><input name="" id="xldl3" type="text"/></td>
+                        </tr>
+                        <tr>
+                            <td>稳定性误差(%)：</td>
+                            <td><input name="" id="wdxwc3" type="text"/></td>
+                            <td>电流过冲(%)：</td>
+                            <td><input name="" id="dlgc3" type="text"/></td>
+                            <td>过冲脉宽(s)：</td>
+                            <td><input name="" id="gcmk3" type="text"/></td>
+                        </tr>
+                        <tr>
+                            <td>消弧功能：</td>
+                            <td><input name="" id="xhgn" type="text"/></td>
+                            <td>相对扩展不确定度(k=2)：</td>
+                            <td><input name="" id="xdkzbqdd3" type="text"/></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </table>
+                    <hr style="border:1px dashed #DCDCDC">
+                    <div style="text-align: center">
+                        <input id="submit6_2_7" type="submit" style="width: 120px;height: 30px;font-size: 14px"
+                               value="提交生成证书">
+                    </div>
+                    <hr>
+                </div>
+                <!--直租仪检定证书记录8-->
+                <div id="part6_10" class="part6_2" style="display: none">
+                    <h3>直租仪检定证书记录--检定结果</h3>
+                    <table>
+                        <tr>
+                            <td>外观：</td>
+                            <td><input name="" id="wg8" type="text"/></td>
+                            <td>分辨力：</td>
+                            <td><input name="" id="fbl4" type="text"/></td>
+                            <td>线性误差：</td>
+                            <td><input name="" id="xxwc4" type="text"/></td>
+                        </tr>
+                        <tr>
+                            <td>绝缘电阻(M&Omega;)：</td>
+                            <td><input name="" id="jydz8" type="text"/></td>
+                            <td>绝缘强度：</td>
+                            <td><input name="" id="jyqd8" type="text"/></td>
+                            <td>泄漏电流(A)：</td>
+                            <td><input name="" id="xldl4" type="text"/></td>
+                        </tr>
+                        <tr>
+                            <td>稳定性误差(%)：</td>
+                            <td><input name="" id="wdxwc4" type="text"/></td>
+                            <td>电流过冲(%)：</td>
+                            <td><input name="" id="dlgc4" type="text"/></td>
+                            <td>过冲脉宽(s)：</td>
+                            <td><input name="" id="gcmk4" type="text"/></td>
+                        </tr>
+                        <tr>
+                            <td>消弧功能：</td>
+                            <td><input name="" id="xhgn1" type="text"/></td>
+                            <td>相对扩展不确定度(k=2)：</td>
+                            <td><input name="" id="xdkzbqdd4" type="text"/></td>
+                            <td>检定结论：</td>
+                            <td><input name="" id="jdjl8" type="text"/></td>
+                        </tr>
+                    </table>
+                    <hr style="border:1px dashed #DCDCDC">
+                    <div style="text-align: center">
+                        <input id="submit6_2_8" type="submit" style="width: 120px;height: 30px;font-size: 14px"
+                               value="提交生成证书">
+                    </div>
+                    <hr>
+                </div>
+
                 <!--进度条-->
                 <div id="part6_6" style="width: 100%;display: none;">
                     <div style="width: 1000px; height: 40px; border: solid 1px #000; padding: 1px;float: left">

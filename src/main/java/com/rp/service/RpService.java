@@ -128,6 +128,7 @@ public class RpService {
             this.rpDao.deleteWDXWCData(string);//删除稳定性误差
             this.rpDao.deleteDLGCData(string);//删除电流过冲
             this.rpDao.deleteLCDataByzsbh(string);//删除Part1-5数据
+			this.rpDao.deleteGxfzcl(string);//删除感性负载测量能力检定数据
 		} catch (Exception e) {
 			System.out.println("4_2  删除一条送检仪器信息时出错！");
 			e.printStackTrace();
@@ -255,7 +256,7 @@ public class RpService {
 		return true;
 	}
 
-	////////////////////////////////??
+	////////////////////////////////
 	/**
 	 * 方法序号：8_1_2 提交回路电阻表原始记录中的表4的值
 	 */
@@ -400,6 +401,48 @@ public class RpService {
 		return null;
 	}
 
+    /**
+     * 方法序号： 8_10 提交 感性负载测量
+     */
+    public boolean addGxfzcl(ArrayList<CaiYangGxfzcl> caiYangGxfzclList) {
+        try {
+            this.rpDao.deleteGxfzcl(caiYangGxfzclList.get(0).getZsbh()); // 先删除该证书编号已有数据
+            for (int i = 0; i < caiYangGxfzclList.size(); i++) { // 逐条保存信息
+                this.rpDao.addGxfzcl(caiYangGxfzclList.get(i));
+            }
+        } catch (Exception e) {
+            System.out.println("8_10 提交感性负载测量时出错！");
+            e.printStackTrace();
+        }
+        return true;
+    }
+
+    /**
+     * 方法序号： 8_10_1 删除 感性负载测量
+     */
+    public boolean deleteGxfzcl(String string ){
+        try {
+            this.rpDao.deleteGxfzcl(string);// 删除
+        } catch (Exception e) {
+            System.out.println("8_10_1 删除感性负载测量信息时出错！");
+            e.printStackTrace();
+        }
+        return true;
+    }
+
+    /**
+     * 方法序号： 8_10_2 查询 感性负载测量
+     */
+    public String findGxfzcl(String zsbh) {
+        try {
+            return this.rpDao.findGxfzcl(zsbh);
+        } catch (Exception e) {
+            System.out.println("8_10_2 根据某一证书编号查询感性负载测量时出错！");
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 	/**
 	 * 方法序号：9_1 添加绝缘电阻表剩余部分数据到数据库
 	 */
@@ -440,17 +483,19 @@ public class RpService {
     }
 
 	/**
-	 * 方法序号：9_1_3 添加电阻表剩余部分数据到数据库 2个参数 zsbh;//送检仪器证书编号 flag;//模块选中标志位
+	 * * 方法序号：9_1_3 添加直租仪剩余部分数据到数据库 13个参数 zsbh;//送检仪器证书编号 fbl;//分辨力 xxwc;//线性误差
+     * wg;//外观 jydz;//绝缘电阻 jyqd;//绝缘强度 xldl;//泄露电流 wdxwc;//稳定性误差 dlgc;//电流过冲 gcmk;//过冲脉宽
+     * jdjl;//检定结论 xdkzbqdd;//相对扩展不确定度 xhgn;//消弧功能
 	 */
-//	public boolean addDZBZW(String jy,String jd,String hl) {
-//		try {
-//			this.rpDao.addDZBZW(jy,jd,hl);
-//		} catch (Exception e) {
-//			System.out.println("9_1_3添加电阻表剩余部分数据到数据库时出错！");
-//			e.printStackTrace();
-//		}
-//		return true;
-//	}
+    public boolean addInspectionDecLeftZZY(InspectionDecLeft ins) {
+        try {
+            this.rpDao.addInspectionDecLeftZZY(ins);
+        } catch (Exception e) {
+            System.out.println("9_1_3添加直租仪剩余部分数据到数据库时出错！");
+            e.printStackTrace();
+        }
+        return true;
+    }
 
 	/**
 	 * 方法序号：9_1_4 查询模块选中标志位

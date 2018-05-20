@@ -15,6 +15,8 @@ public class WordCreation {
     private String jyOrigin = "绝缘电阻表原始记录.doc";
     private String hlVertif = "回路电阻表检定证书.doc";
     private String hlOrigin = "回路电阻表原始记录.doc";
+    private String zzyOrigin = "直阻仪原始记录.doc";
+    private String zzyVertif = "直阻仪检定证书.doc";
 
     /**
      * 1.在本地D盘上创建D:\电阻表模板和证书\模板和证书两个文件夹   如果没有就新建此文件夹
@@ -26,32 +28,32 @@ public class WordCreation {
         f.newFolder(modelsPath);// 新建模板路径
         f.newFolder(certificatesPath);// 新建证书路径
 
-        // 复制 接地电阻表检定证书.doc
-        File modelsFile1 = new File(modelsPath + "\\" + jdVertif);
-        if (!modelsFile1.exists()) {
-            f.copyFile(realPath + "\\Documents\\Models\\" + jdVertif, modelsPath + "\\"
-                    + jdVertif);
-        }
-
-        // 复制 接地电阻表原始记录.doc
-        File modelsFile2 = new File(modelsPath + "\\" + jdOrigin);
-        if (!modelsFile2.exists()) {
-            f.copyFile(realPath + "/Documents/Models/" + jdOrigin, modelsPath + "\\"
-                    + jdOrigin);
-        }
-
-        // 复制 绝缘电阻表检定证书.doc
-        File modelsFile3 = new File(modelsPath + "\\" + jyVertif);
-        if (!modelsFile3.exists()) {
-            f.copyFile(realPath + "/Documents/Models/" + jyVertif, modelsPath + "\\"
-                    + jyVertif);
-        }
-        // 复制 绝缘电阻表原始记录.doc
-        File modelsFile4 = new File(modelsPath + "\\" + jyOrigin);
-        if (!modelsFile4.exists()) {
-            f.copyFile(realPath + "/Documents/Models/" + jyOrigin, modelsPath + "\\"
-                    + jyOrigin);
-        }
+//        // 复制 接地电阻表检定证书.doc
+//        File modelsFile1 = new File(modelsPath + "\\" + jdVertif);
+//        if (!modelsFile1.exists()) {
+//            f.copyFile(realPath + "\\Documents\\Models\\" + jdVertif, modelsPath + "\\"
+//                    + jdVertif);
+//        }
+//
+//        // 复制 接地电阻表原始记录.doc
+//        File modelsFile2 = new File(modelsPath + "\\" + jdOrigin);
+//        if (!modelsFile2.exists()) {
+//            f.copyFile(realPath + "/Documents/Models/" + jdOrigin, modelsPath + "\\"
+//                    + jdOrigin);
+//        }
+//
+//        // 复制 绝缘电阻表检定证书.doc
+//        File modelsFile3 = new File(modelsPath + "\\" + jyVertif);
+//        if (!modelsFile3.exists()) {
+//            f.copyFile(realPath + "/Documents/Models/" + jyVertif, modelsPath + "\\"
+//                    + jyVertif);
+//        }
+//        // 复制 绝缘电阻表原始记录.doc
+//        File modelsFile4 = new File(modelsPath + "\\" + jyOrigin);
+//        if (!modelsFile4.exists()) {
+//            f.copyFile(realPath + "/Documents/Models/" + jyOrigin, modelsPath + "\\"
+//                    + jyOrigin);
+//        }
 
         // 复制 回路电阻表检定证书.doc
         File modelsFile5 = new File(modelsPath + "\\" + hlVertif);
@@ -65,6 +67,20 @@ public class WordCreation {
         if (!modelsFile6.exists()) {
             f.copyFile(realPath + "\\Documents\\Models\\" + hlOrigin, modelsPath + "\\"
                     + hlOrigin);
+        }
+
+        // 复制 直租仪检定证书.doc
+        File modelsFile7 = new File(modelsPath + "\\" + zzyVertif);
+        if (!modelsFile7.exists()) {
+            f.copyFile(realPath + "/Documents/Models/" + zzyVertif, modelsPath + "\\"
+                    + zzyVertif);
+        }
+
+        // 复制 直租仪原始记录.doc
+        File modelsFile8 = new File(modelsPath + "\\" + zzyOrigin);
+        if (!modelsFile8.exists()) {
+            f.copyFile(realPath + "/Documents/Models/" + zzyOrigin, modelsPath + "\\"
+                    + zzyOrigin);
         }
     }
 
@@ -1155,31 +1171,31 @@ public class WordCreation {
         if (jsonArrayLD1.length() != 0) {
             ms.replaceAllText("P1_55", jsonArrayLD1.getJSONObject(0)
                     .getString("lc_value"));// 量程1单位
-        }else{
+        } else {
             ms.replaceAllText("P1_55", "/");
         }
         if (jsonArrayLD2.length() != 0) {
             ms.replaceAllText("P1_56", jsonArrayLD2.getJSONObject(0)
                     .getString("lc_value"));// 量程2单位
-        }else{
+        } else {
             ms.replaceAllText("P1_56", "/");
         }
         if (jsonArrayLD3.length() != 0) {
             ms.replaceAllText("P1_57", jsonArrayLD3.getJSONObject(0)
                     .getString("lc_value"));// 量程3单位
-        }else{
+        } else {
             ms.replaceAllText("P1_57", "/");
         }
         if (jsonArrayLD4.length() != 0) {
             ms.replaceAllText("P1_58", jsonArrayLD4.getJSONObject(0)
                     .getString("lc_value"));// 量程4单位
-        }else{
+        } else {
             ms.replaceAllText("P1_58", "/");
         }
         if (jsonArrayLD5.length() != 0) {
             ms.replaceAllText("P1_59", jsonArrayLD5.getJSONObject(0)
                     .getString("lc_value"));// 量程5单位
-        }else{
+        } else {
             ms.replaceAllText("P1_59", "/");
         }
 
@@ -1200,21 +1216,17 @@ public class WordCreation {
         ms.replaceAllText("P1_66", joID.getString("eddlwcsj"));// 额定电流维持时间
         ms.replaceAllText("P1_67", joID.getString("eddl"));// 额定电流
         ms.replaceAllText("P1_68", joID.getString("xdkzbqdd"));// 相对扩展不确定度
-        ms.replaceAllText("P1_69", jsonArrayWD.getJSONObject(0)
-                .getString("dw"));// 稳定性误差单位
+        if (jsonArrayWD.length() != 0) {
+            ms.replaceAllText("P1_69", jsonArrayWD.getJSONObject(0)
+                    .getString("dw"));// 稳定性误差单位
+        } else {
+            ms.replaceAllText("P1_69", "/");
+        }
+//        ms.replaceAllText("P1_69", jsonArrayWD.getJSONObject(0)
+//                .getString("dw"));// 稳定性误差单位
 
         // 量程1-5
         try {
-//            for (int i = 0; i < jsonArrayLD1.length(); i++) {
-//                if(jsonArrayLD1.getJSONObject(i).getString("standardvalue").equals("*---")
-//                        ||jsonArrayLD1.getJSONObject(i).getString("displayvalue").equals("*---")){
-//
-//                }
-//                double standardvalue = jsonArrayLD1.getJSONObject(i).getDouble(
-//                        "standardvalue");
-//                double displayvalue = jsonArrayLD1.getJSONObject(i).getDouble(
-//                        "displayvalue");
-//            }
             int tableIndex = 5;// word中第3张表格
             int rowBegin = 3;// 代表起始行1开始
             int rowEnd = 12;// 代表结束行
@@ -1228,19 +1240,19 @@ public class WordCreation {
                 } else {
                     for (int i = rowBegin; i <= rowEnd; i++) {
                         if ((i - rowBegin) < jsonArrayLD1.length()) {
-                            if(jsonArrayLD1.getJSONObject(i - rowBegin).getString(
-                                    "standardvalue").equals("")){
+                            if (jsonArrayLD1.getJSONObject(i - rowBegin).getString(
+                                    "standardvalue").equals("")) {
                                 ms.putTxtToCell(tableIndex, i, 1, "/");
-                            }else{
+                            } else {
                                 ms.putTxtToCell(
                                         tableIndex, i, 1,
                                         jsonArrayLD1.getJSONObject(i - rowBegin).getString(
                                                 "standardvalue"));
                             }
-                            if(jsonArrayLD1.getJSONObject(i - rowBegin).getString
-                                    ("displayvalue").equals("")){
+                            if (jsonArrayLD1.getJSONObject(i - rowBegin).getString
+                                    ("displayvalue").equals("")) {
                                 ms.putTxtToCell(tableIndex, i, 2, "/");
-                            }else{
+                            } else {
                                 ms.putTxtToCell(tableIndex, i, 2, jsonArrayLD1
                                         .getJSONObject(i - rowBegin).getString("displayvalue"));
                             }
@@ -1250,13 +1262,12 @@ public class WordCreation {
                         }
                     }
                 }
-            }else{
+            } else {
                 for (int i = rowBegin; i <= rowEnd; i++) {
                     ms.putTxtToCell(tableIndex, i, 1, "/");
                     ms.putTxtToCell(tableIndex, i, 2, "/");
                 }
             }
-
 
             // 将数据插入表格 量程2
             if (jsonArrayLD2.length() != 0) {
@@ -1268,10 +1279,10 @@ public class WordCreation {
                 } else {
                     for (int i = rowBegin; i <= rowEnd; i++) {
                         if ((i - rowBegin) < jsonArrayLD2.length()) {
-                            if(jsonArrayLD2.getJSONObject(i - rowBegin).getString(
-                                    "standardvalue").equals("")){
+                            if (jsonArrayLD2.getJSONObject(i - rowBegin).getString(
+                                    "standardvalue").equals("")) {
                                 ms.putTxtToCell(tableIndex, i, 3, "/");
-                            }else{
+                            } else {
                                 ms.putTxtToCell(
                                         tableIndex,
                                         i,
@@ -1279,10 +1290,10 @@ public class WordCreation {
                                         jsonArrayLD2.getJSONObject(i - rowBegin).getString(
                                                 "standardvalue"));
                             }
-                            if(jsonArrayLD2.getJSONObject(i - rowBegin).getString
-                                    ("displayvalue").equals("")){
+                            if (jsonArrayLD2.getJSONObject(i - rowBegin).getString
+                                    ("displayvalue").equals("")) {
                                 ms.putTxtToCell(tableIndex, i, 4, "/");
-                            }else{
+                            } else {
                                 ms.putTxtToCell(tableIndex, i, 4, jsonArrayLD2
                                         .getJSONObject(i - rowBegin).getString("displayvalue"));
                             }
@@ -1292,7 +1303,7 @@ public class WordCreation {
                         }
                     }
                 }
-            }else{
+            } else {
                 for (int i = rowBegin; i <= rowEnd; i++) {
                     ms.putTxtToCell(tableIndex, i, 3, "/");
                     ms.putTxtToCell(tableIndex, i, 4, "/");
@@ -1310,11 +1321,11 @@ public class WordCreation {
                 } else {
                     for (int i = rowBegin; i <= rowEnd; i++) {
                         if ((i - rowBegin) < jsonArrayLD3.length()) {
-                            if(jsonArrayLD3.getJSONObject(i - rowBegin).getString(
-                                    "standardvalue").equals("")){
+                            if (jsonArrayLD3.getJSONObject(i - rowBegin).getString(
+                                    "standardvalue").equals("")) {
                                 ms.putTxtToCell(tableIndex, i, 5, "/");
 
-                            }else{
+                            } else {
                                 ms.putTxtToCell(
                                         tableIndex,
                                         i,
@@ -1322,10 +1333,10 @@ public class WordCreation {
                                         jsonArrayLD3.getJSONObject(i - rowBegin).getString(
                                                 "standardvalue"));
                             }
-                            if(jsonArrayLD3.getJSONObject(i - rowBegin).getString
-                                    ("displayvalue").equals("")){
+                            if (jsonArrayLD3.getJSONObject(i - rowBegin).getString
+                                    ("displayvalue").equals("")) {
                                 ms.putTxtToCell(tableIndex, i, 6, "/");
-                            }else{
+                            } else {
                                 ms.putTxtToCell(tableIndex, i, 6, jsonArrayLD3
                                         .getJSONObject(i - rowBegin).getString("displayvalue"));
                             }
@@ -1335,7 +1346,7 @@ public class WordCreation {
                         }
                     }
                 }
-            }else{
+            } else {
                 for (int i = rowBegin; i <= rowEnd; i++) {
                     ms.putTxtToCell(tableIndex, i, 5, "/");
                     ms.putTxtToCell(tableIndex, i, 6, "/");
@@ -1352,10 +1363,10 @@ public class WordCreation {
                 } else {
                     for (int i = rowBegin; i <= rowEnd; i++) {
                         if ((i - rowBegin) < jsonArrayLD4.length()) {
-                            if(jsonArrayLD4.getJSONObject(i - rowBegin).getString(
-                                    "standardvalue").equals("")){
+                            if (jsonArrayLD4.getJSONObject(i - rowBegin).getString(
+                                    "standardvalue").equals("")) {
                                 ms.putTxtToCell(tableIndex, i, 7, "/");
-                            }else{
+                            } else {
                                 ms.putTxtToCell(
                                         tableIndex,
                                         i,
@@ -1363,10 +1374,10 @@ public class WordCreation {
                                         jsonArrayLD4.getJSONObject(i - rowBegin).getString(
                                                 "standardvalue"));
                             }
-                            if(jsonArrayLD4.getJSONObject(i - rowBegin).getString
-                                    ("displayvalue").equals("")){
+                            if (jsonArrayLD4.getJSONObject(i - rowBegin).getString
+                                    ("displayvalue").equals("")) {
                                 ms.putTxtToCell(tableIndex, i, 8, "/");
-                            }else{
+                            } else {
                                 ms.putTxtToCell(tableIndex, i, 8, jsonArrayLD4
                                         .getJSONObject(i - rowBegin).getString("displayvalue"));
                             }
@@ -1376,7 +1387,7 @@ public class WordCreation {
                         }
                     }
                 }
-            }else{
+            } else {
                 for (int i = rowBegin; i <= rowEnd; i++) {
                     ms.putTxtToCell(tableIndex, i, 7, "/");
                     ms.putTxtToCell(tableIndex, i, 8, "/");
@@ -1394,11 +1405,11 @@ public class WordCreation {
                     for (int i = rowBegin; i <= rowEnd; i++) {
 
                         if ((i - rowBegin) < jsonArrayLD5.length()) {
-                            if(jsonArrayLD5.getJSONObject(i - rowBegin).getString(
-                                    "standardvalue").equals("")){
+                            if (jsonArrayLD5.getJSONObject(i - rowBegin).getString(
+                                    "standardvalue").equals("")) {
                                 ms.putTxtToCell(tableIndex, i, 9, "/");
 
-                            }else{
+                            } else {
                                 ms.putTxtToCell(
                                         tableIndex,
                                         i,
@@ -1406,10 +1417,10 @@ public class WordCreation {
                                         jsonArrayLD5.getJSONObject(i - rowBegin).getString(
                                                 "standardvalue"));
                             }
-                            if(jsonArrayLD5.getJSONObject(i - rowBegin).getString
-                                    ("displayvalue").equals("")){
+                            if (jsonArrayLD5.getJSONObject(i - rowBegin).getString
+                                    ("displayvalue").equals("")) {
                                 ms.putTxtToCell(tableIndex, i, 10, "/");
-                            }else{
+                            } else {
                                 ms.putTxtToCell(tableIndex, i, 10, jsonArrayLD5
                                         .getJSONObject(i - rowBegin).getString("displayvalue"));
                             }
@@ -1419,16 +1430,16 @@ public class WordCreation {
                         }
                     }
                 }
-            }else{
+            } else {
                 for (int i = rowBegin; i <= rowEnd; i++) {
                     ms.putTxtToCell(tableIndex, i, 9, "/");
                     ms.putTxtToCell(tableIndex, i, 10, "/");
                 }
             }
 
-            } catch(Exception e){
-                e.printStackTrace();
-            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
 
         // 电阻稳定性误差
@@ -1456,7 +1467,7 @@ public class WordCreation {
                         ms.putTxtToCell(tableIndex, 2, j, "/");
                     }
                 }
-            }else{
+            } else {
                 for (int j = colBegin; j <= colEnd; j++) {
                     ms.putTxtToCell(tableIndex, 2, j, "/");
                 }
@@ -1521,7 +1532,7 @@ public class WordCreation {
     }
 
     /**
-     * 6生成 回路电阻表原始录.doc
+     * 6生成 回路电阻表原始记录.doc
      */
     public void createHLOriginFile(String realPath, String result) {
         this.copyFiles(realPath);
@@ -1588,31 +1599,31 @@ public class WordCreation {
         if (jsonArrayLD1.length() != 0) {
             ms.replaceAllText("P1_55", jsonArrayLD1.getJSONObject(0)
                     .getString("lc_value"));// 量程1单位
-        }else{
+        } else {
             ms.replaceAllText("P1_55", "/");
         }
         if (jsonArrayLD2.length() != 0) {
             ms.replaceAllText("P1_56", jsonArrayLD2.getJSONObject(0)
                     .getString("lc_value"));// 量程2单位
-        }else{
+        } else {
             ms.replaceAllText("P1_56", "/");
         }
         if (jsonArrayLD3.length() != 0) {
             ms.replaceAllText("P1_57", jsonArrayLD3.getJSONObject(0)
                     .getString("lc_value"));// 量程3单位
-        }else{
+        } else {
             ms.replaceAllText("P1_57", "/");
         }
         if (jsonArrayLD4.length() != 0) {
             ms.replaceAllText("P1_58", jsonArrayLD4.getJSONObject(0)
                     .getString("lc_value"));// 量程4单位
-        }else{
+        } else {
             ms.replaceAllText("P1_58", "/");
         }
         if (jsonArrayLD5.length() != 0) {
             ms.replaceAllText("P1_59", jsonArrayLD5.getJSONObject(0)
                     .getString("lc_value"));// 量程5单位
-        }else{
+        } else {
             ms.replaceAllText("P1_59", "/");
         }
 
@@ -1622,9 +1633,12 @@ public class WordCreation {
         ms.replaceAllText("P1_66", joID.getString("eddlwcsj"));// 额定电流维持时间
         ms.replaceAllText("P1_67", joID.getString("eddl"));// 额定电流
         ms.replaceAllText("P1_68", joID.getString("xdkzbqdd"));// 相对扩展不确定度
-        ms.replaceAllText("P1_69", jsonArrayWD.getJSONObject(0)
-                .getString("dw"));// 稳定性误差单位
-
+        if (jsonArrayWD.length() != 0) {
+            ms.replaceAllText("P1_69", jsonArrayWD.getJSONObject(0)
+                    .getString("dw"));// 稳定性误差单位
+        } else {
+            ms.replaceAllText("P1_69", "/");
+        }
         // 量程1-5
         try {
             int tableIndex = 4;// word中第3张表格
@@ -1640,10 +1654,10 @@ public class WordCreation {
                 } else {
                     for (int i = rowBegin; i <= rowEnd; i++) {
                         if ((i - rowBegin) < jsonArrayLD1.length()) {
-                            if(jsonArrayLD1.getJSONObject(i - rowBegin).getString(
-                                    "standardvalue").equals("")){
+                            if (jsonArrayLD1.getJSONObject(i - rowBegin).getString(
+                                    "standardvalue").equals("")) {
                                 ms.putTxtToCell(tableIndex, i, 1, "/");
-                            }else{
+                            } else {
                                 ms.putTxtToCell(
                                         tableIndex,
                                         i,
@@ -1651,10 +1665,10 @@ public class WordCreation {
                                         jsonArrayLD1.getJSONObject(i - rowBegin).getString(
                                                 "standardvalue"));
                             }
-                            if(jsonArrayLD1.getJSONObject(i - rowBegin).getString
-                                    ("displayvalue").equals("")){
+                            if (jsonArrayLD1.getJSONObject(i - rowBegin).getString
+                                    ("displayvalue").equals("")) {
                                 ms.putTxtToCell(tableIndex, i, 2, "/");
-                            }else{
+                            } else {
                                 ms.putTxtToCell(tableIndex, i, 2, jsonArrayLD1
                                         .getJSONObject(i - rowBegin).getString("displayvalue"));
                             }
@@ -1664,7 +1678,7 @@ public class WordCreation {
                         }
                     }
                 }
-            }else{
+            } else {
                 for (int i = rowBegin; i <= rowEnd; i++) {
                     ms.putTxtToCell(tableIndex, i, 1, "/");
                     ms.putTxtToCell(tableIndex, i, 2, "/");
@@ -1681,10 +1695,10 @@ public class WordCreation {
                 } else {
                     for (int i = rowBegin; i <= rowEnd; i++) {
                         if ((i - rowBegin) < jsonArrayLD2.length()) {
-                            if(jsonArrayLD2.getJSONObject(i - rowBegin).getString(
-                                    "standardvalue").equals("")){
+                            if (jsonArrayLD2.getJSONObject(i - rowBegin).getString(
+                                    "standardvalue").equals("")) {
                                 ms.putTxtToCell(tableIndex, i, 3, "/");
-                            }else{
+                            } else {
                                 ms.putTxtToCell(
                                         tableIndex,
                                         i,
@@ -1692,10 +1706,10 @@ public class WordCreation {
                                         jsonArrayLD2.getJSONObject(i - rowBegin).getString(
                                                 "standardvalue"));
                             }
-                            if(jsonArrayLD2.getJSONObject(i - rowBegin).getString
-                                    ("displayvalue").equals("")){
+                            if (jsonArrayLD2.getJSONObject(i - rowBegin).getString
+                                    ("displayvalue").equals("")) {
                                 ms.putTxtToCell(tableIndex, i, 4, "/");
-                            }else{
+                            } else {
                                 ms.putTxtToCell(tableIndex, i, 4, jsonArrayLD2
                                         .getJSONObject(i - rowBegin).getString("displayvalue"));
                             }
@@ -1705,7 +1719,7 @@ public class WordCreation {
                         }
                     }
                 }
-            }else{
+            } else {
                 for (int i = rowBegin; i <= rowEnd; i++) {
                     ms.putTxtToCell(tableIndex, i, 3, "/");
                     ms.putTxtToCell(tableIndex, i, 4, "/");
@@ -1723,10 +1737,10 @@ public class WordCreation {
                 } else {
                     for (int i = rowBegin; i <= rowEnd; i++) {
                         if ((i - rowBegin) < jsonArrayLD3.length()) {
-                            if(jsonArrayLD3.getJSONObject(i - rowBegin).getString(
-                                    "standardvalue").equals("")){
+                            if (jsonArrayLD3.getJSONObject(i - rowBegin).getString(
+                                    "standardvalue").equals("")) {
                                 ms.putTxtToCell(tableIndex, i, 5, "/");
-                            }else{
+                            } else {
                                 ms.putTxtToCell(
                                         tableIndex,
                                         i,
@@ -1734,10 +1748,10 @@ public class WordCreation {
                                         jsonArrayLD3.getJSONObject(i - rowBegin).getString(
                                                 "standardvalue"));
                             }
-                            if(jsonArrayLD3.getJSONObject(i - rowBegin).getString
-                                    ("displayvalue").equals("")){
+                            if (jsonArrayLD3.getJSONObject(i - rowBegin).getString
+                                    ("displayvalue").equals("")) {
                                 ms.putTxtToCell(tableIndex, i, 6, "/");
-                            }else{
+                            } else {
                                 ms.putTxtToCell(tableIndex, i, 6, jsonArrayLD3
                                         .getJSONObject(i - rowBegin).getString("displayvalue"));
                             }
@@ -1747,7 +1761,7 @@ public class WordCreation {
                         }
                     }
                 }
-            }else{
+            } else {
                 for (int i = rowBegin; i <= rowEnd; i++) {
                     ms.putTxtToCell(tableIndex, i, 5, "/");
                     ms.putTxtToCell(tableIndex, i, 6, "/");
@@ -1765,10 +1779,10 @@ public class WordCreation {
                 } else {
                     for (int i = rowBegin; i <= rowEnd; i++) {
                         if ((i - rowBegin) < jsonArrayLD4.length()) {
-                            if(jsonArrayLD4.getJSONObject(i - rowBegin).getString(
-                                    "standardvalue").equals("")){
+                            if (jsonArrayLD4.getJSONObject(i - rowBegin).getString(
+                                    "standardvalue").equals("")) {
                                 ms.putTxtToCell(tableIndex, i, 7, "/");
-                            }else{
+                            } else {
                                 ms.putTxtToCell(
                                         tableIndex,
                                         i,
@@ -1776,10 +1790,10 @@ public class WordCreation {
                                         jsonArrayLD4.getJSONObject(i - rowBegin).getString(
                                                 "standardvalue"));
                             }
-                            if(jsonArrayLD4.getJSONObject(i - rowBegin).getString
-                                    ("displayvalue").equals("")){
+                            if (jsonArrayLD4.getJSONObject(i - rowBegin).getString
+                                    ("displayvalue").equals("")) {
                                 ms.putTxtToCell(tableIndex, i, 8, "/");
-                            }else{
+                            } else {
                                 ms.putTxtToCell(tableIndex, i, 8, jsonArrayLD4
                                         .getJSONObject(i - rowBegin).getString("displayvalue"));
                             }
@@ -1789,7 +1803,7 @@ public class WordCreation {
                         }
                     }
                 }
-            }else{
+            } else {
                 for (int i = rowBegin; i <= rowEnd; i++) {
                     ms.putTxtToCell(tableIndex, i, 7, "/");
                     ms.putTxtToCell(tableIndex, i, 8, "/");
@@ -1806,10 +1820,10 @@ public class WordCreation {
                 } else {
                     for (int i = rowBegin; i <= rowEnd; i++) {
                         if ((i - rowBegin) < jsonArrayLD5.length()) {
-                            if(jsonArrayLD5.getJSONObject(i - rowBegin).getString(
-                                    "standardvalue").equals("")){
+                            if (jsonArrayLD5.getJSONObject(i - rowBegin).getString(
+                                    "standardvalue").equals("")) {
                                 ms.putTxtToCell(tableIndex, i, 9, "/");
-                            }else{
+                            } else {
                                 ms.putTxtToCell(
                                         tableIndex,
                                         i,
@@ -1817,10 +1831,10 @@ public class WordCreation {
                                         jsonArrayLD5.getJSONObject(i - rowBegin).getString(
                                                 "standardvalue"));
                             }
-                            if(jsonArrayLD5.getJSONObject(i - rowBegin).getString
-                                    ("displayvalue").equals("")){
+                            if (jsonArrayLD5.getJSONObject(i - rowBegin).getString
+                                    ("displayvalue").equals("")) {
                                 ms.putTxtToCell(tableIndex, i, 10, "/");
-                            }else{
+                            } else {
                                 ms.putTxtToCell(tableIndex, i, 10, jsonArrayLD5
                                         .getJSONObject(i - rowBegin).getString("displayvalue"));
                             }
@@ -1830,7 +1844,7 @@ public class WordCreation {
                         }
                     }
                 }
-            }else{
+            } else {
                 for (int i = rowBegin; i <= rowEnd; i++) {
                     ms.putTxtToCell(tableIndex, i, 9, "/");
                     ms.putTxtToCell(tableIndex, i, 10, "/");
@@ -1865,7 +1879,7 @@ public class WordCreation {
                         ms.putTxtToCell(tableIndex, 2, j, "/");
                     }
                 }
-            }else{
+            } else {
                 for (int j = colBegin; j <= colEnd; j++) {
                     ms.putTxtToCell(tableIndex, 2, j, "/");
                 }
@@ -1913,6 +1927,949 @@ public class WordCreation {
         }
 
         String fileName = joID.getString("sjdw") + "_回路电阻表原始记录_"
+                + joID.getString("zsbh") + ".doc";
+
+        // 判断文件是否存在，存在则删除
+        new CopyFile().delFile(certificatesPath + "\\" + fileName);
+
+        // 保存.doc文件
+        ms.save(certificatesPath + "\\" + fileName);
+
+        // 关闭全部应用
+        ms.close();
+
+//		new CopyFile().openFolder(certificatesPath);// 打开本地指定目录 D:\\电阻表模板和证书\\证书
+        // 生成一个MSwordManager对象,并且设置显示Word程序// 打开模板文件
+
+        new WordManager(true).openDocument(certificatesPath + "\\" + fileName);
+
+    }
+
+    /**
+     * 7生成 直租仪检定证书.doc
+     */
+    public void createZZYCertifFile(String realPath, String result) {
+        this.copyFiles(realPath);
+        // 生成一个MSwordManager对象,并且设置显示Word程序
+        WordManager ms = new WordManager(false);
+        // 打开模板文件
+        ms.openDocument(modelsPath + "\\" + zzyVertif);
+
+        JSONObject jo = new JSONObject(result);
+        String inspectionDevice = jo.getString("inspectionDevice");// 送检仪器
+        String standardDevice = jo.getString("standardDevice");// 标准器
+        String lcData1 = jo.getString("lcData1");// 量程1
+        String lcData2 = jo.getString("lcData2");// 量程2
+        String lcData3 = jo.getString("lcData3");// 量程3
+        String lcData4 = jo.getString("lcData4");// 量程4
+        String lcData5 = jo.getString("lcData5");// 量程5
+        String wdxwcData = jo.getString("wdxwc");// 电阻稳定性误差
+        String dlgcData = jo.getString("dlgc");// 电流基本误差和过冲测量
+        /////
+        String gxfzclData = jo.getString("gxfzcl");//感性负载测量能力检定
+
+        JSONArray jsonArrayID = new JSONArray(inspectionDevice);// 送检仪器
+        JSONArray jsonArraySD = new JSONArray(standardDevice);// 标准器
+        JSONArray jsonArrayLD1 = new JSONArray(lcData1);// 量程1
+        JSONArray jsonArrayLD2 = new JSONArray(lcData2);// 量程2
+        JSONArray jsonArrayLD3 = new JSONArray(lcData3);// 量程3
+        JSONArray jsonArrayLD4 = new JSONArray(lcData4);// 量程4
+        JSONArray jsonArrayLD5 = new JSONArray(lcData5);// 量程5
+        JSONArray jsonArrayWD = new JSONArray(wdxwcData);// 电阻稳定性误差
+        JSONArray jsonArrayDD = new JSONArray(dlgcData);// 电流基本误差和过冲测量
+        ///////
+        JSONArray jsonArrayGD = new JSONArray(gxfzclData);//感性负载测量能力检定
+
+        JSONObject joID = jsonArrayID.getJSONObject(0);// 送检仪器
+        JSONObject joSD = jsonArraySD.getJSONObject(0);// 标准器
+
+        // 替换内容， 参数一为要查找的内容，参数二为替换后的新内容
+        ms.setHeader("P1_0_0", joID.getString("zsbh")); //页眉证书编号
+        ms.replaceText("P1_1_0", joID.getString("zsbh"));// 证书编号
+        ms.replaceText("P1_2_0", joID.getString("sjdw"));// 送检单位
+        ms.replaceText("P1_3_0", joID.getString("yqmc"));// 计量器具名称
+        ms.replaceAllText("P1_4_0", joID.getString("xinghao"));// 型号规格
+        ms.replaceAllText("P1_5_0", joID.getString("zqddj"));// 准确度等级
+        ms.replaceAllText("P1_6_0", joID.getString("sccj"));// 生产厂家
+        ms.replaceAllText("P1_7_0", joID.getString("yqbh"));// 出厂编号
+        ms.replaceAllText("P1_8_0", joID.getString("jdjl"));// 检定结论
+        ms.replaceAllText("P1_9_0", DateTimeOperation(joID.getString("jdsj")));// 检定日期
+        ms.replaceAllText("P1_10", DateTimeOperation(joID.getString("yxqsj")));// 有效日期
+        ms.replaceAllText("P1_11", joID.getString("jdyj"));// 检定依据
+        ms.replaceAllText("P1_12", joSD.getString("mc"));// 计量标准器具名称
+        ms.replaceAllText("P1_13", joSD.getString("xh"));// 型号
+        ms.replaceAllText("P1_14", joSD.getString("yqbh"));// 仪器编号
+        ms.replaceAllText("P1_15", joSD.getString("bqdd"));// 不确定度
+        ms.replaceAllText("P1_16", joSD.getString("jlbzzsh"));// 计量标准证书号
+        ms.replaceAllText("P1_17", DateTimeOperation(joSD.getString("yxqz")));// 有效期至
+        ms.replaceAllText("P1_18", joID.getString("jddd"));// 检定地点
+        ms.replaceAllText("P1_19", joID.getString("wendu"));// 温度
+        ms.replaceAllText("P1_20", joID.getString("shidu"));// 湿度
+
+        ms.replaceAllText("P1_21", joID.getString("wg"));// 外观
+        ms.replaceAllText("P1_23", joID.getString("jydz"));// 绝缘电阻
+        ms.replaceAllText("P1_24", joID.getString("jyqd"));// 绝缘强度
+        ms.replaceAllText("P1_52", joID.getString("fbl"));// 分辨力
+        ms.replaceAllText("P1_53", joID.getString("xxwc"));// 线性误差
+        ms.replaceAllText("P1_54", joID.getString("xldl"));// 泄露电流
+        ////////
+        if (jsonArrayLD1.length() != 0) {
+            ms.replaceAllText("P1_55", jsonArrayLD1.getJSONObject(0)
+                    .getString("lc_value"));// 量程1单位
+        } else {
+            ms.replaceAllText("P1_55", "/");
+        }
+        if (jsonArrayLD2.length() != 0) {
+            ms.replaceAllText("P1_56", jsonArrayLD2.getJSONObject(0)
+                    .getString("lc_value"));// 量程2单位
+        } else {
+            ms.replaceAllText("P1_56", "/");
+        }
+        if (jsonArrayLD3.length() != 0) {
+            ms.replaceAllText("P1_57", jsonArrayLD3.getJSONObject(0)
+                    .getString("lc_value"));// 量程3单位
+        } else {
+            ms.replaceAllText("P1_57", "/");
+        }
+        if (jsonArrayLD4.length() != 0) {
+            ms.replaceAllText("P1_58", jsonArrayLD4.getJSONObject(0)
+                    .getString("lc_value"));// 量程4单位
+        } else {
+            ms.replaceAllText("P1_58", "/");
+        }
+        if (jsonArrayLD5.length() != 0) {
+            ms.replaceAllText("P1_59", jsonArrayLD5.getJSONObject(0)
+                    .getString("lc_value"));// 量程5单位
+        } else {
+            ms.replaceAllText("P1_59", "/");
+        }
+
+//        ms.replaceAllText("P1_55", jsonArrayLD1.getJSONObject(0)
+//                .getString("lc_value"));// 量程1单位
+//        ms.replaceAllText("P1_56", jsonArrayLD2.getJSONObject(0)
+//                .getString("lc_value"));// 量程2单位
+//        ms.replaceAllText("P1_57", jsonArrayLD3.getJSONObject(0)
+//                .getString("lc_value"));// 量程3单位
+//        ms.replaceAllText("P1_58", jsonArrayLD4.getJSONObject(0)
+//                .getString("lc_value"));// 量程4单位
+//        ms.replaceAllText("P1_59", jsonArrayLD5.getJSONObject(0)
+//                .getString("lc_value"));// 量程5单位
+
+        ms.replaceAllText("P1_61", joID.getString("wdxwc"));// 稳定性误差
+        ms.replaceAllText("P1_63", joID.getString("dlgc"));// 电流过冲
+        ms.replaceAllText("P1_64", joID.getString("gcmk"));// 过冲脉宽
+        ms.replaceAllText("P1_68", joID.getString("xdkzbqdd"));// 相对扩展不确定度
+        if (jsonArrayWD.length() != 0) {
+            ms.replaceAllText("P1_69", jsonArrayWD.getJSONObject(0)
+                    .getString("dw"));// 稳定性误差单位
+        } else {
+            ms.replaceAllText("P1_69", "/");
+        }
+//        ms.replaceAllText("P1_69", jsonArrayWD.getJSONObject(0)
+//                .getString("dw"));// 稳定性误差单位
+
+        ms.replaceAllText("P1_70", joID.getString("xhgn"));// 消弧功能
+        if (jsonArrayGD.length() != 0) {
+            ms.replaceAllText("P1_71", jsonArrayGD.getJSONObject(0)
+                    .getString("dw"));// 稳定性误差单位
+        } else {
+            ms.replaceAllText("P1_71", "/");
+        }
+
+        if (jsonArrayGD.length() != 0) {
+            ms.replaceAllText("P1_72", jsonArrayGD.getJSONObject(0)
+                    .getString("dw"));// 稳定性误差单位
+        } else {
+            ms.replaceAllText("P1_72", "/");
+        }
+        // 量程1-5
+        try {
+            int tableIndex = 5;// word中第5张表格
+            int rowBegin = 3;// 代表起始行1开始
+            int rowEnd = 12;// 代表结束行
+            // 将数据插入表格 量程1
+            if (jsonArrayLD1.length() != 0) {
+                if ((jsonArrayLD1.getJSONObject(0).getString("lc_value")).equals("/")) {
+                    for (int i = rowBegin; i <= rowEnd; i++) {
+                        ms.putTxtToCell(tableIndex, i, 1, "/");
+                        ms.putTxtToCell(tableIndex, i, 2, "/");
+                    }
+                } else {
+                    for (int i = rowBegin; i <= rowEnd; i++) {
+                        if ((i - rowBegin) < jsonArrayLD1.length()) {
+                            if (jsonArrayLD1.getJSONObject(i - rowBegin).getString(
+                                    "standardvalue").equals("")) {
+                                ms.putTxtToCell(tableIndex, i, 1, "/");
+                            } else {
+                                ms.putTxtToCell(
+                                        tableIndex, i, 1,
+                                        jsonArrayLD1.getJSONObject(i - rowBegin).getString(
+                                                "standardvalue"));
+                            }
+                            if (jsonArrayLD1.getJSONObject(i - rowBegin).getString
+                                    ("displayvalue").equals("")) {
+                                ms.putTxtToCell(tableIndex, i, 2, "/");
+                            } else {
+                                ms.putTxtToCell(tableIndex, i, 2, jsonArrayLD1
+                                        .getJSONObject(i - rowBegin).getString("displayvalue"));
+                            }
+                        } else {
+                            ms.putTxtToCell(tableIndex, i, 1, "/");
+                            ms.putTxtToCell(tableIndex, i, 2, "/");
+                        }
+                    }
+                }
+            } else {
+                for (int i = rowBegin; i <= rowEnd; i++) {
+                    ms.putTxtToCell(tableIndex, i, 1, "/");
+                    ms.putTxtToCell(tableIndex, i, 2, "/");
+                }
+            }
+
+            // 将数据插入表格 量程2
+            if (jsonArrayLD2.length() != 0) {
+                if ((jsonArrayLD2.getJSONObject(0).getString("lc_value")).equals("/")) {
+                    for (int i = rowBegin; i <= rowEnd; i++) {
+                        ms.putTxtToCell(tableIndex, i, 3, "/");
+                        ms.putTxtToCell(tableIndex, i, 4, "/");
+                    }
+                } else {
+                    for (int i = rowBegin; i <= rowEnd; i++) {
+                        if ((i - rowBegin) < jsonArrayLD2.length()) {
+                            if (jsonArrayLD2.getJSONObject(i - rowBegin).getString(
+                                    "standardvalue").equals("")) {
+                                ms.putTxtToCell(tableIndex, i, 3, "/");
+                            } else {
+                                ms.putTxtToCell(
+                                        tableIndex,
+                                        i,
+                                        3,
+                                        jsonArrayLD2.getJSONObject(i - rowBegin).getString(
+                                                "standardvalue"));
+                            }
+                            if (jsonArrayLD2.getJSONObject(i - rowBegin).getString
+                                    ("displayvalue").equals("")) {
+                                ms.putTxtToCell(tableIndex, i, 4, "/");
+                            } else {
+                                ms.putTxtToCell(tableIndex, i, 4, jsonArrayLD2
+                                        .getJSONObject(i - rowBegin).getString("displayvalue"));
+                            }
+                        } else {
+                            ms.putTxtToCell(tableIndex, i, 3, "/");
+                            ms.putTxtToCell(tableIndex, i, 4, "/");
+                        }
+                    }
+                }
+            } else {
+                for (int i = rowBegin; i <= rowEnd; i++) {
+                    ms.putTxtToCell(tableIndex, i, 3, "/");
+                    ms.putTxtToCell(tableIndex, i, 4, "/");
+                }
+            }
+
+            // 将数据插入表格 量程3
+            if (jsonArrayLD3.length() != 0) {
+                if ((jsonArrayLD3.getJSONObject(0).getString("lc_value")).equals("/")) {
+                    for (int i = rowBegin; i <= rowEnd; i++) {
+                        ms.putTxtToCell(tableIndex, i, 5, "/");
+                        ms.putTxtToCell(tableIndex, i, 6, "/");
+                    }
+                } else {
+                    for (int i = rowBegin; i <= rowEnd; i++) {
+                        if ((i - rowBegin) < jsonArrayLD3.length()) {
+                            if (jsonArrayLD3.getJSONObject(i - rowBegin).getString(
+                                    "standardvalue").equals("")) {
+                                ms.putTxtToCell(tableIndex, i, 5, "/");
+
+                            } else {
+                                ms.putTxtToCell(
+                                        tableIndex,
+                                        i,
+                                        5,
+                                        jsonArrayLD3.getJSONObject(i - rowBegin).getString(
+                                                "standardvalue"));
+                            }
+                            if (jsonArrayLD3.getJSONObject(i - rowBegin).getString
+                                    ("displayvalue").equals("")) {
+                                ms.putTxtToCell(tableIndex, i, 6, "/");
+                            } else {
+                                ms.putTxtToCell(tableIndex, i, 6, jsonArrayLD3
+                                        .getJSONObject(i - rowBegin).getString("displayvalue"));
+                            }
+                        } else {
+                            ms.putTxtToCell(tableIndex, i, 5, "/");
+                            ms.putTxtToCell(tableIndex, i, 6, "/");
+                        }
+                    }
+                }
+            } else {
+                for (int i = rowBegin; i <= rowEnd; i++) {
+                    ms.putTxtToCell(tableIndex, i, 5, "/");
+                    ms.putTxtToCell(tableIndex, i, 6, "/");
+                }
+            }
+
+            // 将数据插入表格 量程4
+            if (jsonArrayLD4.length() != 0) {
+                if ((jsonArrayLD4.getJSONObject(0).getString("lc_value")).equals("/")) {
+                    for (int i = rowBegin; i <= rowEnd; i++) {
+                        ms.putTxtToCell(tableIndex, i, 7, "/");
+                        ms.putTxtToCell(tableIndex, i, 8, "/");
+                    }
+                } else {
+                    for (int i = rowBegin; i <= rowEnd; i++) {
+                        if ((i - rowBegin) < jsonArrayLD4.length()) {
+                            if (jsonArrayLD4.getJSONObject(i - rowBegin).getString(
+                                    "standardvalue").equals("")) {
+                                ms.putTxtToCell(tableIndex, i, 7, "/");
+                            } else {
+                                ms.putTxtToCell(
+                                        tableIndex,
+                                        i,
+                                        7,
+                                        jsonArrayLD4.getJSONObject(i - rowBegin).getString(
+                                                "standardvalue"));
+                            }
+                            if (jsonArrayLD4.getJSONObject(i - rowBegin).getString
+                                    ("displayvalue").equals("")) {
+                                ms.putTxtToCell(tableIndex, i, 8, "/");
+                            } else {
+                                ms.putTxtToCell(tableIndex, i, 8, jsonArrayLD4
+                                        .getJSONObject(i - rowBegin).getString("displayvalue"));
+                            }
+                        } else {
+                            ms.putTxtToCell(tableIndex, i, 7, "/");
+                            ms.putTxtToCell(tableIndex, i, 8, "/");
+                        }
+                    }
+                }
+            } else {
+                for (int i = rowBegin; i <= rowEnd; i++) {
+                    ms.putTxtToCell(tableIndex, i, 7, "/");
+                    ms.putTxtToCell(tableIndex, i, 8, "/");
+                }
+            }
+
+            // 将数据插入表格 量程5
+            if (jsonArrayLD5.length() != 0) {
+                if (jsonArrayLD5.getJSONObject(0).getString("lc_value").equals("/")) {
+                    for (int i = rowBegin; i <= rowEnd; i++) {
+                        ms.putTxtToCell(tableIndex, i, 9, "/");
+                        ms.putTxtToCell(tableIndex, i, 10, "/");
+                    }
+                } else {
+                    for (int i = rowBegin; i <= rowEnd; i++) {
+
+                        if ((i - rowBegin) < jsonArrayLD5.length()) {
+                            if (jsonArrayLD5.getJSONObject(i - rowBegin).getString(
+                                    "standardvalue").equals("")) {
+                                ms.putTxtToCell(tableIndex, i, 9, "/");
+
+                            } else {
+                                ms.putTxtToCell(
+                                        tableIndex,
+                                        i,
+                                        9,
+                                        jsonArrayLD5.getJSONObject(i - rowBegin).getString(
+                                                "standardvalue"));
+                            }
+                            if (jsonArrayLD5.getJSONObject(i - rowBegin).getString
+                                    ("displayvalue").equals("")) {
+                                ms.putTxtToCell(tableIndex, i, 10, "/");
+                            } else {
+                                ms.putTxtToCell(tableIndex, i, 10, jsonArrayLD5
+                                        .getJSONObject(i - rowBegin).getString("displayvalue"));
+                            }
+                        } else {
+                            ms.putTxtToCell(tableIndex, i, 9, "/");
+                            ms.putTxtToCell(tableIndex, i, 10, "/");
+                        }
+                    }
+                }
+            } else {
+                for (int i = rowBegin; i <= rowEnd; i++) {
+                    ms.putTxtToCell(tableIndex, i, 9, "/");
+                    ms.putTxtToCell(tableIndex, i, 10, "/");
+                }
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        // 电阻稳定性误差
+        try {
+            int tableIndex = 6;// word中第6张表格
+            int colBegin = 2;// 代表起始列开始
+            int colEnd = 7;// 代表结束列
+            if (jsonArrayWD.length() != 0) {
+                for (int i = 0; i < jsonArrayWD.length(); i++) {
+                    if (jsonArrayWD.getJSONObject(i).getString("readvalue")
+                            .equals("")) {
+                        jsonArrayWD.getJSONObject(i).put("wdxwc", "/");
+                    }
+                }
+                // 将数据插入表格
+                for (int j = colBegin; j <= colEnd; j++) {
+                    if ((j - colBegin) < jsonArrayWD.length()) {
+                        ms.putTxtToCell(
+                                tableIndex,
+                                2,
+                                j,
+                                jsonArrayWD.getJSONObject(j - colBegin).getString(
+                                        "readvalue"));
+                    } else {
+                        ms.putTxtToCell(tableIndex, 2, j, "/");
+                    }
+                }
+            } else {
+                for (int j = colBegin; j <= colEnd; j++) {
+                    ms.putTxtToCell(tableIndex, 2, j, "/");
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        // 电流基本误差和过冲测量
+        try {
+            for (int i = 0; i < jsonArrayDD.length(); i++) {
+                if (jsonArrayDD.getJSONObject(i).getString("shizhi")
+                        .equals("")
+                        || jsonArrayDD.getJSONObject(i).getString("shijizhi")
+                        .equals("")) {
+                    jsonArrayDD.getJSONObject(i).put("dlgc", "/");
+                    jsonArrayDD.getJSONObject(i).put("gcmk", "/");
+                }
+            }
+            int tableIndex = 7;// word中第7张表格
+            int colBegin1 = 2;// 代表起始列2开始
+            int colEnd1 = 6;// 代表结束列
+            // 将数据插入表格
+            for (int j = colBegin1; j <= colEnd1; j++) {
+                if ((j - colBegin1) < jsonArrayDD.length()) {
+                    ms.putTxtToCell(
+                            tableIndex,
+                            1,
+                            j,
+                            jsonArrayDD.getJSONObject(j - colBegin1).getString(
+                                    "shizhi"));
+                    ms.putTxtToCell(
+                            tableIndex,
+                            2,
+                            j,
+                            jsonArrayDD.getJSONObject(j - colBegin1).getString(
+                                    "shijizhi"));
+                } else {
+                    ms.putTxtToCell(tableIndex, 1, j, "/");
+                    ms.putTxtToCell(tableIndex, 2, j, "/");
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        // 感性负载测量能力检定
+        try {
+            int tableIndex = 8;// word中第8张表格
+            int rowBegin1 = 2;// 代表起始行开始
+            int rowEnd1 = 4;// 代表结束行
+            // 将数据插入表格
+            if (jsonArrayGD.length() != 0) {
+                for (int j = rowBegin1; j <= rowEnd1; j++) {
+                    if ((j - rowBegin1) < jsonArrayGD.length()) {
+                        ms.putTxtToCell(
+                                tableIndex,
+                                j,
+                                1,
+                                jsonArrayGD.getJSONObject(j - rowBegin1).getString(
+                                        "shijizhi"));
+                        ms.putTxtToCell(
+                                tableIndex,
+                                j,
+                                2,
+                                jsonArrayGD.getJSONObject(j - rowBegin1).getString(
+                                        "zhishizhi"));
+                    } else {
+                        ms.putTxtToCell(tableIndex, j, 1, "/");
+                        ms.putTxtToCell(tableIndex, j, 2, "/");
+                    }
+                }
+            } else {
+                for (int j = rowBegin1; j <= rowEnd1; j++) {
+                    ms.putTxtToCell(tableIndex, j, 1, "/");
+                    ms.putTxtToCell(tableIndex, j, 2, "/");
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+        String fileName = joID.getString("sjdw") + "_直租仪检定证书_"
+                + joID.getString("zsbh") + ".doc";
+
+        // 判断文件是否存在，存在则删除
+        new CopyFile().delFile(certificatesPath + "\\" + fileName);
+
+        // 保存.doc文件
+        ms.save(certificatesPath + "\\" + fileName);
+
+        // 关闭全部应用
+        ms.close();
+
+//		new CopyFile().openFolder(certificatesPath);// 打开本地指定目录 D:\\电阻表模板和证书\\证书
+        // 生成一个MSwordManager对象,并且设置显示Word程序// 打开模板文件
+        new WordManager(true).openDocument(certificatesPath + "\\" + fileName);
+    }
+
+    /**
+     * 8生成 直租仪原始记录.doc
+     */
+    public void createZZYOriginFile(String realPath, String result) {
+        this.copyFiles(realPath);
+        // 生成一个MSwordManager对象,并且设置显示Word程序
+        WordManager ms = new WordManager(false);
+        // 打开模板文件
+        ms.openDocument(modelsPath + "\\" + zzyOrigin);
+
+        JSONObject jo = new JSONObject(result);
+        String inspectionDevice = jo.getString("inspectionDevice");// 送检仪器
+        String standardDevice = jo.getString("standardDevice");// 标准器
+        String lcData1 = jo.getString("lcData1");// 量程1
+        String lcData2 = jo.getString("lcData2");// 量程2
+        String lcData3 = jo.getString("lcData3");// 量程3
+        String lcData4 = jo.getString("lcData4");// 量程4
+        String lcData5 = jo.getString("lcData5");// 量程5
+        String wdxwcData = jo.getString("wdxwc");// 电阻稳定性误差
+        String dlgcData = jo.getString("dlgc");// 电流基本误差和过冲测量
+
+        String gxfzclData = jo.getString("gxfzcl");//感性负载测量能力检定
+
+
+        JSONArray jsonArrayID = new JSONArray(inspectionDevice);// 送检仪器
+        JSONArray jsonArraySD = new JSONArray(standardDevice);// 标准器
+        JSONArray jsonArrayLD1 = new JSONArray(lcData1);// 量程1
+        JSONArray jsonArrayLD2 = new JSONArray(lcData2);// 量程2
+        JSONArray jsonArrayLD3 = new JSONArray(lcData3);// 量程3
+        JSONArray jsonArrayLD4 = new JSONArray(lcData4);// 量程4
+        JSONArray jsonArrayLD5 = new JSONArray(lcData5);// 量程5
+        JSONArray jsonArrayWD = new JSONArray(wdxwcData);// 电阻稳定性误差
+        JSONArray jsonArrayDD = new JSONArray(dlgcData);// 电流基本误差和过冲测量
+
+        JSONArray jsonArrayGD = new JSONArray(gxfzclData);//感性负载测量能力检定
+
+        JSONObject joID = jsonArrayID.getJSONObject(0);// 送检仪器
+        JSONObject joSD = jsonArraySD.getJSONObject(0);// 标准器
+
+        // 替换内容， 参数一为要查找的内容，参数二为替换后的新内容
+
+        ms.replaceText("P1_1_0", joID.getString("zsbh"));// 证书编号
+        ms.replaceText("P1_2_0", joID.getString("sjdw"));// 送检单位
+        ms.replaceText("P1_3_0", joID.getString("yqmc"));// 计量器具名称
+        ms.replaceAllText("P1_4_0", joID.getString("xinghao"));// 型号规格
+        ms.replaceAllText("P1_5_0", joID.getString("zqddj"));// 准确度等级
+        ms.replaceAllText("P1_6_0", joID.getString("sccj"));// 生产厂家
+        ms.replaceAllText("P1_7_0", joID.getString("yqbh"));// 出厂编号
+        ms.replaceAllText("P1_9_0", DateTimeOperation(joID.getString("jdsj")));// 检定日期
+        ms.replaceAllText("P1_10_0", joID.getString("clfw"));// 测量范围
+        ms.replaceAllText("P1_10", DateTimeOperation(joID.getString("yxqsj")));// 有效日期
+        ms.replaceAllText("P1_11", joID.getString("jdyj"));// 检定依据
+        ms.replaceAllText("P1_12", joSD.getString("mc"));// 计量标准器具名称
+        ms.replaceAllText("P1_13", joSD.getString("xh"));// 型号
+        ms.replaceAllText("P1_14", joSD.getString("yqbh"));// 仪器编号
+        ms.replaceAllText("P1_15", joSD.getString("bqdd"));// 不确定度
+        ms.replaceAllText("P1_16", joSD.getString("jlbzzsh"));// 计量标准证书号
+        ms.replaceAllText("P1_17", DateTimeOperation(joSD.getString("yxqz")));// 有效期至
+        ms.replaceAllText("P1_18", joID.getString("jddd"));// 检定地点
+        ms.replaceAllText("P1_19", joID.getString("wendu"));// 温度
+        ms.replaceAllText("P1_20", joID.getString("shidu"));// 湿度
+
+        ms.replaceAllText("P1_21", joID.getString("wg"));// 外观
+        ms.replaceAllText("P1_23", joID.getString("jydz"));// 绝缘电阻
+        ms.replaceAllText("P1_24", joID.getString("jyqd"));// 绝缘强度
+        ms.replaceAllText("P1_52", joID.getString("fbl"));// 分辨力
+        ms.replaceAllText("P1_53", joID.getString("xxwc"));// 线性误差
+        ms.replaceAllText("P1_54", joID.getString("xldl"));// 泄露电流
+        if (jsonArrayLD1.length() != 0) {
+            ms.replaceAllText("P1_55", jsonArrayLD1.getJSONObject(0)
+                    .getString("lc_value"));// 量程1单位
+        } else {
+            ms.replaceAllText("P1_55", "/");
+        }
+        if (jsonArrayLD2.length() != 0) {
+            ms.replaceAllText("P1_56", jsonArrayLD2.getJSONObject(0)
+                    .getString("lc_value"));// 量程2单位
+        } else {
+            ms.replaceAllText("P1_56", "/");
+        }
+        if (jsonArrayLD3.length() != 0) {
+            ms.replaceAllText("P1_57", jsonArrayLD3.getJSONObject(0)
+                    .getString("lc_value"));// 量程3单位
+        } else {
+            ms.replaceAllText("P1_57", "/");
+        }
+        if (jsonArrayLD4.length() != 0) {
+            ms.replaceAllText("P1_58", jsonArrayLD4.getJSONObject(0)
+                    .getString("lc_value"));// 量程4单位
+        } else {
+            ms.replaceAllText("P1_58", "/");
+        }
+        if (jsonArrayLD5.length() != 0) {
+            ms.replaceAllText("P1_59", jsonArrayLD5.getJSONObject(0)
+                    .getString("lc_value"));// 量程5单位
+        } else {
+            ms.replaceAllText("P1_59", "/");
+        }
+
+        ms.replaceAllText("P1_61", joID.getString("wdxwc"));// 稳定性误差
+        ms.replaceAllText("P1_63", joID.getString("dlgc"));// 电流过冲
+        ms.replaceAllText("P1_64", joID.getString("gcmk"));// 过冲脉宽
+        ms.replaceAllText("P1_68", joID.getString("xdkzbqdd"));// 相对扩展不确定度
+        if (jsonArrayWD.length() != 0) {
+            ms.replaceAllText("P1_69", jsonArrayWD.getJSONObject(0)
+                    .getString("dw"));// 稳定性误差单位
+        } else {
+            ms.replaceAllText("P1_69", "/");
+        }
+        ms.replaceAllText("P1_70", joID.getString("xhgn"));// 消弧功能
+        if (jsonArrayGD.length() != 0) {
+            ms.replaceAllText("P1_71", jsonArrayGD.getJSONObject(0)
+                    .getString("dw"));// 稳定性误差单位
+        } else {
+            ms.replaceAllText("P1_71", "/");
+        }
+
+        if (jsonArrayGD.length() != 0) {
+            ms.replaceAllText("P1_72", jsonArrayGD.getJSONObject(0)
+                    .getString("dw"));// 稳定性误差单位
+        } else {
+            ms.replaceAllText("P1_72", "/");
+        }
+
+        // 量程1-5
+        try {
+            int tableIndex = 4;// word中第4张表格
+            int rowBegin = 3;// 代表起始行1开始
+            int rowEnd = 12;// 代表结束行
+            // 将数据插入表格 量程1
+            if (jsonArrayLD1.length() != 0) {
+                if ((jsonArrayLD1.getJSONObject(0).getString("lc_value")).equals("/")) {
+                    for (int i = rowBegin; i <= rowEnd; i++) {
+                        ms.putTxtToCell(tableIndex, i, 1, "/");
+                        ms.putTxtToCell(tableIndex, i, 2, "/");
+                    }
+                } else {
+                    for (int i = rowBegin; i <= rowEnd; i++) {
+                        if ((i - rowBegin) < jsonArrayLD1.length()) {
+                            if (jsonArrayLD1.getJSONObject(i - rowBegin).getString(
+                                    "standardvalue").equals("")) {
+                                ms.putTxtToCell(tableIndex, i, 1, "/");
+                            } else {
+                                ms.putTxtToCell(
+                                        tableIndex,
+                                        i,
+                                        1,
+                                        jsonArrayLD1.getJSONObject(i - rowBegin).getString(
+                                                "standardvalue"));
+                            }
+                            if (jsonArrayLD1.getJSONObject(i - rowBegin).getString
+                                    ("displayvalue").equals("")) {
+                                ms.putTxtToCell(tableIndex, i, 2, "/");
+                            } else {
+                                ms.putTxtToCell(tableIndex, i, 2, jsonArrayLD1
+                                        .getJSONObject(i - rowBegin).getString("displayvalue"));
+                            }
+                        } else {
+                            ms.putTxtToCell(tableIndex, i, 1, "/");
+                            ms.putTxtToCell(tableIndex, i, 2, "/");
+                        }
+                    }
+                }
+            } else {
+                for (int i = rowBegin; i <= rowEnd; i++) {
+                    ms.putTxtToCell(tableIndex, i, 1, "/");
+                    ms.putTxtToCell(tableIndex, i, 2, "/");
+                }
+            }
+
+            // 将数据插入表格 量程2
+            if (jsonArrayLD2.length() != 0) {
+                if ((jsonArrayLD2.getJSONObject(0).getString("lc_value")).equals("/")) {
+                    for (int i = rowBegin; i <= rowEnd; i++) {
+                        ms.putTxtToCell(tableIndex, i, 3, "/");
+                        ms.putTxtToCell(tableIndex, i, 4, "/");
+                    }
+                } else {
+                    for (int i = rowBegin; i <= rowEnd; i++) {
+                        if ((i - rowBegin) < jsonArrayLD2.length()) {
+                            if (jsonArrayLD2.getJSONObject(i - rowBegin).getString(
+                                    "standardvalue").equals("")) {
+                                ms.putTxtToCell(tableIndex, i, 3, "/");
+                            } else {
+                                ms.putTxtToCell(
+                                        tableIndex,
+                                        i,
+                                        3,
+                                        jsonArrayLD2.getJSONObject(i - rowBegin).getString(
+                                                "standardvalue"));
+                            }
+                            if (jsonArrayLD2.getJSONObject(i - rowBegin).getString
+                                    ("displayvalue").equals("")) {
+                                ms.putTxtToCell(tableIndex, i, 4, "/");
+                            } else {
+                                ms.putTxtToCell(tableIndex, i, 4, jsonArrayLD2
+                                        .getJSONObject(i - rowBegin).getString("displayvalue"));
+                            }
+                        } else {
+                            ms.putTxtToCell(tableIndex, i, 3, "/");
+                            ms.putTxtToCell(tableIndex, i, 4, "/");
+                        }
+                    }
+                }
+            } else {
+                for (int i = rowBegin; i <= rowEnd; i++) {
+                    ms.putTxtToCell(tableIndex, i, 3, "/");
+                    ms.putTxtToCell(tableIndex, i, 4, "/");
+                }
+            }
+
+
+            // 将数据插入表格 量程3
+            if (jsonArrayLD3.length() != 0) {
+                if ((jsonArrayLD3.getJSONObject(0).getString("lc_value")).equals("/")) {
+                    for (int i = rowBegin; i <= rowEnd; i++) {
+                        ms.putTxtToCell(tableIndex, i, 5, "/");
+                        ms.putTxtToCell(tableIndex, i, 6, "/");
+                    }
+                } else {
+                    for (int i = rowBegin; i <= rowEnd; i++) {
+                        if ((i - rowBegin) < jsonArrayLD3.length()) {
+                            if (jsonArrayLD3.getJSONObject(i - rowBegin).getString(
+                                    "standardvalue").equals("")) {
+                                ms.putTxtToCell(tableIndex, i, 5, "/");
+                            } else {
+                                ms.putTxtToCell(
+                                        tableIndex,
+                                        i,
+                                        5,
+                                        jsonArrayLD3.getJSONObject(i - rowBegin).getString(
+                                                "standardvalue"));
+                            }
+                            if (jsonArrayLD3.getJSONObject(i - rowBegin).getString
+                                    ("displayvalue").equals("")) {
+                                ms.putTxtToCell(tableIndex, i, 6, "/");
+                            } else {
+                                ms.putTxtToCell(tableIndex, i, 6, jsonArrayLD3
+                                        .getJSONObject(i - rowBegin).getString("displayvalue"));
+                            }
+                        } else {
+                            ms.putTxtToCell(tableIndex, i, 5, "/");
+                            ms.putTxtToCell(tableIndex, i, 6, "/");
+                        }
+                    }
+                }
+            } else {
+                for (int i = rowBegin; i <= rowEnd; i++) {
+                    ms.putTxtToCell(tableIndex, i, 5, "/");
+                    ms.putTxtToCell(tableIndex, i, 6, "/");
+                }
+            }
+
+
+            // 将数据插入表格 量程4
+            if (jsonArrayLD4.length() != 0) {
+                if ((jsonArrayLD4.getJSONObject(0).getString("lc_value")).equals("/")) {
+                    for (int i = rowBegin; i <= rowEnd; i++) {
+                        ms.putTxtToCell(tableIndex, i, 7, "/");
+                        ms.putTxtToCell(tableIndex, i, 8, "/");
+                    }
+                } else {
+                    for (int i = rowBegin; i <= rowEnd; i++) {
+                        if ((i - rowBegin) < jsonArrayLD4.length()) {
+                            if (jsonArrayLD4.getJSONObject(i - rowBegin).getString(
+                                    "standardvalue").equals("")) {
+                                ms.putTxtToCell(tableIndex, i, 7, "/");
+                            } else {
+                                ms.putTxtToCell(
+                                        tableIndex,
+                                        i,
+                                        7,
+                                        jsonArrayLD4.getJSONObject(i - rowBegin).getString(
+                                                "standardvalue"));
+                            }
+                            if (jsonArrayLD4.getJSONObject(i - rowBegin).getString
+                                    ("displayvalue").equals("")) {
+                                ms.putTxtToCell(tableIndex, i, 8, "/");
+                            } else {
+                                ms.putTxtToCell(tableIndex, i, 8, jsonArrayLD4
+                                        .getJSONObject(i - rowBegin).getString("displayvalue"));
+                            }
+                        } else {
+                            ms.putTxtToCell(tableIndex, i, 7, "/");
+                            ms.putTxtToCell(tableIndex, i, 8, "/");
+                        }
+                    }
+                }
+            } else {
+                for (int i = rowBegin; i <= rowEnd; i++) {
+                    ms.putTxtToCell(tableIndex, i, 7, "/");
+                    ms.putTxtToCell(tableIndex, i, 8, "/");
+                }
+            }
+
+            // 将数据插入表格 量程5
+            if (jsonArrayLD5.length() != 0) {
+                if ((jsonArrayLD5.getJSONObject(0).getString("lc_value")).equals("/")) {
+                    for (int i = rowBegin; i <= rowEnd; i++) {
+                        ms.putTxtToCell(tableIndex, i, 9, "/");
+                        ms.putTxtToCell(tableIndex, i, 10, "/");
+                    }
+                } else {
+                    for (int i = rowBegin; i <= rowEnd; i++) {
+                        if ((i - rowBegin) < jsonArrayLD5.length()) {
+                            if (jsonArrayLD5.getJSONObject(i - rowBegin).getString(
+                                    "standardvalue").equals("")) {
+                                ms.putTxtToCell(tableIndex, i, 9, "/");
+                            } else {
+                                ms.putTxtToCell(
+                                        tableIndex,
+                                        i,
+                                        9,
+                                        jsonArrayLD5.getJSONObject(i - rowBegin).getString(
+                                                "standardvalue"));
+                            }
+                            if (jsonArrayLD5.getJSONObject(i - rowBegin).getString
+                                    ("displayvalue").equals("")) {
+                                ms.putTxtToCell(tableIndex, i, 10, "/");
+                            } else {
+                                ms.putTxtToCell(tableIndex, i, 10, jsonArrayLD5
+                                        .getJSONObject(i - rowBegin).getString("displayvalue"));
+                            }
+                        } else {
+                            ms.putTxtToCell(tableIndex, i, 9, "/");
+                            ms.putTxtToCell(tableIndex, i, 10, "/");
+                        }
+                    }
+                }
+            } else {
+                for (int i = rowBegin; i <= rowEnd; i++) {
+                    ms.putTxtToCell(tableIndex, i, 9, "/");
+                    ms.putTxtToCell(tableIndex, i, 10, "/");
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        // 电阻稳定性误差
+        try {
+            int tableIndex = 5;// word中第5张表格
+            int colBegin = 2;// 代表起始列开始
+            int colEnd = 7;// 代表结束列
+            if (jsonArrayWD.length() != 0) {
+                for (int i = 0; i < jsonArrayWD.length(); i++) {
+                    if (jsonArrayWD.getJSONObject(i).getString("readvalue")
+                            .equals("")) {
+                        jsonArrayWD.getJSONObject(i).put("wdxwc", "/");
+                    }
+                }
+                // 将数据插入表格
+                for (int j = colBegin; j <= colEnd; j++) {
+                    if ((j - colBegin) < jsonArrayWD.length()) {
+                        ms.putTxtToCell(
+                                tableIndex,
+                                2,
+                                j,
+                                jsonArrayWD.getJSONObject(j - colBegin).getString(
+                                        "readvalue"));
+                    } else {
+                        ms.putTxtToCell(tableIndex, 2, j, "/");
+                    }
+                }
+            } else {
+                for (int j = colBegin; j <= colEnd; j++) {
+                    ms.putTxtToCell(tableIndex, 2, j, "/");
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        // 电流基本误差和过冲测量
+        try {
+            for (int i = 0; i < jsonArrayDD.length(); i++) {
+                if (jsonArrayDD.getJSONObject(i).getString("shizhi")
+                        .equals("")
+                        || jsonArrayDD.getJSONObject(i).getString("shijizhi")
+                        .equals("")) {
+                    jsonArrayDD.getJSONObject(i).put("dlgc", "/");
+                    jsonArrayDD.getJSONObject(i).put("gcmk", "/");
+                }
+            }
+            int tableIndex = 6;// word中第6张表格
+            int colBegin1 = 2;// 代表起始列2开始
+            int colEnd1 = 6;// 代表结束列
+            // 将数据插入表格
+            for (int j = colBegin1; j <= colEnd1; j++) {
+                if ((j - colBegin1) < jsonArrayDD.length()) {
+                    ms.putTxtToCell(
+                            tableIndex,
+                            1,
+                            j,
+                            jsonArrayDD.getJSONObject(j - colBegin1).getString(
+                                    "shizhi"));
+                    ms.putTxtToCell(
+                            tableIndex,
+                            2,
+                            j,
+                            jsonArrayDD.getJSONObject(j - colBegin1).getString(
+                                    "shijizhi"));
+                } else {
+                    ms.putTxtToCell(tableIndex, 1, j, "/");
+                    ms.putTxtToCell(tableIndex, 2, j, "/");
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        // 感性负载测量能力检定
+        try {
+            int tableIndex = 7;// word中第7张表格
+            int rowBegin1 = 2;// 代表起始行开始
+            int rowEnd1 = 4;// 代表结束行
+            // 将数据插入表格
+            if (jsonArrayGD.length() != 0) {
+                for (int j = rowBegin1; j <= rowEnd1; j++) {
+                    if ((j - rowBegin1) < jsonArrayGD.length()) {
+                        ms.putTxtToCell(
+                                tableIndex,
+                                j,
+                                1,
+                                jsonArrayGD.getJSONObject(j - rowBegin1).getString(
+                                        "shijizhi"));
+                        ms.putTxtToCell(
+                                tableIndex,
+                                j,
+                                2,
+                                jsonArrayGD.getJSONObject(j - rowBegin1).getString(
+                                        "zhishizhi"));
+                    } else {
+                        ms.putTxtToCell(tableIndex, j, 1, "/");
+                        ms.putTxtToCell(tableIndex, j, 2, "/");
+                    }
+                }
+            } else {
+                for (int j = rowBegin1; j <= rowEnd1; j++) {
+                    ms.putTxtToCell(tableIndex, j, 1, "/");
+                    ms.putTxtToCell(tableIndex, j, 2, "/");
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        String fileName = joID.getString("sjdw") + "_直租仪原始记录_"
                 + joID.getString("zsbh") + ".doc";
 
         // 判断文件是否存在，存在则删除

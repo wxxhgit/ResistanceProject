@@ -255,12 +255,12 @@ public class ReadSerialPort implements SerialPortEventListener {// Runnable,
     // 电阻2的数组有关变量
     private float[] arr2 = new float[5];// 电阻2的数组
     private volatile int m2 = 0;// 负责数组arr的移位工作
-    private float average2 = 0f;// 电阻2的平均数
+    private float average2 = 1000f;// 电阻2的平均数
     private float max2 = 0;// 电阻2的max
     private float min2 = 0;// 电阻2的min
 
     // 电压&电流的数组有关变量
-    private float[] arr3 = new float[5];// 电压&电流的数组
+    private float[] arr3 = new float[3];// 电压&电流的数组
     private volatile int m3 = 0;// 负责数组arr3的移位工作
     private float average3 = 0f;// 电压&电流的平均数
 
@@ -412,7 +412,7 @@ public class ReadSerialPort implements SerialPortEventListener {// Runnable,
                                     // System.out.println("电阻2的平均数：" + average2);
 
                                     // 将数据存放到数组中，电压或电流
-                                    if (m3 >= 5) {
+                                    if (m3 >= 3) {
                                         m3 = 0;
                                     } else if (m3 >= 0 && m3 <= 4) {
                                         arr3[m3] = c;

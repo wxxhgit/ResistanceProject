@@ -430,7 +430,40 @@ public class RpDao extends BaseDao {
 		return this.getForJson(sql, key);
 	}
 
-	/**
+    /**
+     * 方法序号： 8_10 提交 感性负载测量
+     */
+    public boolean addGxfzcl(CaiYangGxfzcl caiYangGxfzcl)throws Exception {
+        String sql = "INSERT INTO Gxfzcl(zsbh,shijizhi,zhishizhi,gzdl,dw,id) VALUES (?,?,?,?,?,?)";
+        int result = this.saveEntity(sql,caiYangGxfzcl);
+        if(result>0){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    /**
+     * 方法序号： 8_10_1 删除 感性负载测量
+     */
+    public boolean deleteGxfzcl(String string) throws Exception {
+        String sql = "DELETE FROM Gxfzcl WHERE zsbh = ?";
+        int result = this.saveOrUpdateOrDelete(sql, string);
+        if (result > 0)
+            return true;
+        else
+            return false;
+    }
+    /**
+     * 方法序号： 8_10_2 查询 感性负载测量
+     */
+    public String findGxfzcl(String key) throws Exception {
+        String sql = "SELECT * FROM Gxfzcl WHERE zsbh=? Order by id ASC";
+        return this.getForJson(sql, key);
+    }
+
+
+    /**
 	 * 方法序号：9_1 添加绝缘电阻表剩余部分数据到数据库 11个参数 zsbh;//送检仪器证书编号 wg;//外观 jydz;//绝缘电阻
 	 * jyqd;//绝缘强度 xsnl;//显示能力 klcldy;//开路测量电压 dldy;//跌落（中值）电压 dndywdx;//端钮电压稳定性
 	 * qxyyjy;//倾斜影响检验 jdjl;//检定结论 tdjc;//通电检查 wzyxsy;//位置影响试验 fzjddzyxsy;//辅助接地电阻影响试验
@@ -490,17 +523,23 @@ public class RpDao extends BaseDao {
 
 
     /**
-     * 方法序号：9_1_3 添加模块选中标志位到数据库 3个参数 jyflag;//绝缘电阻 jdflag;//接地电阻
-     * hlflag；//回路电阻
+     * 方法序号：9_1_3 添加直租仪剩余部分数据到数据库 13个参数 zsbh;//送检仪器证书编号 fbl;//分辨力 xxwc;//线性误差
+     * wg;//外观 jydz;//绝缘电阻 jyqd;//绝缘强度 xldl;//泄露电流 wdxwc;//稳定性误差 dlgc;//电流过冲 gcmk;//过冲脉宽
+     * jdjl;//检定结论 xdkzbqdd;//相对扩展不确定度 xhgn;//消弧功能
      */
-//    public boolean addDZBZW(String jy,String jd,String hl) throws Exception {
-//        String sql = "INSERT INTO flag(jyflag,jdflag,hlflag) VALUES (?,?,?)";
-//        int result = this.saveOrUpdateOrDelete(sql,jy, jd,hl);
-//        if (result > 0)
-//            return true;
-//        else
-//            return false;
-//    }
+    public boolean addInspectionDecLeftZZY(InspectionDecLeft ins) throws Exception {
+        String sql = "UPDATE InspectionDevice SET wg = ? ,jydz = ? , jyqd = ? ,jdjl = ? , fbl = ? ,xxwc= ? ,xldl = ? ,wdxwc = ? , dlgc = ? , gcmk = ? ,xdkzbqdd= ?,xhgn= ? WHERE zsbh = ?";
+        int result = this.saveOrUpdateOrDelete(sql,ins.getWg(),
+                ins.getJydz(), ins.getJyqd(),ins.getJdjl() ,ins.getFbl(),
+                ins.getXxwc(), ins.getXldl(), ins.getWdxwc(),
+                ins.getDlgc(), ins.getGcmk(), ins.getXdkzbqdd(),
+                ins.getXhgn(),ins.getZsbh()
+        );
+        if (result > 0)
+            return true;
+        else
+            return false;
+    }
 
     /**
      * 方法序号：9_1_4 查询模块选中标志位

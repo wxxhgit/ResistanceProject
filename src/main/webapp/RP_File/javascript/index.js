@@ -893,8 +893,8 @@ $(function () {
                             + '&nbsp;<input class="list_title" type="submit" value="删除"/></td></tr>';
                     }
                     $("#list4").html(html);
-                }else{
-                    html="";
+                } else {
+                    html = "";
                     $("#list4").html(html);
                 }
             },
@@ -975,6 +975,11 @@ $(function () {
         $("input[name='sz']").removeAttr("title");
         $("input[name='sz']").css("background", "white"); // 清除红色标记
         $("#part5_4_12_7").html("");
+
+        $("input[name='lc8']").val(""); // 将name=sz的文本框清空，以便重新下一次修改
+        $("input[name='lc8']").removeAttr("title");
+        $("input[name='lc8']").css("background", "white"); // 清除红色标记
+        $("#part5_4_12_8").html("");
     }
 
     //查询所有送检仪器和标准器信息 ----电阻表采样检测   part5
@@ -2407,6 +2412,8 @@ $(function () {
             $("#submit6_0_4").attr("disabled", "disabled");
             $("#submit6_0_5").attr("disabled", false);
             $("#submit6_0_6").attr("disabled", false);
+            $("#submit6_0_7").attr("disabled", false);
+            $("#submit6_0_8").attr("disabled", false);
         }
         $("#part6_1").hide(speed_value);
         $("#submit6_0_0").val("显示选择区");
@@ -2432,6 +2439,8 @@ $(function () {
         $("#part6_5").hide();
         $("#part6_7").hide();
         $("#part6_8").hide();
+        $("#part6_9").hide();
+        $("#part6_10").hide();
         //初始化值
         $.ajax({
             type: "POST",
@@ -2470,6 +2479,8 @@ $(function () {
         $("#part6_5").hide();
         $("#part6_7").hide();
         $("#part6_8").hide();
+        $("#part6_9").hide();
+        $("#part6_10").hide();
         //初始化值
         $.ajax({
             type: "POST",
@@ -2508,7 +2519,8 @@ $(function () {
         $("#part6_5").hide();
         $("#part6_7").hide();
         $("#part6_8").hide();
-
+        $("#part6_9").hide();
+        $("#part6_10").hide();
         //初始化值
         $.ajax({
             type: "POST",
@@ -2542,7 +2554,8 @@ $(function () {
         $("#part6_5").show();
         $("#part6_7").hide();
         $("#part6_8").hide();
-
+        $("#part6_9").hide();
+        $("#part6_10").hide();
         //初始化值
         $.ajax({
             type: "POST",
@@ -2579,6 +2592,8 @@ $(function () {
         $("#part6_5").hide();
         $("#part6_7").show();
         $("#part6_8").hide();
+        $("#part6_9").hide();
+        $("#part6_10").hide();
         //初始化值
         $.ajax({
             type: "POST",
@@ -2617,7 +2632,9 @@ $(function () {
             dataType: "json",
             cache: false,
             success: function (data) {
-                $("#wdxwc").val(data.allJsonArray[0].wdxwc);
+                if (data.allJsonArray.length != 0) {
+                    $("#wdxwc").val(data.allJsonArray[0].wdxwc);
+                }
             },
             error: function (jqXHR) {
                 alert("发生错误代码：" + jqXHR.status + "，数据未加载成功！");
@@ -2636,6 +2653,8 @@ $(function () {
         $("#part6_5").hide();
         $("#part6_7").hide();
         $("#part6_8").show();
+        $("#part6_9").hide();
+        $("#part6_10").hide();
         //初始化值
         $.ajax({
             type: "POST",
@@ -2676,7 +2695,132 @@ $(function () {
             dataType: "json",
             cache: false,
             success: function (data) {
-                $("#wdxwc2").val(data.allJsonArray[0].wdxwc);
+                if (data.allJsonArray.length != 0) {
+                    $("#wdxwc2").val(data.allJsonArray[0].wdxwc);
+                }
+            },
+            error: function (jqXHR) {
+                alert("发生错误代码：" + jqXHR.status + "，数据未加载成功！");
+            }
+        });
+    });
+    /////
+    //显示直租仪原始记录证书7
+    $("#submit6_0_7").click(function () {
+        if ($("#submit6_0_0").val() == "隐藏选择区") {
+            $("#part6_1").hide(speed_value);
+            $("#submit6_0_0").val("显示选择区");
+        }
+        $("#part6_2").hide();
+        $("#part6_3").hide();
+        $("#part6_4").hide();
+        $("#part6_5").hide();
+        $("#part6_7").hide();
+        $("#part6_8").hide();
+        $("#part6_9").show();
+        $("#part6_10").hide();
+        //初始化值
+        $.ajax({
+            type: "POST",
+            url: "Action_findOneInspectionDevice.action",
+            contentType: "application/x-www-form-urlencoded; charset=utf-8",
+            data: {
+                "id": $("#zsbh6_1").text()//送检仪器证书编号
+            },
+            dataType: "json",
+            cache: false,
+            success: function (data) {
+                $("#wg7").val(data.allJsonArray[0].wg);
+                $("#fbl3").val(data.allJsonArray[0].fbl);
+                $("#xxwc3").val(data.allJsonArray[0].xxwc);
+                $("#jydz7").val(data.allJsonArray[0].jydz);
+                $("#jyqd7").val(data.allJsonArray[0].jyqd);
+                $("#xldl3").val(data.allJsonArray[0].xldl);
+                // $("#wdxwc").val(data.allJsonArray[0].wdxwc);
+                $("#dlgc3").val(data.allJsonArray[0].dlgc);
+                $("#gcmk3").val(data.allJsonArray[0].gcmk);
+                $("#xhgn").val(data.allJsonArray[0].xhgn);
+                $("#xdkzbqdd3").val(data.allJsonArray[0].xdkzbqdd);
+            },
+            error: function (jqXHR) {
+                alert("发生错误代码：" + jqXHR.status + "，数据未加载成功！");
+            }
+        });
+        $.ajax({
+            type: "POST",
+            url: "Action_findWdxwcByZsh.action",
+            contentType: "application/x-www-form-urlencoded; charset=utf-8",
+            data: {
+                "id": $("#zsbh6_1").text()//送检仪器证书编号
+            },
+            dataType: "json",
+            cache: false,
+            success: function (data) {
+                if (data.allJsonArray.length != 0) {
+                    $("#wdxwc3").val(data.allJsonArray[0].wdxwc);
+                }
+            },
+            error: function (jqXHR) {
+                alert("发生错误代码：" + jqXHR.status + "，数据未加载成功！");
+            }
+        });
+    });
+    //显示直租仪检定证书记录8
+    $("#submit6_0_8").click(function () {
+        if ($("#submit6_0_0").val() == "隐藏选择区") {
+            $("#part6_1").hide(speed_value);
+            $("#submit6_0_0").val("显示选择区");
+        }
+        $("#part6_2").hide();
+        $("#part6_3").hide();
+        $("#part6_4").hide();
+        $("#part6_5").hide();
+        $("#part6_7").hide();
+        $("#part6_8").hide();
+        $("#part6_9").hide();
+        $("#part6_10").show();
+        //初始化值
+        $.ajax({
+            type: "POST",
+            url: "Action_findOneInspectionDevice.action",
+            contentType: "application/x-www-form-urlencoded; charset=utf-8",
+            data: {
+                "id": $("#zsbh6_1").text()//送检仪器证书编号
+            },
+            dataType: "json",
+            cache: false,
+            success: function (data) {
+                $("#wg8").val(data.allJsonArray[0].wg);
+                $("#fbl4").val(data.allJsonArray[0].fbl);
+                $("#xxwc4").val(data.allJsonArray[0].xxwc);
+                $("#jydz8").val(data.allJsonArray[0].jydz);
+                $("#jyqd8").val(data.allJsonArray[0].jyqd);
+                $("#xldl4").val(data.allJsonArray[0].xldl);
+                // $("#wdxwc2").val(data.allJsonArray[0].wdxwc);
+                $("#dlgc4").val(data.allJsonArray[0].dlgc);
+                $("#gcmk4").val(data.allJsonArray[0].gcmk);
+                $("#jdjl8").val(data.allJsonArray[0].jdjl);
+                $("#xhgn1").val(data.allJsonArray[0].xhgn);
+                $("#xdkzbqdd4").val(data.allJsonArray[0].xdkzbqdd);
+
+            },
+            error: function (jqXHR) {
+                alert("发生错误代码：" + jqXHR.status + "，数据未加载成功！");
+            }
+        });
+        $.ajax({
+            type: "POST",
+            url: "Action_findWdxwcByZsh.action",
+            contentType: "application/x-www-form-urlencoded; charset=utf-8",
+            data: {
+                "id": $("#zsbh6_1").text()//送检仪器证书编号
+            },
+            dataType: "json",
+            cache: false,
+            success: function (data) {
+                if (data.allJsonArray.length != 0) {
+                    $("#wdxwc4").val(data.allJsonArray[0].wdxwc);
+                }
             },
             error: function (jqXHR) {
                 alert("发生错误代码：" + jqXHR.status + "，数据未加载成功！");
@@ -2908,6 +3052,84 @@ $(function () {
         });
     });
 
+    //生成直租仪原始记录证书7
+    $("#submit6_2_7").click(function () {
+        //显示进度条
+        clearprocessbar();
+        $("#part6_6").show();
+        mytimer = setInterval(processbar, speed_bar);
+        $.ajax({
+            type: "POST",
+            url: "Action_createZZYOriginal.action",
+            contentType: "application/x-www-form-urlencoded; charset=utf-8",
+            data: {
+                "zsbh": $("#zsbh6_1").text(),//送检仪器证书编号
+                "value1": $("#wg7").val(),
+                "value2": $("#fbl3").val(),
+                "value3": $("#xxwc3").val(),
+                "value4": $("#jydz7").val(),
+                "value5": $("#jyqd7").val(),
+                "value6": $("#xldl3").val(),
+                "value7": $("#wdxwc3").val(),
+                "value8": $("#dlgc3").val(),
+                "value9": $("#gcmk3").val(),
+                "value10": $("#xhgn").val(),
+                "value11": $("#xdkzbqdd3").val()
+            },
+            dataType: "json",
+            cache: false,
+            success: function (data) {
+                if (data.jsonObject == "1") {
+                    clearInterval(mytimer);
+                    $("#processbar").css('width', "1000px");
+                    $("#span_s").html(100);
+                } else alert("证书生成失败，请重新生成！");
+            },
+            error: function (jqXHR) {
+                alert("发生错误代码：" + jqXHR.status + "，数据未加载成功！");
+            }
+        });
+    });
+
+    //生成直租仪检定证书记录8
+    $("#submit6_2_8").click(function () {
+        //显示进度条
+        clearprocessbar();
+        $("#part6_6").show();
+        mytimer = setInterval(processbar, speed_bar);
+        $.ajax({
+            type: "POST",
+            url: "Action_createZZYCertificate.action",
+            contentType: "application/x-www-form-urlencoded; charset=utf-8",
+            data: {
+                "zsbh": $("#zsbh6_1").text(),//送检仪器证书编号
+                "value1": $("#wg8").val(),
+                "value2": $("#fbl4").val(),
+                "value3": $("#xxwc4").val(),
+                "value4": $("#jydz8").val(),
+                "value5": $("#jyqd8").val(),
+                "value6": $("#xldl4").val(),
+                "value7": $("#wdxwc4").val(),
+                "value8": $("#dlgc4").val(),
+                "value9": $("#gcmk4").val(),
+                "value10": $("#xhgn1").val(),
+                "value11": $("#xdkzbqdd4").val(),
+                "value12": $("#jdjl8").val()
+            },
+            dataType: "json",
+            cache: false,
+            success: function (data) {
+                if (data.jsonObject == "1") {
+                    clearInterval(mytimer);
+                    $("#processbar").css('width', "1000px");
+                    $("#span_s").html(100);
+                } else alert("证书生成失败，请重新生成！");
+            },
+            error: function (jqXHR) {
+                alert("发生错误代码：" + jqXHR.status + "，数据未加载成功！");
+            }
+        });
+    });
 
     //进度条,开始
     var mytimer;
