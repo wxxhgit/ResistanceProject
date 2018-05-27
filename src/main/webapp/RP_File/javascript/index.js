@@ -992,19 +992,25 @@ $(function () {
             contentType: "application/x-www-form-urlencoded; charset=utf-8",
             dataType: "json",
             cache: false,
+            async: false,
             success: function (data) {
                 var html;
-                for (var i = 0; i < data.allJsonArray.length; i++) {
-                    html += '<tr><td>' + (i + 1) + '</td>'
-                        + '<td class="leixing">' + data.allJsonArray[i].leixing + '</td>'
-                        + '<td class="xinghao">' + data.allJsonArray[i].xinghao + '</td>'
-                        + '<td class="yqmc">' + data.allJsonArray[i].yqmc + '</td>'
-                        + '<td class="jdsj">' + formatdatetime(data.allJsonArray[i].jdsj) + '</td>'
-                        + '<td class="sjdw">' + data.allJsonArray[i].sjdw + '</td>'
-                        + '<td class="zsbh">' + data.allJsonArray[i].zsbh + '</td>'
-                        + '<td><input class="list_title" type="submit" value="选择"/></td></tr>';
+                if (data.allJsonArray.length != 0) {
+                    for (var i = 0; i < data.allJsonArray.length; i++) {
+                        html += '<tr><td>' + (i + 1) + '</td>'
+                            + '<td class="leixing">' + data.allJsonArray[i].leixing + '</td>'
+                            + '<td class="xinghao">' + data.allJsonArray[i].xinghao + '</td>'
+                            + '<td class="yqmc">' + data.allJsonArray[i].yqmc + '</td>'
+                            + '<td class="jdsj">' + formatdatetime(data.allJsonArray[i].jdsj) + '</td>'
+                            + '<td class="sjdw">' + data.allJsonArray[i].sjdw + '</td>'
+                            + '<td class="zsbh">' + data.allJsonArray[i].zsbh + '</td>'
+                            + '<td><input class="list_title" type="submit" value="选择"/></td></tr>';
+                    }
+                    $("#list5_1").html(html);
+                }else{
+                    html="";
+                    $("#list5_1").html(html);
                 }
-                $("#list5_1").html(html);
             },
             error: function (jqXHR) {
                 alert("发生错误代码：" + jqXHR.status + "，数据未加载成功！");
