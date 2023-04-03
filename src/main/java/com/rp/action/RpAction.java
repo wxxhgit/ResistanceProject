@@ -42,15 +42,18 @@ public class RpAction extends BaseAction {
 		String result = rpService.login(username, password);
 		String flag;
 		if (result != null) {
-			flag = "登录成功";
+			flag = "1";
 		} else {
-			flag = "登录失败";
+			flag = "0";
 		}
-		JSONObject jo = new JSONObject();
-		jo.put("jsonObject", flag);
-		jo.put("username", username);
+//		JSONObject jo = new JSONObject();
+//		jo.put("jsonObject", flag);
+//		jo.put("username", username);
+		this.getRequest().getSession().setAttribute("username", username);
+		this.getRequest().getSession().setAttribute("password", password);
+		System.out.println("---------------------------");
 		this.getResponse().setContentType("text/html;charset=UTF-8");// 设置响应数据类型
-		this.getResponse().getWriter().print(jo);// 向前台发送json数据
+		this.getResponse().getWriter().print(flag);// 向前台发送json数据
 		return null;
 	}
 
@@ -86,8 +89,8 @@ public class RpAction extends BaseAction {
 	 */
 	public String addInspectionDevice() throws IOException {
 	    //
-	    Calendar c= Calendar.getInstance();
-	    String time=new SimpleDateFormat("HH:mm:ss").format(c.getTime());
+//	    Calendar c= Calendar.getInstance();
+//	    String time=new SimpleDateFormat("HH:mm:ss").format(c.getTime());
 		InspectionDevice inspectionDevice = new InspectionDevice();
 		inspectionDevice.setLeixing(this.getRequest().getParameter("leixing"));
 		inspectionDevice.setXinghao(this.getRequest().getParameter("xinghao"));
@@ -100,8 +103,10 @@ public class RpAction extends BaseAction {
 		inspectionDevice.setJddd(this.getRequest().getParameter("jddd"));
 		inspectionDevice.setWendu(this.getRequest().getParameter("wendu"));
 		inspectionDevice.setShidu(this.getRequest().getParameter("shidu"));
-		inspectionDevice.setJdsj(this.getRequest().getParameter("jdsj")+" "+time);
-		inspectionDevice.setYxqsj(this.getRequest().getParameter("yxqsj")+" "+time);
+		inspectionDevice.setJdsj(this.getRequest().getParameter("jdsj"));
+		inspectionDevice.setYxqsj(this.getRequest().getParameter("yxqsj"));
+//		inspectionDevice.setJdsj(this.getRequest().getParameter("jdsj")+" "+time);
+//		inspectionDevice.setYxqsj(this.getRequest().getParameter("yxqsj")+" "+time);
 		inspectionDevice.setJdyj(this.getRequest().getParameter("jdyj"));
 		inspectionDevice.setZsbh(this.getRequest().getParameter("zsbh"));
 		if(inspectionDevice.getLeixing().equals("绝缘电阻表")){
@@ -209,8 +214,8 @@ public class RpAction extends BaseAction {
 	 * @throws IOException
 	 */
 	public String modifyInspectionDevice() throws IOException {
-        Calendar c= Calendar.getInstance();
-        String time=new SimpleDateFormat("HH:mm:ss").format(c.getTime());
+//        Calendar c= Calendar.getInstance();
+//        String time=new SimpleDateFormat("HH:mm:ss").format(c.getTime());
 		InspectionDevice inspectionDevice = new InspectionDevice();
 		inspectionDevice.setLeixing(this.getRequest().getParameter("leixing"));
 		inspectionDevice.setXinghao(this.getRequest().getParameter("xinghao"));
@@ -223,8 +228,10 @@ public class RpAction extends BaseAction {
 		inspectionDevice.setJddd(this.getRequest().getParameter("jddd"));
 		inspectionDevice.setWendu(this.getRequest().getParameter("wendu"));
 		inspectionDevice.setShidu(this.getRequest().getParameter("shidu"));
-		inspectionDevice.setJdsj(this.getRequest().getParameter("jdsj")+" "+time);
-		inspectionDevice.setYxqsj(this.getRequest().getParameter("yxqsj")+" "+time);
+		inspectionDevice.setJdsj(this.getRequest().getParameter("jdsj"));
+		inspectionDevice.setYxqsj(this.getRequest().getParameter("yxqsj"));
+//		inspectionDevice.setJdsj(this.getRequest().getParameter("jdsj")+" "+time);
+//		inspectionDevice.setYxqsj(this.getRequest().getParameter("yxqsj")+" "+time);
 		inspectionDevice.setJdyj(this.getRequest().getParameter("jdyj"));
 		inspectionDevice.setZsbh(this.getRequest().getParameter("zsbh"));
         System.out.println(inspectionDevice.toString());
@@ -249,8 +256,8 @@ public class RpAction extends BaseAction {
 	 * @throws IOException
 	 */
 	public String addStandardDevice() throws IOException {
-        Calendar c= Calendar.getInstance();
-        String time=new SimpleDateFormat("HH:mm:ss").format(c.getTime());
+//        Calendar c= Calendar.getInstance();
+//        String time=new SimpleDateFormat("HH:mm:ss").format(c.getTime());
 		StandardDevice standardDevice = new StandardDevice();
 		standardDevice.setLx(this.getRequest().getParameter("leixing"));
 		standardDevice.setXinghao(this.getRequest().getParameter("xinghao"));
@@ -258,7 +265,8 @@ public class RpAction extends BaseAction {
 		standardDevice.setYqbh(this.getRequest().getParameter("yqbh"));
 		standardDevice.setBqdd(this.getRequest().getParameter("bqdd"));
 		standardDevice.setJlbzzsh(this.getRequest().getParameter("jlbzzsh"));
-		standardDevice.setYxqz(this.getRequest().getParameter("yxqz")+" "+ time);
+		standardDevice.setYxqz(this.getRequest().getParameter("yxqz"));
+//		standardDevice.setYxqz(this.getRequest().getParameter("yxqz")+" "+ time);
 		
 		boolean result = rpService.addStandardDevice(standardDevice);
 		String flag;
@@ -293,15 +301,16 @@ public class RpAction extends BaseAction {
 	 * @throws IOException
 	 */
 	public String modifyStandardDevice() throws IOException {
-        Calendar c= Calendar.getInstance();
-        String time=new SimpleDateFormat("HH:mm:ss").format(c.getTime());
+//        Calendar c= Calendar.getInstance();
+//        String time=new SimpleDateFormat("HH:mm:ss").format(c.getTime());
 		StandardDevice standardDevice = new StandardDevice();
 		standardDevice.setXinghao(this.getRequest().getParameter("xinghao"));
 		standardDevice.setMingchen(this.getRequest().getParameter("mingchen"));
 		standardDevice.setYqbh(this.getRequest().getParameter("yqbh"));
 		standardDevice.setBqdd(this.getRequest().getParameter("bqdd"));
 		standardDevice.setJlbzzsh(this.getRequest().getParameter("jlbzzsh"));
-		standardDevice.setYxqz(this.getRequest().getParameter("yxqz")+" "+time);
+		standardDevice.setYxqz(this.getRequest().getParameter("yxqz"));
+//		standardDevice.setYxqz(this.getRequest().getParameter("yxqz")+" "+time);
 		standardDevice.setLx(this.getRequest().getParameter("leixing"));
 		boolean result = rpService.modifyStandardDevice(standardDevice);
 
