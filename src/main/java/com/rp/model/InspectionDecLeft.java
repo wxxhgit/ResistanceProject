@@ -24,7 +24,7 @@ public class InspectionDecLeft {
 	private String eddl;//额定电流
 	private String xdkzbqdd;//相对扩展不确定度
     /////
-	private String flag;  //模块选中标志位
+	private String xhgn;  //消弧功能
 	public InspectionDecLeft() {
 		super();
 		this.zsbh = "";
@@ -49,7 +49,7 @@ public class InspectionDecLeft {
 		this.eddlwcsj="";
 		this.eddl="";
 		this.xdkzbqdd="";
-		this.flag="";
+		this.xhgn="";
 	}
 	public String getZsbh() {
 		return zsbh;
@@ -188,9 +188,9 @@ public class InspectionDecLeft {
 
 	public void setXdkzbqdd(String xdkzbqdd) { this.xdkzbqdd = xdkzbqdd; }
 
-    public String getFlag() { return flag; }
+    public String getXhgn() { return xhgn; }
 
-    public void setFlag(String flag) { this.flag = flag; }
+    public void setXhgn(String xhgn) { this.xhgn = xhgn; }
 
     @Override
 	public String toString() {
@@ -202,7 +202,7 @@ public class InspectionDecLeft {
 				+ ", fbl=" + fbl + ", xxwc=" + xxwc + ", xldl=" + xldl
 				+ ", wdxwc=" + wdxwc + ", dlgc=" + dlgc +", gcmk=" + gcmk
 				+", eddlwcsj=" + eddlwcsj + ", eddl=" + eddl +", xdkzbqdd=" + xdkzbqdd
-                + ", flag=" + flag +"]";
+                + ", xhgn=" + xhgn +"]";
 	}
 	
 	

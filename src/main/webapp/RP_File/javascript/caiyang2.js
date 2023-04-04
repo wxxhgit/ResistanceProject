@@ -366,12 +366,49 @@ $(function() {
             }
         });
 
+        $.ajax({
+            type: "POST",
+            url: "Action_findGxfzcl.action",
+            contentType: "application/x-www-form-urlencoded; charset=utf-8",
+            data:{
+                id: $("#zsbh5_1").text(),
+            },
+            dataType: "json",
+            cache: false,
+            async: false,
+            success: function (data) {
+                if(data.allJsonArray.length!=0) {
+                    var dw = data.allJsonArray[0].dw;
+                    if (dw == "μΩ") {
+                        $("#radio5_40").attr("checked", "checked");
+                        $("#radio5_41").removeAttr("checked");
+                    } else if (dw == "mΩ") {
+
+                    } else if (dw == "Ω") {
+                        $("#radio5_42").attr("checked", "checked");
+                        $("#radio5_41").removeAttr("checked");
+                    }
+                    $("#part5_4_18_1_1").val(data.allJsonArray[0].shijizhi);
+                    $("#part5_4_18_1_2").val(data.allJsonArray[0].zhishizhi);
+                    $("#part5_4_18_2_1").val(data.allJsonArray[1].shijizhi);
+                    $("#part5_4_18_2_2").val(data.allJsonArray[1].zhishizhi);
+                    $("#part5_4_18_3_1").val(data.allJsonArray[2].shijizhi);
+                    $("#part5_4_18_3_2").val(data.allJsonArray[2].zhishizhi);
+                }else{}
+            },
+            error: function (jqXHR) {
+                alert("发生错误代码：" + jqXHR.status + "，数据未加载成功！");
+            }
+        });
+
         panduanlc1();
         panduanlc2();
         panduanlc3();
         panduanlc4();
         panduanlc5();
         panduanlc6();
+        //////
+        panduanlc8()
     });
 
 
@@ -480,6 +517,7 @@ $(function() {
     var danweijinzhi4 = 1;//μΩ默认为1，μ欧,用于后台传过来的值与之相乘 量程4
     var danweijinzhi5 = 1;//μΩ默认为1，μ欧,用于后台传过来的值与之相乘 量程5
     var danweijinzhi6_9 = 1;//默认为1，μΩ,用于后台传过来的值与之相乘
+    var danweijinzhi6_11 = 1;//默认为1，μΩ,用于后台传过来的值与之相乘
 
     var danweijinzhi1_2 = 1;//mΩ默认为1，m欧,用于后台传过来的值与之相乘 量程1
     var danweijinzhi2_2 = 1;//mΩ默认为1，m欧,用于后台传过来的值与之相乘 量程2
@@ -503,6 +541,7 @@ $(function() {
     var danwei6_7 = 1;//默认为1，μΩ
     var danwei6_8 = 1;//默认为1，μΩ
     var danwei6_9 = 1;//默认为1，μΩ
+    var danwei6_11 = 1;//默认为1，μΩ
     var guoduzhi = "";
     var null_value = "/";
 
@@ -3594,4 +3633,205 @@ $(function() {
      * EE回路电阻菜单  Part7 输出电流基本误差和过冲测量 结束
      */
 
+    /**
+     * EE回路电阻菜单  Part8 感性负载测量能力检定 开始
+     */
+    //获取数据 采样 part8 示值 8-1
+    $("#submit5_4_18_1_1").click(function () {
+        $("#part5_4_18_1_1").val("");
+        $("#submit5_4_18_1_1").val("获取中...");
+        setTimeout(caiyangsz81, time);//延迟500ms执行
+    });
+    function caiyangsz81() {
+        $.ajax({
+            type: "POST",
+            url: "Action_getCaiyangDataPart1.action",
+            contentType: "application/x-www-form-urlencoded; charset=utf-8",
+            dataType: "json",
+            cache: false,
+            success: function (data) {
+                if(parseFloat(data.average1)==0.01 || parseFloat(data.average1)==0.1){
+
+                }else if(parseFloat(data.average1)==1 || parseFloat(data.average1)==10
+                    ||parseFloat(data.average1)==20 || parseFloat(data.average1)==100
+                    ||parseFloat(data.average1)==1000){
+                    $("#radio5_41").attr("checked","checked");
+                    $("#radio5_40").removeAttr("checked");
+                }
+                $("#part5_4_18_1_1").val((parseFloat(data.average2) * danweijinzhi6_11).toString());
+                $("#part5_4_18_1_2").val(displayValue($("#part5_4_18_1_1").val()));
+                $("#submit5_4_18_1_1").val("获取数据");
+            },
+            error: function (jqXHR) {
+                alert("发生错误代码：" + jqXHR.status + "，数据未加载成功！");
+            }
+        });
+    }
+    //获取数据 采样 part8 示值 8-2
+    $("#submit5_4_18_2_1").click(function () {
+        $("#part5_4_18_2_1").val("");
+        $("#submit5_4_18_2_1").val("获取中...");
+        setTimeout(caiyangsz82, time);//延迟500ms执行
+    });
+    function caiyangsz82() {
+        $.ajax({
+            type: "POST",
+            url: "Action_getCaiyangDataPart1.action",
+            contentType: "application/x-www-form-urlencoded; charset=utf-8",
+            dataType: "json",
+            cache: false,
+            success: function (data) {
+                $("#part5_4_18_2_1").val((parseFloat(data.average2) * danweijinzhi6_11).toString());
+                $("#part5_4_18_2_2").val(displayValue($("#part5_4_18_2_1").val()));
+                $("#submit5_4_18_2_1").val("获取数据");
+            },
+            error: function (jqXHR) {
+                alert("发生错误代码：" + jqXHR.status + "，数据未加载成功！");
+            }
+        });
+    }
+    //获取数据 采样 part8 示值 8-3
+    $("#submit5_4_18_3_1").click(function () {
+        $("#part5_4_18_3_1").val("");
+        $("#submit5_4_18_3_1").val("获取中...");
+        setTimeout(caiyangsz83, time);//延迟500ms执行
+    });
+    function caiyangsz83() {
+        $.ajax({
+            type: "POST",
+            url: "Action_getCaiyangDataPart1.action",
+            contentType: "application/x-www-form-urlencoded; charset=utf-8",
+            dataType: "json",
+            cache: false,
+            success: function (data) {
+                $("#part5_4_18_3_1").val((parseFloat(data.average2) * danweijinzhi6_11).toString());
+                $("#part5_4_18_3_2").val(displayValue($("#part5_4_18_3_1").val()));
+                $("#submit5_4_18_3_1").val("获取数据");
+            },
+            error: function (jqXHR) {
+                alert("发生错误代码：" + jqXHR.status + "，数据未加载成功！");
+            }
+        });
+    }
+
+    $("#radio5_40").click(function () {
+        if (danwei6_11 == 2) {
+            var jinzhi = 1000;
+            jinzhizhuanhuan6_11(jinzhi)
+        } else if (danwei6_11== 3) {
+            var jinzhi = 1000000;
+            jinzhizhuanhuan6_11(jinzhi)
+        }
+        danwei6_11 = 1;
+        danweijinzhi6_11 = 1;
+    });
+
+    //单位为mΩ时,2
+    $("#radio5_41").click(function () {
+        if (danwei6_11 == 1) {
+            var jinzhi = 0.001;
+            jinzhizhuanhuan6_11(jinzhi)
+        } else if (danwei6_11 == 3) {
+            var jinzhi = 1000;
+            jinzhizhuanhuan6_11(jinzhi)
+        }
+        danwei6_11 = 2;
+        danweijinzhi6_11 = 0.001;
+    });
+
+    //单位为Ω时,3
+    $("#radio5_42").click(function () {
+        if (danwei6_11 == 1) {
+            var jinzhi = 0.000001;
+            jinzhizhuanhuan6_11(jinzhi)
+        } else if (danwei6_11 == 2) {
+            var jinzhi = 0.001;
+            jinzhizhuanhuan6_11(jinzhi)
+        }
+        danwei6_11 = 3;
+        danweijinzhi6_11 = 0.000001;
+    });
+    //进制转换公共程序
+    function jinzhizhuanhuan6_11(jinzhi) {
+        if ($("#part5_4_18_1_1").val() != "") {
+            $("#part5_4_18_1_1").val((parseFloat($("#part5_4_18_1_1").val()) * jinzhi).toString());
+        }
+        if ($("#part5_4_18_1_2").val() != "") {
+            $("#part5_4_18_1_2").val((parseFloat($("#part5_4_18_1_2").val()) * jinzhi).toString());
+        }
+        if ($("#part5_4_18_2_1").val() != "") {
+            $("#part5_4_18_2_1").val((parseFloat($("#part5_4_18_2_1").val()) * jinzhi).toString());
+        }
+        if ($("#part5_4_18_2_2").val() != "") {
+            $("#part5_4_18_2_2").val((parseFloat($("#part5_4_18_2_2").val()) * jinzhi).toString());
+        }
+        if ($("#part5_4_18_3_1").val() != "") {
+            $("#part5_4_18_3_1").val((parseFloat($("#part5_4_18_3_1").val()) * jinzhi).toString());
+        }
+        if ($("#part5_4_18_3_2").val() != "") {
+            $("#part5_4_18_3_2").val((parseFloat($("#part5_4_18_3_2").val()) * jinzhi).toString());
+        }
+    }
+
+    function panduanlc8() {
+        if (document.getElementById("radio5_40").checked) {
+            danwei6_11=1;
+        } else if(document.getElementById("radio5_41").checked){
+            danwei6_11=2;
+        }else{
+            danwei6_11=3;
+        }
+    }
+
+    //提交量程8
+    $("#submit5_32").click(function () {
+        if ($("#leixing5_1").text() == "" || $("#zsbh5_1").text() == "") {
+            alert("请先选择一条待检测的送检仪器！")
+        // } else if($("#part5_4_18_1_1").val()=="") {
+        //     alert("请先获取数据！")
+        } else {
+            $.ajax({
+                type: "POST",
+                url: "Action_addGxfzcl.action",
+                contentType: "application/x-www-form-urlencoded;charset=utf-8",
+                data: {
+                    "zsbh": $("#zsbh5_1").text(),//送检仪器证书编号
+                    "dw": $("input[name='check5_14']:checked").val(),//单位1/2/3--->mΩ/μΩ/Ω
+                    "shijizhi1": $("#part5_4_18_1_1").val(),//实际值
+                    "shijizhi2": $("#part5_4_18_2_1").val(),//指示值
+                    "shijizhi3": $("#part5_4_18_3_1").val(),
+                    "zhishizhi1": $("#part5_4_18_1_2").val(),
+                    "zhishizhi2": $("#part5_4_18_2_2").val(),
+                    "zhishizhi3": $("#part5_4_18_3_2").val(),
+                    "gzdl1": "≤10A",
+                    "gzdl2": "≤5A",
+                    "gzdl3": "≤1A",
+                },
+                dataType: "json",
+                cache: false,
+                success: function (data) {
+                    if (data.jsonObject == "1") {
+                        $("#part5_4_12_8").html("数据提交成功！")
+                    }
+                    else {
+                        alert("提交失败！")
+                    }
+                },
+                error: function (jqXHR) {
+                    alert("发生错误代码：" + jqXHR.status + "，数据未加载成功！");
+                }
+            });
+        }
+    });
+
+    // 将name=lc8的文本框清空，以便重新下一次填充
+    $("#submit5_33").click(function () {
+        $("input[name='lc8']").val(""); // 将name=sz的文本框清空，以便重新下一次修改
+        $("input[name='lc8']").removeAttr("title");
+        $("input[name='lc8']").css("background", "white"); // 清除红色标记
+        $("#part5_4_12_8").html("");
+    });
+    /**
+     * EE回路电阻菜单  Part8 感性负载测量能力检定结束
+     */
 });
